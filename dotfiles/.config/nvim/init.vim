@@ -73,7 +73,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DOTFILES/.config/nvim/snippets/hidden'
 
 " language specific
 autocmd FileType python map <F3> :!python3 %:h/sol.py < %:h/input.txt<CR>
