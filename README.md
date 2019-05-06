@@ -19,8 +19,15 @@ source ~/.bashrc
 Then symlink everything:
 
 ```sh
+# linux
 ln -s $DOTFILES/.bashrc_aliases $HOME/.bashrc_aliases
 ln -s $DOTFILES/.tmux.conf $HOME/.tmux.conf
 ln -s -d $DOTFILES/.config/nvim $HOME/.config/nvim
+source ~/.bashrc
+
+# mac
+ln -s $DOTFILES/.bashrc_aliases $HOME/.bashrc_aliases
+ln -s $DOTFILES/.tmux.conf $HOME/.tmux.conf
+ln -s $DOTFILES/.config/nvim $HOME/.config/nvim
 source ~/.bashrc
 ```
