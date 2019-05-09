@@ -44,11 +44,13 @@ colorscheme solarized8
 
 " fzf
 map <Leader>f :Files<CR>
+map <Leader>g :Rg<CR>
 
 " nerdtree, nerdtree-git-plugin, vim-gitgutter
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks=1
 set updatetime=100
 map <C-n> :NERDTreeToggle<CR>
 map <C-h> :tabp<CR>
