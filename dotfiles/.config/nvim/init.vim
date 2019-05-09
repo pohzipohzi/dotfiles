@@ -36,6 +36,7 @@ set expandtab
 set clipboard=unnamedplus
 let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
+map <C-p> :e $HOME/.config/nvim/init.vim<CR>
 
 " vim-solarized8
 set termguicolors
@@ -55,6 +56,10 @@ set updatetime=100
 map <C-n> :NERDTreeToggle<CR>
 map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
+
+" nerdcommenter
+nmap <C-_>   <Plug>NERDCommenterToggle
+vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
 " vim-airline
 let g:airline_theme='solarized'
@@ -78,7 +83,7 @@ endif
 let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DOTFILES/.config/nvim/snippets/hidden'
 
 " language specific
-autocmd FileType python map <F3> :!python3 %:h/sol.py < %:h/input.txt<CR>
+autocmd FileType python map <Leader>z :!python3 %:h/sol.py < %:h/input.txt<CR>
 autocmd FileType javascript map <Leader>d :TernDef<CR>
 autocmd FileType javascript map <Leader>r :TernRename<CR>
 autocmd FileType javascript map <Leader>n :TernRefs<CR>
