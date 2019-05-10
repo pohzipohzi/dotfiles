@@ -45,7 +45,7 @@ colorscheme solarized8
 
 " fzf
 map <Leader>f :Files<CR>
-map <Leader>g :Rg<CR>
+map <Leader>g :Rg 
 
 " nerdtree, nerdtree-git-plugin, vim-gitgutter
 autocmd StdinReadPre * let s:std_in=1
@@ -54,8 +54,6 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 set updatetime=100
 map <C-n> :NERDTreeToggle<CR>
-map <C-h> :tabp<CR>
-map <C-l> :tabn<CR>
 
 " nerdcommenter
 nmap <C-_>   <Plug>NERDCommenterToggle
@@ -83,7 +81,7 @@ endif
 let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DOTFILES/.config/nvim/snippets/hidden'
 
 " language specific
-autocmd FileType python map <Leader>z :!python3 %:h/sol.py < %:h/input.txt<CR>
+autocmd FileType python map <Leader><Leader> :w | :!python3 %:h/sol.py < %:h/input.txt<CR>
 autocmd FileType javascript map <Leader>d :TernDef<CR>
 autocmd FileType javascript map <Leader>r :TernRename<CR>
 autocmd FileType javascript map <Leader>n :TernRefs<CR>
