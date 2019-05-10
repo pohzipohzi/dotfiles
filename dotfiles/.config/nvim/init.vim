@@ -85,6 +85,9 @@ autocmd FileType python map <Leader><Leader> :w | :!python3 %:h/sol.py < %:h/inp
 autocmd FileType javascript map <Leader>d :TernDef<CR>
 autocmd FileType javascript map <Leader>r :TernRename<CR>
 autocmd FileType javascript map <Leader>n :TernRefs<CR>
+autocmd FileType javascript map <Leader>t :TernType<CR>
 autocmd FileType go map <Leader>d :GoDef<CR>
 autocmd FileType go map <Leader>r :GoRename<CR>
 autocmd FileType go map <Leader>n :GoReferrers<CR>
+autocmd FileType go map <Leader>t :GoInfo<CR>
+autocmd FileType go let g:go_info_mode='gopls'
