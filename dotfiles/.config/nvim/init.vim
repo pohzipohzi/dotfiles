@@ -82,15 +82,18 @@ let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DO
 
 " language specific
 autocmd FileType python map <Leader><Leader> :w | :!python3 %:h/sol.py < %:h/input.txt<CR>
+autocmd FileType python let g:jedi#rename_command = "<leader>n"
+autocmd FileType python let g:jedi#usages_command = "<leader>r"
 autocmd FileType python map <Leader>z :!python3 %<CR>
 autocmd FileType javascript map <Leader>d :TernDef<CR>
-autocmd FileType javascript map <Leader>r :TernRename<CR>
-autocmd FileType javascript map <Leader>n :TernRefs<CR>
+autocmd FileType javascript map <Leader>n :TernRename<CR>
+autocmd FileType javascript map <Leader>r :TernRefs<CR>
 autocmd FileType javascript map <Leader>q :TernType<CR>
 autocmd FileType javascript map <Leader>t :!npm test<CR>
+autocmd FileType javascript map <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <Leader>z :!node %<CR>
 autocmd FileType go map <Leader>d :GoDef<CR>
-autocmd FileType go map <Leader>r :GoRename<CR>
-autocmd FileType go map <Leader>n :GoReferrers<CR>
+autocmd FileType go map <Leader>n :GoRename<CR>
+autocmd FileType go map <Leader>r :GoReferrers<CR>
 autocmd FileType go map <Leader>q :GoInfo<CR>
 autocmd FileType go let g:go_info_mode='gopls'
