@@ -38,7 +38,7 @@ set expandtab
 set clipboard=unnamedplus
 let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
-map <C-p> :e $HOME/.config/nvim/init.vim<CR>
+map <C-p> :tabe $HOME/.config/nvim/init.vim<CR>
 
 " vim-solarized8
 set termguicolors
