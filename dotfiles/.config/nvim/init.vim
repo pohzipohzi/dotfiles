@@ -27,6 +27,8 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+noremap <C-f> <NOP>
+noremap <C-b> <NOP>
 set nu
 set rnu
 set colorcolumn=80
@@ -54,6 +56,9 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 set updatetime=100
 map <C-n> :NERDTreeToggle<CR>
+map <C-f> :NERDTreeFind<CR>
+map <C-h> :tabp<CR>
+map <C-l> :tabn<CR>
 
 " nerdcommenter
 nmap <C-_>   <Plug>NERDCommenterToggle
