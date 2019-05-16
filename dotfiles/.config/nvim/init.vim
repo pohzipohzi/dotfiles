@@ -36,6 +36,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set clipboard=unnamedplus
+set foldmethod=syntax
+set foldnestmax=1
+set nofoldenable
+set noswapfile
 let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
 map <C-p> :tabe $HOME/.config/nvim/init.vim<CR>
@@ -80,9 +84,6 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
 let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DOTFILES/.config/nvim/snippets/hidden'
 
 " language specific
@@ -98,7 +99,10 @@ autocmd FileType javascript map <Leader>t :!npm test<CR>
 autocmd FileType javascript map <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <Leader>z :!node %<CR>
 autocmd FileType go map <Leader>d :GoDef<CR>
+autocmd FileType go map <Leader>e <Plug>(go-def-tab)
 autocmd FileType go map <Leader>n :GoRename<CR>
 autocmd FileType go map <Leader>r :GoReferrers<CR>
 autocmd FileType go map <Leader>q :GoInfo<CR>
+autocmd FileType go map <Leader>t :GoTestFunc<CR>
+autocmd FileType go map <Leader>z :GoRun<CR>
 autocmd FileType go let g:go_info_mode='gopls'
