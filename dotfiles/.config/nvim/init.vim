@@ -42,7 +42,8 @@ set nofoldenable
 set noswapfile
 let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
-map <C-p> :tabe $HOME/.config/nvim/init.vim<CR>
+map <C-p> :tabe $MYVIMRC<CR>
+map <C-s> :so $MYVIMRC<CR>
 
 " vim-solarized8
 set termguicolors
@@ -87,22 +88,26 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DOTFILES/.config/nvim/snippets/hidden'
 
 " language specific
-autocmd FileType python map <Leader><Leader> :w | :!python3 %:h/sol.py < %:h/input.txt<CR>
+autocmd FileType c map <buffer> <Leader><Leader> :!gcc % -o %:p:r && %:p:r < %:h/in<CR>
+autocmd FileType c map <buffer> <Leader>z :!gcc % -o %:p:r && %:p:r<CR>
+autocmd FileType cpp map <buffer> <Leader><Leader> :!g++ % -o %:p:r && %:p:r < %:h/in<CR>
+autocmd FileType cpp map <buffer> <Leader>z :!g++ % -o %:p:r && %:p:r<CR>
+autocmd FileType python map <buffer> <Leader><Leader> :!python3 %:h/sol.py < %:h/in<CR>
 autocmd FileType python let g:jedi#rename_command = "<leader>n"
 autocmd FileType python let g:jedi#usages_command = "<leader>r"
-autocmd FileType python map <Leader>z :!python3 %<CR>
-autocmd FileType javascript map <Leader>d :TernDef<CR>
-autocmd FileType javascript map <Leader>n :TernRename<CR>
-autocmd FileType javascript map <Leader>r :TernRefs<CR>
-autocmd FileType javascript map <Leader>q :TernType<CR>
-autocmd FileType javascript map <Leader>t :!npm test<CR>
-autocmd FileType javascript map <Leader>l :!npm run lint<CR>
-autocmd FileType javascript map <Leader>z :!node %<CR>
-autocmd FileType go map <Leader>d :GoDef<CR>
-autocmd FileType go map <Leader>e <Plug>(go-def-tab)
-autocmd FileType go map <Leader>n :GoRename<CR>
-autocmd FileType go map <Leader>r :GoReferrers<CR>
-autocmd FileType go map <Leader>q :GoInfo<CR>
-autocmd FileType go map <Leader>t :GoTestFunc<CR>
-autocmd FileType go map <Leader>z :GoRun<CR>
+autocmd FileType python map <buffer> <Leader>z :!python3 %<CR>
+autocmd FileType javascript map <buffer> <Leader>d :TernDef<CR>
+autocmd FileType javascript map <buffer> <Leader>n :TernRename<CR>
+autocmd FileType javascript map <buffer> <Leader>r :TernRefs<CR>
+autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
+autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
+autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
+autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
+autocmd FileType go map <buffer> <Leader>d :GoDef<CR>
+autocmd FileType go map <buffer> <Leader>e <Plug>(go-def-tab)
+autocmd FileType go map <buffer> <Leader>n :GoRename<CR>
+autocmd FileType go map <buffer> <Leader>r :GoReferrers<CR>
+autocmd FileType go map <buffer> <Leader>q :GoInfo<CR>
+autocmd FileType go map <buffer> <Leader>t :GoTestFunc<CR>
+autocmd FileType go map <buffer> <Leader>z :GoRun<CR>
 autocmd FileType go let g:go_info_mode='gopls'
