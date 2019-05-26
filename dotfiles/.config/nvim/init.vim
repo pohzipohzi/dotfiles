@@ -65,10 +65,6 @@ map <C-f> :NERDTreeFind<CR>
 map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
 
-" nerdcommenter
-nmap <C-_>   <Plug>NERDCommenterToggle
-vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
-
 " vim-airline
 let g:airline_theme='solarized'
 
