@@ -12,7 +12,7 @@ Next extend `.bashrc`:
 
 ```sh
 echo "export DOTFILES=$HOME/dotfiles/dotfiles" >> $HOME/.bashrc
-echo "[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases" >> $HOME/.bashrc
+echo "[ -f $HOME/.bashrc_aliases ] && source $HOME/.bashrc_aliases" >> $HOME/.bashrc
 source ~/.bashrc
 ```
 
