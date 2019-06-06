@@ -50,10 +50,6 @@ set termguicolors
 set bg=dark
 colorscheme solarized8
 
-" fzf
-map <Leader>f :Files<CR>
-map <Leader>g :Rg 
-
 " nerdtree, nerdtree-git-plugin, vim-gitgutter
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
