@@ -1,0 +1,2 @@
+vim $(dirname "$0")
+
