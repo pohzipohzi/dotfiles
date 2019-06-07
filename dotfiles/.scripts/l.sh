@@ -1,0 +1,1 @@
+tree $(dirname "$0")
