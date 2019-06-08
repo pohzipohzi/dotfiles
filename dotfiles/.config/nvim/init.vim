@@ -11,12 +11,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make' }
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -64,11 +61,7 @@ map <C-l> :tabn<CR>
 " vim-airline
 let g:airline_theme='solarized'
 
-" deoplete
-let g:deoplete#enable_at_startup=1
-let g:deoplete#sources#go#gocode_binary=$GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class=['package', 'func', 'type', 'var', 'const']
-call deoplete#custom#option('num_processes', 1) " https://github.com/Shougo/deoplete.nvim/issues/761#issuecomment-389701983
+" coc
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " neosnippet
