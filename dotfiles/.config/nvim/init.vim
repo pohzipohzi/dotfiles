@@ -71,7 +71,7 @@ vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-map <Leader>s :CocCommand snippets.editSnippets<CR>
+map <Leader>s :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " language specific
 autocmd FileType c map <buffer> <Leader><Leader> :!gcc-9 % -o %:p:r && %:p:r < %:h/in<CR>
