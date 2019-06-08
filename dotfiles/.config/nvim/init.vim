@@ -12,8 +12,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -67,13 +65,13 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#snippets_directory='$DOTFILES/.config/nvim/snippets/visible,$DOTFILES/.config/nvim/snippets/hidden'
+" coc-snippets
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+map <Leader>s :CocCommand snippets.editSnippets<CR>
 
 " language specific
 autocmd FileType c map <buffer> <Leader><Leader> :!gcc-9 % -o %:p:r && %:p:r < %:h/in<CR>
