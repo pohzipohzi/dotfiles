@@ -1,3 +1,6 @@
-export PGHOST="/var/run/postgresql/"
-export WALG_FILE_PREFIX=/var/lib/postgres/backups
-sudo -E -u postgres wal-g backup-push /var/lib/postgresql/11/cluster/
+export WALG_FILE_PREFIX=$HOME/Desktop/postgres/backups
+export PGHOST=localhost
+
+mkdir -p $WALG_FILE_PREFIX
+sudo chown postgres:postgres $WALG_FILE_PREFIX
+sudo -E -u postgres wal-g backup-push $HOME/docker/volumes/postgres/

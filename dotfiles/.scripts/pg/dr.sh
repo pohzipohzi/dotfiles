@@ -38,4 +38,5 @@ side volume path /var/lib/postgresql/data created inside the container. This
 ensures that postgres data persists even after the container is removed.
 '
 
-docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data  postgres
+docker run --rm   --name pg-docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:$HOME/Desktop/postgres/backups  postgres
+sudo chown -R postgres:postgres $HOME/docker/volumes/postgres
