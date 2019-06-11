@@ -6,5 +6,5 @@
             "filetypes": ["go"]
         }
     },
-    "snippets.ultisnips.directories": ["$dotfiles/dotfiles/.config/nvim/snippets"]
+    "snippets.ultisnips.directories": ["./snippets"]
 }
