@@ -1,2 +1,2 @@
-vim $(dirname "$0")
+nvim $(dirname "$0")
 
