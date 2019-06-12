@@ -1,2 +1,2 @@
 mkdir -p $WALG_FILE_PREFIX
-wal-g backup-push $HOME/docker/volumes/postgres/
+$GOPATH/src/github.com/wal-g/wal-g/main/pg/wal-g backup-push $PGDATA
