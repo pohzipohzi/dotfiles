@@ -99,4 +99,5 @@ autocmd FileType go map <buffer> <Leader>r :GoReferrers<CR>
 autocmd FileType go map <buffer> <Leader>q :GoInfo<CR>
 autocmd FileType go map <buffer> <Leader>t :GoTestFunc<CR>
 autocmd FileType go map <buffer> <Leader>z :GoRun<CR>
+autocmd FileType go let g:go_def_mode='gopls'
 autocmd FileType go let g:go_info_mode='gopls'
