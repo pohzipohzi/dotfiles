@@ -3,7 +3,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt autoremove
     sudo apt update
     sudo apt upgrade
-    vim +'PlugUpdate --sync' +qa
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    :
+    brew upgrade # upgrade also runs update
 fi
+
+nvim +'PlugUpdate --sync' +qa
