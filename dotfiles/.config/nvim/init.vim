@@ -39,6 +39,7 @@ let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
 map <C-p> :tabe $MYVIMRC<CR>
 map <C-s> :so $MYVIMRC<CR>
+map <C-y> :let @+=expand("%:p")<CR>
 
 " vim-solarized8
 set termguicolors
