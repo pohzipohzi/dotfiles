@@ -75,14 +75,11 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 map <Leader>s :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " language specific
-autocmd FileType c map <buffer> <Leader><Leader> :!gcc-9 % -o %:p:r && %:p:r < %:h/in<CR>
-autocmd FileType cpp map <buffer> <Leader><Leader> :!g++-9 % -o %:p:r && %:p:r < %:h/in<CR>
+autocmd FileType c map <buffer> <Leader><Leader> :!gcc % -o %:p:r && %:p:r < %:h/in<CR>
 autocmd FileType go map <buffer> <Leader><Leader> :!go build -o %:p:r % && %:p:r < %:h/in<CR>
-autocmd FileType java map <buffer> <Leader><Leader> :!javac % && java -cp %:p:h %:t:r < %:h/in<CR>
 autocmd FileType python map <buffer> <Leader><Leader> :!python3 % < %:h/in<CR>
 
 autocmd FileType c map <buffer> <Leader>z :!gcc % -o %:p:r && %:p:r<CR>
-autocmd FileType cpp map <buffer> <Leader>z :!g++ % -o %:p:r && %:p:r<CR>
 autocmd FileType python let g:jedi#rename_command = "<leader>n"
 autocmd FileType python let g:jedi#usages_command = "<leader>r"
 autocmd FileType python map <buffer> <Leader>z :!python3 %<CR>
