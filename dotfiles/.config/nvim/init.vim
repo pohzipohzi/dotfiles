@@ -101,3 +101,7 @@ autocmd FileType go map <buffer> <Leader>t :GoTestFunc<CR>
 autocmd FileType go map <buffer> <Leader>z :GoRun<CR>
 autocmd FileType go let g:go_def_mode='gopls'
 autocmd FileType go let g:go_info_mode='gopls'
+
+autocmd FileType html set shiftwidth=2
+autocmd FileType scss set shiftwidth=2
+autocmd FileType javascript set shiftwidth=2
