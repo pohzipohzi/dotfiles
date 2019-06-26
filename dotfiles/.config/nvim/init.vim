@@ -46,7 +46,7 @@ set termguicolors
 set bg=dark
 colorscheme solarized8
 
-" nerdtree, nerdtree-git-plugin, vim-gitgutter
+" nerdtree, nerdtree-git-plugin
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 let NERDTreeShowHidden=1
@@ -56,6 +56,12 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>
 map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
+
+" vim-gigutter
+nmap <Leader>hn <Plug>GitGutterNextHunk
+nmap <Leader>hp <Plug>GitGutterPrevHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hu <Plug>GitGutterUndoHunk
 
 " vim-airline
 let g:airline_theme='solarized'
@@ -91,7 +97,6 @@ autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
 autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
 autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
-autocmd FileType go map <buffer> <Leader>e <Plug>(go-def-tab)
 autocmd FileType go map <buffer> <Leader>n :GoRename<CR>
 autocmd FileType go map <buffer> <Leader>r :GoReferrers<CR>
 autocmd FileType go map <buffer> <Leader>q :GoInfo<CR>
