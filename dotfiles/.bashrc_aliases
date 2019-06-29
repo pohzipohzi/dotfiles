@@ -3,5 +3,5 @@ alias tmux="tmux -2"
 alias b="bash $DOTFILES/.scripts/ba.sh"
 export WALG_FILE_PREFIX="$HOME/Desktop/postgres/backups"
 export PGHOST="localhost"
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
