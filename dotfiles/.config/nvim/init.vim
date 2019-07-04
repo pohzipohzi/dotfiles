@@ -102,6 +102,8 @@ autocmd FileType go map <buffer> <Leader>r :GoReferrers<CR>
 autocmd FileType go map <buffer> <Leader>q :GoInfo<CR>
 autocmd FileType go map <buffer> <Leader>t :GoTestFunc<CR>
 autocmd FileType go map <buffer> <Leader>z :GoRun<CR>
+autocmd FileType go map <buffer> <Leader>d :GoDef<CR>
+autocmd FileType go nmap <silent> <Leader>e <Plug>(go-def-tab)
 autocmd FileType go let g:go_info_mode='gopls'
 
 autocmd FileType html set shiftwidth=2
