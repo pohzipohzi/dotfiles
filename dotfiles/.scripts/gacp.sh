@@ -1,4 +1,4 @@
-if [ "$#" -ne 1 ]; then    
+if [ "$#" -lt 1 ]; then    
     echo "invalid parameters"
     exit 1
 fi
