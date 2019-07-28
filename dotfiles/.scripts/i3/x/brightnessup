@@ -1,0 +1,2 @@
+xbacklight -inc 10
+notify-send "Brightness up" "$(xbacklight)" -t 300
