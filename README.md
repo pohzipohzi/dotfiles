@@ -23,6 +23,7 @@ Then symlink everything:
 ln -s $DOTFILES/.bashrc_aliases $HOME/.bashrc_aliases
 ln -s $DOTFILES/.tmux.conf $HOME/.tmux.conf
 ln -s -d $DOTFILES/.config/nvim $HOME/.config/nvim
+ln -s -d $DOTFILES/.config/i3 $HOME/.config/i3
 source ~/.bashrc
 
 # mac
