@@ -151,6 +151,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id ~/dotfiles/dotfiles/.scripts/i
 bindsym XF86AudioMute exec --no-startup-id ~/dotfiles/dotfiles/.scripts/i3/x/mute
 bindsym XF86MonBrightnessUp exec ~/dotfiles/dotfiles/.scripts/i3/x/brightnessup
 bindsym XF86MonBrightnessDown exec ~/dotfiles/dotfiles/.scripts/i3/x/brightnessdown
+bindsym $mod+P exec gnome-screenshot -i
 
 # no header
 for_window [class="^.*"] border pixel 1
