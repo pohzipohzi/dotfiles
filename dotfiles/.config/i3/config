@@ -55,27 +55,26 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+c split h
-
+#bindsym $mod+h split h
 # split in vertical orientation
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+#bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -152,7 +151,8 @@ bindsym XF86AudioMute exec --no-startup-id ~/dotfiles/dotfiles/.scripts/i3/x/mut
 bindsym XF86MonBrightnessUp exec ~/dotfiles/dotfiles/.scripts/i3/x/brightnessup
 bindsym XF86MonBrightnessDown exec ~/dotfiles/dotfiles/.scripts/i3/x/brightnessdown
 bindsym $mod+z exec ~/dotfiles/dotfiles/.scripts/i3/x/lock
-bindsym $mod+P exec gnome-screenshot -i
+bindsym $mod+c exec ~/dotfiles/dotfiles/.scripts/i3/x/togglelanguage
+bindsym $mod+p exec gnome-screenshot -i
 
 # no header
 for_window [class="^.*"] border pixel 1
