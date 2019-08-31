@@ -11,10 +11,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " general
@@ -71,8 +70,10 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-map <Leader>d :call CocAction('jumpDefinition')<CR>
-map <Leader>e :call CocAction('jumpDefinition', 'drop')<CR>
+nmap <Leader>d :call CocAction('jumpDefinition')<CR>
+nmap <Leader>e :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <Leader>r <Plug>(coc-references)
+nmap <Leader>n <Plug>(coc-rename)
 
 " coc-snippets
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -97,14 +98,6 @@ autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
 autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
 autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
-autocmd FileType go map <buffer> <Leader>n :GoRename<CR>
-autocmd FileType go map <buffer> <Leader>r :GoReferrers<CR>
-autocmd FileType go map <buffer> <Leader>q :GoInfo<CR>
-autocmd FileType go map <buffer> <Leader>t :GoTestFunc<CR>
-autocmd FileType go map <buffer> <Leader>z :GoRun<CR>
-autocmd FileType go map <buffer> <Leader>d :GoDef<CR>
-autocmd FileType go nmap <silent> <Leader>e <Plug>(go-def-tab)
-autocmd FileType go let g:go_info_mode='gopls'
 
 autocmd FileType html set shiftwidth=2
 autocmd FileType scss set shiftwidth=2
