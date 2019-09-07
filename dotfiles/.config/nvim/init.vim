@@ -72,6 +72,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 nmap <Leader>d :call CocAction('jumpDefinition')<CR>
 nmap <Leader>e :call CocAction('jumpDefinition', 'tab drop')<CR>
+nmap <Leader>q :call CocAction('doHover')<CR>
 nmap <Leader>r <Plug>(coc-references)
 nmap <Leader>n <Plug>(coc-rename)
 
