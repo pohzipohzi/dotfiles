@@ -67,9 +67,9 @@ let g:airline_theme='solarized'
 
 " coc
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
+                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nmap <Leader>d :call CocAction('jumpDefinition')<CR>
 nmap <Leader>e :call CocAction('jumpDefinition', 'tab drop')<CR>
 nmap <Leader>q :call CocAction('doHover')<CR>
