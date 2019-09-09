@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'fatih/vim-hclfmt'
 call plug#end()
 
 " general
