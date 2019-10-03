@@ -100,7 +100,7 @@ autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
 autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
 autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
-autocmd FileType go map <C-i> :!goimports -w %<CR>
+autocmd FileType go nmap <buffer> <Leader>i :!goimports -w %<CR>
 
 autocmd FileType html set shiftwidth=2
 autocmd FileType scss set shiftwidth=2
