@@ -61,7 +61,7 @@ map <C-l> :tabn<CR>
 nmap <Leader>hn <Plug>GitGutterNextHunk
 nmap <Leader>hp <Plug>GitGutterPrevHunk
 nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hu <Plug>GitGutterUndoHunk
+nmap <Leader>hu <Plug>(GitGutterUndoHunk)
 
 " vim-airline
 let g:airline_theme='solarized'
