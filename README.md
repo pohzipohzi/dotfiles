@@ -30,5 +30,6 @@ source ~/.bashrc
 ln -s $DOTFILES/.bashrc_aliases $HOME/.bashrc_aliases
 ln -s $DOTFILES/.tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES/.config/nvim $HOME/.config/nvim
+ln -s $DOTFILES/.ideavimrc $HOME/.ideavimrc
 source ~/.bashrc
 ```
