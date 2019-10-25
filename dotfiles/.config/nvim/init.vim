@@ -58,9 +58,9 @@ map <C-h> :tabp<CR>
 map <C-l> :tabn<CR>
 
 " vim-gigutter
-nmap <Leader>hn <Plug>GitGutterNextHunk
-nmap <Leader>hp <Plug>GitGutterPrevHunk
-nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hn <Plug>(GitGutterNextHunk)
+nmap <Leader>hp <Plug>(GitGutterPrevHunk)
+nmap <Leader>ha <Plug>(GitGutterStageHunk)
 nmap <Leader>hu <Plug>(GitGutterUndoHunk)
 
 " vim-airline
