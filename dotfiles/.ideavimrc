@@ -19,6 +19,7 @@ nmap <Leader>q :action QuickJavaDoc<CR>
 nmap <Leader>u :action FindUsages<CR>
 nmap <Leader>t :action Run<CR>
 nmap <Leader>c :action CommentByLineComment<CR>
+nmap <Leader>f :action SelectInProjectView<CR>
 nmap <Leader>a :action Annotate<CR>
 nmap <Leader>p :action VcsShowPrevChangeMarker<CR>
 nmap <Leader>n :action VcsShowNextChangeMarker<CR>
