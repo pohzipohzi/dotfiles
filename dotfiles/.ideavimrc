@@ -6,6 +6,10 @@ noremap <C-f> <NOP>
 noremap <C-b> <NOP>
 set clipboard=unnamedplus
 
+nmap <C-h> :action PreviousTab<CR>
+nmap <C-l> :action NextTab<CR>
+nmap / :action Find<CR>
+
 let mapleader = ","
 nmap <Leader><Leader> :e ~/.ideavimrc<CR>
 nmap <Leader>s :so ~/.ideavimrc<CR>
@@ -15,8 +19,9 @@ nmap <Leader>q :action QuickJavaDoc<CR>
 nmap <Leader>u :action FindUsages<CR>
 nmap <Leader>t :action Run<CR>
 nmap <Leader>c :action CommentByLineComment<CR>
-nmap <C-h> :action PreviousTab<CR>
-nmap <C-l> :action NextTab<CR>
-nmap / :action Find<CR>
+nmap <Leader>a :action Annotate<CR>
+nmap <Leader>p :action VcsShowPrevChangeMarker<CR>
+nmap <Leader>n :action VcsShowNextChangeMarker<CR>
+nmap <Leader>r :action Vcs.RollbackChangedLines<CR>
 
 autocmd FileType go nmap <Leader>g :action GoImportsFileAction<CR>
