@@ -37,8 +37,8 @@ set nofoldenable
 set noswapfile
 let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
-map <C-p> :tabe $MYVIMRC<CR>
-map <C-s> :so $MYVIMRC<CR>
+map <Leader><Leader> :tabe $MYVIMRC<CR>
+map <Leader>s :so $MYVIMRC<CR>
 map <Leader>y :let @+=expand("%:p")<CR>
 
 " vim-solarized8
@@ -83,12 +83,11 @@ vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-map <Leader>s :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
+map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " language specific
-autocmd FileType c map <buffer> <Leader><Leader> :!gcc % -o %:p:r && %:p:r < %:h/in<CR>
-autocmd FileType go map <buffer> <Leader><Leader> :!go build -o %:p:r % && %:p:r < %:h/in<CR>
-autocmd FileType python map <buffer> <Leader><Leader> :!python3 % < %:h/in<CR>
+autocmd FileType go map <buffer> <Leader>z :!go build -o %:p:r % && %:p:r < %:h/in<CR>
+autocmd FileType python map <buffer> <Leader>z :!python3 % < %:h/in<CR>
 
 autocmd FileType c map <buffer> <Leader>z :!gcc % -o %:p:r && %:p:r<CR>
 autocmd FileType python let g:jedi#rename_command = "<leader>n"
@@ -100,7 +99,7 @@ autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
 autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
 autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
-autocmd FileType go nmap <buffer> <Leader>i :!goimports -w %<CR>
+autocmd FileType go nmap <buffer> <Leader>g :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
 
 autocmd FileType html set shiftwidth=2

@@ -14,6 +14,8 @@ set clipboard=unnamedplus
 
 nmap <C-h> :action PreviousTab<CR>
 nmap <C-l> :action NextTab<CR>
+nmap <C-o> :action Back<CR>
+nmap <C-i> :action Forward<CR>
 nmap / :action Find<CR>
 
 let mapleader = ","
