@@ -88,8 +88,8 @@ map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 " language specific
 autocmd FileType go map <buffer> <Leader>z :!go build -o %:p:r % && %:p:r < %:h/in<CR>
 autocmd FileType python map <buffer> <Leader>z :!python3 % < %:h/in<CR>
+autocmd FileType cpp map <buffer> <Leader>z :!clang++ -std=c++11 -stdlib=libc++ -Weverything % -o %:p:r && %:p:r < %:h/in<CR>
 
-autocmd FileType c map <buffer> <Leader>z :!gcc % -o %:p:r && %:p:r<CR>
 autocmd FileType python let g:jedi#rename_command = "<leader>n"
 autocmd FileType python let g:jedi#usages_command = "<leader>r"
 autocmd FileType python map <buffer> <Leader>z :!python3 %<CR>
