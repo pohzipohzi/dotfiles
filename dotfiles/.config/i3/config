@@ -155,5 +155,5 @@ bindsym $mod+c exec ~/dotfiles/dotfiles/.scripts/i3/x/togglelanguage
 bindsym $mod+p exec gnome-screenshot -i
 
 # no header
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 new_window 1pixel

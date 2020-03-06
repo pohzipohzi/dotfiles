@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'fatih/vim-hclfmt'
@@ -72,9 +72,8 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nmap <Leader>d :call CocAction('jumpDefinition')<CR>
-nmap <Leader>e :call CocAction('jumpDefinition', 'tab drop')<CR>
 nmap <Leader>q :call CocAction('doHover')<CR>
-nmap <Leader>r <Plug>(coc-references)
+nmap <Leader>u <Plug>(coc-references)
 nmap <Leader>n <Plug>(coc-rename)
 
 " coc-snippets
