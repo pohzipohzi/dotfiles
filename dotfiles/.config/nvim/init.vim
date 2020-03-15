@@ -76,7 +76,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
 nmap <Leader>d :call CocAction('jumpDefinition')<CR>
 nmap <Leader>q :call CocAction('doHover')<CR>
 nmap <Leader>u <Plug>(coc-references)
-nmap <Leader>n <Plug>(coc-rename)
+nmap <Leader>r <Plug>(coc-rename)
 
 " coc-snippets
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -99,7 +99,7 @@ autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
 autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
 autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
 autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
-autocmd FileType go nmap <buffer> <Leader>g :!goimports -w %<CR>
+autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
 
 autocmd FileType html set shiftwidth=2
