@@ -88,11 +88,11 @@ map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 autocmd FileType go map <buffer> <Leader>z :!time go run % < %:h/in<CR>
 autocmd FileType cpp map <buffer> <Leader>z :!clang++ -std=c++11 -stdlib=libc++ -Weverything % -o %:p:r && %:p:r < %:h/in<CR>
 
-autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
-autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
+autocmd FileType typescript,typescriptreact map <buffer> <Leader>t :!npx react-scripts test %<CR>
+autocmd FileType typescript,typescriptreact map <buffer> <Leader>l :!npx eslint --fix %<CR>
 
 autocmd FileType html set shiftwidth=2
 autocmd FileType scss set shiftwidth=2
-autocmd FileType javascript set shiftwidth=2
+autocmd FileType typescriptreact set shiftwidth=2
