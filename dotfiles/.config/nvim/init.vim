@@ -12,7 +12,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'davidhalter/jedi-vim'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -90,9 +89,6 @@ map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 autocmd FileType go map <buffer> <Leader>z :!time go run % < %:h/in<CR>
 autocmd FileType cpp map <buffer> <Leader>z :!clang++ -std=c++11 -stdlib=libc++ -Weverything % -o %:p:r && %:p:r < %:h/in<CR>
 
-autocmd FileType python let g:jedi#rename_command = "<leader>n"
-autocmd FileType python let g:jedi#usages_command = "<leader>r"
-autocmd FileType python map <buffer> <Leader>z :!python3 %<CR>
 autocmd FileType javascript map <buffer> <Leader>n :TernRename<CR>
 autocmd FileType javascript map <buffer> <Leader>r :TernRefs<CR>
 autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
