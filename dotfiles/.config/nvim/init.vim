@@ -12,7 +12,6 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'fatih/vim-hclfmt'
@@ -89,12 +88,8 @@ map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 autocmd FileType go map <buffer> <Leader>z :!time go run % < %:h/in<CR>
 autocmd FileType cpp map <buffer> <Leader>z :!clang++ -std=c++11 -stdlib=libc++ -Weverything % -o %:p:r && %:p:r < %:h/in<CR>
 
-autocmd FileType javascript map <buffer> <Leader>n :TernRename<CR>
-autocmd FileType javascript map <buffer> <Leader>r :TernRefs<CR>
-autocmd FileType javascript map <buffer> <Leader>q :TernType<CR>
 autocmd FileType javascript map <buffer> <Leader>t :!npm test<CR>
 autocmd FileType javascript map <buffer> <Leader>l :!npm run lint<CR>
-autocmd FileType javascript map <buffer> <Leader>z :!node %<CR>
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
 
