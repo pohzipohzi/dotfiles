@@ -8,30 +8,76 @@ snippet dfr "defer recover"
 snippet ggm "go generate mockery"
 	//go:generate mockery -name=${0} -case=underscore -inpkg
 
-snippet wscn "wordscanner"
-	type WordScanner struct {
+snippet cpt "competitive programming template"
+	package main
+
+	import (
+		"bufio"
+		"fmt"
+		"os"
+		"strconv"
+	)
+
+	var (
+		reader Reader = NewReader()
+		writer Writer = NewWriter()
+	)
+
+	type Reader interface {
+		NextInt() int
+		NextInt64() int64
+		NextString() string
+	}
+
+	type Writer interface {
+		Printf(format string, a ...interface{})
+		Flush()
+	}
+
+	type readerImpl struct {
 		*bufio.Scanner
 	}
 
-	func NewWordScanner() *WordScanner {
+	func NewReader() Reader {
 		s := bufio.NewScanner(os.Stdin)
 		s.Split(bufio.ScanWords)
-		return &WordScanner{Scanner: s}
+		return &readerImpl{Scanner: s}
 	}
 
-	func (s *WordScanner) NextInt() int {
-		s.Scan()
-		i, _ := strconv.Atoi(s.Text())
-		return i
+	func (i *readerImpl) NextInt() int {
+		i.Scan()
+		ret, _ := strconv.Atoi(i.Text())
+		return ret
 	}
 
-	func (s *WordScanner) NextInt64() int64 {
-		s.Scan()
-		i, _ := strconv.ParseInt(s.Text(), 10, 64)
-		return i
+	func (i *readerImpl) NextInt64() int64 {
+		i.Scan()
+		ret, _ := strconv.ParseInt(i.Text(), 10, 64)
+		return ret
 	}
 
-	func (s *WordScanner) NextString() string {
-		s.Scan()
-		return s.Text()
+	func (i *readerImpl) NextString() string {
+		i.Scan()
+		return i.Text()
+	}
+
+	type writerImpl struct {
+		*bufio.Writer
+	}
+
+	func NewWriter() Writer {
+		return &writerImpl{Writer: bufio.NewWriter(os.Stdout)}
+	}
+
+	func (i *writerImpl) Printf(f string, a ...interface{}) {
+		fmt.Fprintf(i.Writer, f, a...)
+	}
+
+	func (i *writerImpl) Flush() {
+		i.Writer.Flush()
+	}
+
+	func main() {
+		defer writer.Flush()
+		${0}
 	}
