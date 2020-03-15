@@ -36,3 +36,4 @@ nmap <Leader>p :action VcsShowPrevChangeMarker<CR>
 nmap <Leader>n :action VcsShowNextChangeMarker<CR>
 nmap <Leader>b :action Vcs.RollbackChangedLines<CR>
 nmap <Leader>g :action GoImportsFileAction<CR>
+nmap <Leader>l :action Javascript.Linters.EsLint.Fix<CR>
