@@ -86,8 +86,6 @@ map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " language specific
 autocmd FileType go map <buffer> <Leader>z :!time go run % < %:h/in<CR>
-autocmd FileType cpp map <buffer> <Leader>z :!clang++ -std=c++11 -stdlib=libc++ -Weverything % -o %:p:r && %:p:r < %:h/in<CR>
-
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
 autocmd FileType typescript,typescriptreact map <buffer> <Leader>t :!npx react-scripts test %<CR>
