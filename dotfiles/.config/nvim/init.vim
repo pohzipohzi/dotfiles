@@ -50,8 +50,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 set updatetime=100
-nmap <Leader>n :NERDTreeToggle<CR>
-nmap <Leader>f :NERDTreeFind<CR>
+nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-f> :NERDTreeFind<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 
