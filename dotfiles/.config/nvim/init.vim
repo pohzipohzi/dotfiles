@@ -1,20 +1,19 @@
-" plugins
 call plug#begin()
-Plug 'lifepillar/vim-solarized8'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'fatih/vim-hclfmt'
+  Plug 'lifepillar/vim-solarized8'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-surround'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'fatih/vim-hclfmt'
 call plug#end()
 
 " general
@@ -41,30 +40,30 @@ map <Leader><Leader> :tabe $MYVIMRC<CR>
 map <Leader>s :so $MYVIMRC<CR>
 map <Leader>y :let @+=expand("%:p")<CR>
 
-" vim-solarized8
+" colors
 set termguicolors
 set bg=dark
 colorscheme solarized8
+let g:airline_theme='solarized'
 
-" nerdtree, nerdtree-git-plugin
+" navigation
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 set updatetime=100
-map <C-n> :NERDTreeToggle<CR>
-map <C-f> :NERDTreeFind<CR>
-map <C-h> :tabp<CR>
-map <C-l> :tabn<CR>
+nmap <Leader>n :NERDTreeToggle<CR>
+nmap <Leader>f :NERDTreeFind<CR>
+nmap <C-h> :tabp<CR>
+nmap <C-l> :tabn<CR>
 
-" vim-gigutter
+" git
+nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gd :Gdiff<CR>
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>ha <Plug>(GitGutterStageHunk)
 nmap <Leader>hu <Plug>(GitGutterUndoHunk)
-
-" vim-airline
-let g:airline_theme='solarized'
 
 " coc
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
@@ -82,7 +81,7 @@ vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
-map <Leader>n :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
+nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " language specific
 autocmd FileType go nmap <buffer> <Leader>z :!time go run % < %:h/in<CR>
@@ -90,7 +89,6 @@ autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :!npx react-scripts test %<CR>
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint --fix %<CR>
-
 autocmd FileType html set shiftwidth=2
 autocmd FileType scss set shiftwidth=2
 autocmd FileType typescriptreact set shiftwidth=2
