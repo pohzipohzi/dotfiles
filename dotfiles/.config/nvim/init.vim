@@ -12,6 +12,7 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " general
@@ -91,3 +92,4 @@ autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint
 autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
+autocmd FileType terraform nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
