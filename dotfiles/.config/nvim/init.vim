@@ -85,7 +85,7 @@ nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 " language specific
 autocmd FileType go nmap <buffer> <Leader>z :!time go run % < %:h/in<CR>
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
-autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h<CR>
+autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h -run ""<LEFT>
 autocmd FileType go set shiftwidth=4
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :!npx react-scripts test %<CR>
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint --fix %<CR>
