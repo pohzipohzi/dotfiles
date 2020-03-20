@@ -83,8 +83,8 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " language specific
-autocmd FileType go nmap <buffer> <Leader>zz :!go build -o %:r % && piper %:r < %:h/in<CR>
-autocmd FileType go nmap <buffer> <Leader>zi :!go build -o %:r %<CR> :split term://piper %:r<CR> i
+autocmd FileType go nmap <buffer> <Leader>zx :!go build -o %:r %<CR> :vsplit term://piper %:r < %:h/in<CR> i
+autocmd FileType go nmap <buffer> <Leader>zi :!go build -o %:r %<CR> :vsplit term://piper %:r<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h -run ""<LEFT>
 autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
