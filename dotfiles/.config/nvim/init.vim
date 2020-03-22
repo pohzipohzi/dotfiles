@@ -87,6 +87,7 @@ autocmd FileType go nmap <buffer> <Leader>zx :!go build -o %:r %<CR> :vsplit ter
 autocmd FileType go nmap <buffer> <Leader>zi :!go build -o %:r %<CR> :vsplit term://piper %:r<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h -run ""<LEFT>
+autocmd FileType go nmap <buffer> <Leader>gg :!go generate %<CR>
 autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
 autocmd FileType go set shiftwidth=4
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :!npx react-scripts test %<CR>
