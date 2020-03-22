@@ -15,7 +15,6 @@ snippet cpt "competitive programming template"
 		"bufio"
 		"fmt"
 		"os"
-		"strconv"
 	)
 
 	var (
@@ -24,9 +23,7 @@ snippet cpt "competitive programming template"
 	)
 
 	type Reader interface {
-		NextInt() int
-		NextInt64() int64
-		NextString() string
+		Scanf(format string, a ...interface{})
 	}
 
 	type Writer interface {
@@ -35,30 +32,15 @@ snippet cpt "competitive programming template"
 	}
 
 	type readerImpl struct {
-		*bufio.Scanner
+		*bufio.Reader
 	}
 
 	func NewReader() Reader {
-		s := bufio.NewScanner(os.Stdin)
-		s.Split(bufio.ScanWords)
-		return &readerImpl{Scanner: s}
+		return &readerImpl{Reader: bufio.NewReader(os.Stdin)}
 	}
 
-	func (i *readerImpl) NextInt() int {
-		i.Scan()
-		ret, _ := strconv.Atoi(i.Text())
-		return ret
-	}
-
-	func (i *readerImpl) NextInt64() int64 {
-		i.Scan()
-		ret, _ := strconv.ParseInt(i.Text(), 10, 64)
-		return ret
-	}
-
-	func (i *readerImpl) NextString() string {
-		i.Scan()
-		return i.Text()
+	func (i *readerImpl) Scanf(f string, a ...interface{}) {
+		fmt.Fscanf(i.Reader, f, a...)
 	}
 
 	type writerImpl struct {
