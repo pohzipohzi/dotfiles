@@ -1,3 +1,4 @@
+export GOBIN=$(go env GOPATH)
 export TERM="screen-256color"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 alias tmux="tmux -2"
