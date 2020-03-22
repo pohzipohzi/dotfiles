@@ -24,6 +24,12 @@ snippet cpt "competitive programming template"
 
 	type Reader interface {
 		Scanf(format string, a ...interface{})
+		Int() int
+		Int64() int64
+		String() string
+		IntSlice(size int) []int
+		Int64Slice(size int) []int64
+		StringSlice(size int) []string
 	}
 
 	type Writer interface {
@@ -39,8 +45,53 @@ snippet cpt "competitive programming template"
 		return &readerImpl{Reader: bufio.NewReader(os.Stdin)}
 	}
 
-	func (i *readerImpl) Scanf(f string, a ...interface{}) {
-		fmt.Fscanf(i.Reader, f, a...)
+	func (impl *readerImpl) Scanf(f string, a ...interface{}) {
+		fmt.Fscanf(impl.Reader, f, a...)
+	}
+
+	func (impl *readerImpl) Int() int {
+		var ret int
+		impl.Scanf("%d\n", &ret)
+		return ret
+	}
+
+	func (impl *readerImpl) Int64() int64 {
+		var ret int64
+		impl.Scanf("%d\n", &ret)
+		return ret
+	}
+
+	func (impl *readerImpl) String() string {
+		var ret string
+		impl.Scanf("%s\n", &ret)
+		return ret
+	}
+
+	func (impl *readerImpl) IntSlice(size int) []int {
+		ret := make([]int, size)
+		for i := 0; i < size-1; i++ {
+			impl.Scanf("%d ", &ret[i])
+		}
+		impl.Scanf("%d\n", &ret[size-1])
+		return ret
+	}
+
+	func (impl *readerImpl) Int64Slice(size int) []int64 {
+		ret := make([]int64, size)
+		for i := 0; i < size-1; i++ {
+			impl.Scanf("%d ", &ret[i])
+		}
+		impl.Scanf("%d\n", &ret[size-1])
+		return ret
+	}
+
+	func (impl *readerImpl) StringSlice(size int) []string {
+		ret := make([]string, size)
+		for i := 0; i < size-1; i++ {
+			impl.Scanf("%s ", &ret[i])
+		}
+		impl.Scanf("%s\n", &ret[size-1])
+		return ret
 	}
 
 	type writerImpl struct {
@@ -51,12 +102,12 @@ snippet cpt "competitive programming template"
 		return &writerImpl{Writer: bufio.NewWriter(os.Stdout)}
 	}
 
-	func (i *writerImpl) Printf(f string, a ...interface{}) {
-		fmt.Fprintf(i.Writer, f, a...)
+	func (impl *writerImpl) Printf(f string, a ...interface{}) {
+		fmt.Fprintf(impl.Writer, f, a...)
 	}
 
-	func (i *writerImpl) Flush() {
-		i.Writer.Flush()
+	func (impl *writerImpl) Flush() {
+		impl.Writer.Flush()
 	}
 
 	func main() {
