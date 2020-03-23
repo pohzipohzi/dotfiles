@@ -8,98 +8,18 @@ snippet dfr "defer recover"
 snippet ggm "go generate mockery"
 	//go:generate mockery -name=${0} -case=underscore -inpkg
 
-snippet cpt "competitive programming template"
-	package main
-
-	import (
-		"bufio"
-		"fmt"
-		"os"
-	)
-
-	var (
-		reader Reader = NewReader()
-		writer Writer = NewWriter()
-	)
-
-	type Reader interface {
-		Scanf(format string, a ...interface{})
-		Int() int
-		Int64() int64
-		String() string
-		IntSlice(size int) []int
-		Int64Slice(size int) []int64
-		StringSlice(size int) []string
-	}
-
+snippet bufwr "buffered writer"
 	type Writer interface {
 		Printf(format string, a ...interface{})
 		Flush()
-	}
-
-	type readerImpl struct {
-		*bufio.Reader
-	}
-
-	func NewReader() Reader {
-		return &readerImpl{Reader: bufio.NewReader(os.Stdin)}
-	}
-
-	func (impl *readerImpl) Scanf(f string, a ...interface{}) {
-		fmt.Fscanf(impl.Reader, f, a...)
-	}
-
-	func (impl *readerImpl) Int() int {
-		var ret int
-		impl.Scanf("%d\n", &ret)
-		return ret
-	}
-
-	func (impl *readerImpl) Int64() int64 {
-		var ret int64
-		impl.Scanf("%d\n", &ret)
-		return ret
-	}
-
-	func (impl *readerImpl) String() string {
-		var ret string
-		impl.Scanf("%s\n", &ret)
-		return ret
-	}
-
-	func (impl *readerImpl) IntSlice(size int) []int {
-		ret := make([]int, size)
-		for i := 0; i < size-1; i++ {
-			impl.Scanf("%d ", &ret[i])
-		}
-		impl.Scanf("%d\n", &ret[size-1])
-		return ret
-	}
-
-	func (impl *readerImpl) Int64Slice(size int) []int64 {
-		ret := make([]int64, size)
-		for i := 0; i < size-1; i++ {
-			impl.Scanf("%d ", &ret[i])
-		}
-		impl.Scanf("%d\n", &ret[size-1])
-		return ret
-	}
-
-	func (impl *readerImpl) StringSlice(size int) []string {
-		ret := make([]string, size)
-		for i := 0; i < size-1; i++ {
-			impl.Scanf("%s ", &ret[i])
-		}
-		impl.Scanf("%s\n", &ret[size-1])
-		return ret
 	}
 
 	type writerImpl struct {
 		*bufio.Writer
 	}
 
-	func NewWriter() Writer {
-		return &writerImpl{Writer: bufio.NewWriter(os.Stdout)}
+	func NewWriter(writer io.Writer) Writer {
+		return &writerImpl{Writer: bufio.NewWriter(writer)}
 	}
 
 	func (impl *writerImpl) Printf(f string, a ...interface{}) {
@@ -110,7 +30,34 @@ snippet cpt "competitive programming template"
 		impl.Writer.Flush()
 	}
 
-	func main() {
-		defer writer.Flush()
-		${0}
+snippet wscn "word scanner"
+	type WordScanner interface {
+		NextInt() int
+		NextInt64() int64
+		NextString() string
+	}
+
+	type wordScannerImpl struct {
+		*bufio.Scanner
+	}
+
+	func NewWordScanner(reader io.Reader) WordScanner {
+		s := bufio.NewScanner(reader)
+		s.Split(bufio.ScanWords)
+		return &wordScannerImpl{Scanner: s}
+	}
+
+	func (impl *wordScannerImpl) NextInt() int {
+		i, _ := strconv.Atoi(impl.NextString())
+		return i
+	}
+
+	func (impl *wordScannerImpl) NextInt64() int64 {
+		i, _ := strconv.ParseInt(impl.NextString(), 10, 64)
+		return i
+	}
+
+	func (impl *wordScannerImpl) NextString() string {
+		impl.Scan()
+		return impl.Text()
 	}
