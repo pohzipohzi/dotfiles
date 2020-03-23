@@ -95,4 +95,5 @@ autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint
 autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
+autocmd FileType json set shiftwidth=2
 autocmd FileType terraform nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
