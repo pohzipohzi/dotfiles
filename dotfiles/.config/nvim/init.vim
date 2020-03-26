@@ -98,3 +98,4 @@ autocmd FileType css,scss set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType terraform nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
 autocmd FileType terraform nmap <buffer> <Leader>t :vsplit term://terraform plan<CR> i
+autocmd FileType terraform nmap <buffer> <Leader>i :vsplit term://terraform init<CR> i
