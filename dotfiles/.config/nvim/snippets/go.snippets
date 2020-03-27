@@ -8,8 +8,17 @@ snippet dfr "defer recover"
 snippet ggm "go generate mockery"
 	//go:generate mockery -name=${0} -case=underscore -inpkg
 
-snippet bufwr "buffered writer"
-	type Writer interface {
+snippet cpt "competitive programming template"
+	package main
+
+	import (
+		"bufio"
+		"fmt"
+		"io"
+		"os"
+	)
+
+	type BufferedWriter interface {
 		Printf(format string, a ...interface{})
 		Flush()
 	}
@@ -18,7 +27,7 @@ snippet bufwr "buffered writer"
 		*bufio.Writer
 	}
 
-	func NewWriter(writer io.Writer) Writer {
+	func NewBufferedWriter(writer io.Writer) BufferedWriter {
 		return &writerImpl{Writer: bufio.NewWriter(writer)}
 	}
 
@@ -30,7 +39,6 @@ snippet bufwr "buffered writer"
 		impl.Writer.Flush()
 	}
 
-snippet wscn "word scanner"
 	type WordScanner interface {
 		NextInt() int
 		NextInt64() int64
@@ -72,4 +80,12 @@ snippet wscn "word scanner"
 	func (impl *wordScannerImpl) NextString() string {
 		impl.Scan()
 		return impl.Text()
+	}
+
+	var reader = NewWordScanner(os.Stdin)
+	var writer = NewBufferedWriter(os.Stdout)
+
+	func main() {
+		defer writer.Flush()
+		${0}
 	}
