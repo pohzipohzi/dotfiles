@@ -87,11 +87,11 @@ autocmd FileType go nmap <buffer> <Leader>zz :vsplit term://go run % < %:h/in<CR
 autocmd FileType go nmap <buffer> <Leader>zx :vsplit term://piper go run % < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>zi :vsplit term://piper go run %<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
-autocmd FileType go nmap <buffer> <Leader>t :!go test -v -count=1 %:p:h -run ""<LEFT>
+autocmd FileType go nmap <buffer> <Leader>t :tabe term://go test -v -count=1 %:p:h<CR> i
 autocmd FileType go nmap <buffer> <Leader>gg :!go generate %<CR>
 autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
 autocmd FileType go set shiftwidth=4
-autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :!npx react-scripts test %<CR>
+autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint --fix %<CR>
 autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
