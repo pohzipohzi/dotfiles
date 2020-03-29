@@ -2,9 +2,8 @@ call plug#begin()
   Plug 'lifepillar/vim-solarized8'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'preservim/nerdcommenter'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
@@ -46,13 +45,29 @@ colorscheme solarized8
 let g:airline_theme='solarized'
 
 " navigation
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-let NERDTreeShowHidden=1
-let NERDTreeShowBookmarks=1
-set updatetime=100
-nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-f> :NERDTreeFind<CR>
+let loaded_netrwPlugin = 1
+call defx#custom#option('_', {
+      \ 'split': 'floating',
+      \ 'show_ignored_files': 1,
+      \ 'toggle': 1,
+      \ 'resume': 1
+      \ })
+map <C-n> :Defx<CR>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+        \ defx#is_directory() ?
+        \ defx#do_action('open_or_close_tree') :
+        \ defx#do_action('multi', ['drop', 'quit'])
+  nnoremap <silent><buffer><expr> s
+        \ defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+  nnoremap <silent><buffer><expr> ma
+        \ defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> md
+        \ defx#do_action('remove')
+  nnoremap <silent><buffer><expr> mr
+        \ defx#do_action('rename')
+endfunction
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 
@@ -100,3 +115,4 @@ autocmd FileType json set shiftwidth=2
 autocmd FileType terraform nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
 autocmd FileType terraform nmap <buffer> <Leader>t :vsplit term://terraform plan<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>i :vsplit term://terraform init<CR> i
+autocmd FileType vim set shiftwidth=2
