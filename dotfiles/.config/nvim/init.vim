@@ -55,6 +55,8 @@ call defx#custom#option('_', {
 map <C-n> :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
+  nnoremap <silent><buffer><expr> <ESC>
+        \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> <CR>
         \ defx#is_directory() ?
         \ defx#do_action('open_or_close_tree') :
@@ -65,7 +67,7 @@ function! s:defx_my_settings() abort
         \ defx#do_action('new_file')
   nnoremap <silent><buffer><expr> md
         \ defx#do_action('remove')
-  nnoremap <silent><buffer><expr> mr
+  nnoremap <silent><buffer><expr> mm
         \ defx#do_action('rename')
 endfunction
 nmap <C-h> :tabp<CR>
