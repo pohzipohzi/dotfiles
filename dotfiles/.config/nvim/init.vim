@@ -55,6 +55,8 @@ call defx#custom#option('_', {
 map <C-n> :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
+  set nu
+  set rnu
   nnoremap <silent><buffer><expr> <ESC>
         \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> <CR>
@@ -114,7 +116,8 @@ autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
 autocmd FileType json set shiftwidth=2
-autocmd FileType terraform nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
-autocmd FileType terraform nmap <buffer> <Leader>t :vsplit term://terraform plan<CR> i
-autocmd FileType terraform nmap <buffer> <Leader>i :vsplit term://terraform init<CR> i
+autocmd FileType terraform nmap <buffer> <Leader>tf :!terraform fmt -write=true %<CR>
+autocmd FileType terraform nmap <buffer> <Leader>tp :vsplit term://terraform plan<CR> i
+autocmd FileType terraform nmap <buffer> <Leader>ta :vsplit term://terraform apply<CR> i
+autocmd FileType terraform nmap <buffer> <Leader>ti :vsplit term://terraform init<CR> i
 autocmd FileType vim set shiftwidth=2
