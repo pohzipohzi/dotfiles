@@ -65,6 +65,8 @@ function! s:defx_my_settings() abort
         \ defx#do_action('multi', ['drop', 'quit'])
   nnoremap <silent><buffer><expr> s
         \ defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+  nnoremap <silent><buffer><expr> t
+        \ defx#do_action('multi', [['drop', 'tabe'], 'quit'])
   nnoremap <silent><buffer><expr> ma
         \ defx#do_action('new_file')
   nnoremap <silent><buffer><expr> md
