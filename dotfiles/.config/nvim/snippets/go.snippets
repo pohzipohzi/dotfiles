@@ -60,6 +60,12 @@ snippet cpt "competitive programming template"
 	func NewWordScanner(reader io.Reader) WordScanner {
 		s := bufio.NewScanner(reader)
 		s.Split(bufio.ScanWords)
+		// adjust the following size as needed
+		// 2 << 17 is good enough to scan strings of len 2*10^5
+		// it could go as high as 2 << 26 before cf judge breaks
+		size := 2 << 20
+		buf := make([]byte, size)
+		s.Buffer(buf, size)
 		return &wordScannerImpl{Scanner: s}
 	}
 
