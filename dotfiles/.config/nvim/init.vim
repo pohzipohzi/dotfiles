@@ -91,11 +91,10 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
                                            \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nmap <Leader>d :call CocAction('jumpDefinition')<CR>
+nmap <Leader>e :call CocAction('jumpDefinition', 'tab drop')<CR>
 nmap <Leader>q :call CocAction('doHover')<CR>
 nmap <Leader>u <Plug>(coc-references)
 nmap <Leader>r <Plug>(coc-rename)
-
-" coc-snippets
 imap <C-l> <Plug>(coc-snippets-expand)
 vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
