@@ -53,8 +53,8 @@ call defx#custom#option('_', {
       \ 'resume': 1
       \ })
 map <C-n> :Defx<CR>
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
+autocmd FileType defx call s:defx_settings()
+function! s:defx_settings() abort
   set nu
   set rnu
   nnoremap <silent><buffer><expr> <ESC>
