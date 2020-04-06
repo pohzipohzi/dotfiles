@@ -53,6 +53,7 @@ call defx#custom#option('_', {
       \ 'resume': 1
       \ })
 map <C-n> :Defx<CR>
+map <C-f> :Defx -search=`expand('%:p')`<CR>
 autocmd FileType defx call s:defx_settings()
 function! s:defx_settings() abort
   set nu
