@@ -118,6 +118,7 @@ autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
 autocmd FileType json set shiftwidth=2
+autocmd FileType json nmap <buffer> <Leader>l :%!python -m json.tool<CR>
 autocmd FileType terraform nmap <buffer> <Leader>tf :!terraform fmt -write=true %<CR>
 autocmd FileType terraform nmap <buffer> <Leader>tp :vsplit term://terraform plan<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>ta :vsplit term://terraform apply<CR> i
