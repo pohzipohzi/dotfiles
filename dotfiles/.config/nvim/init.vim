@@ -34,9 +34,9 @@ set nofoldenable
 set noswapfile
 let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
-map <Leader><Leader> :tabe $MYVIMRC<CR>
-map <Leader>s :so $MYVIMRC<CR>
-map <Leader>y :let @+=expand("%:p")<CR>
+nmap <Leader><Leader> :tabe $MYVIMRC<CR>
+nmap <Leader>s :so $MYVIMRC<CR>
+nmap <Leader>cd :cd %:h<CR>
 
 " colors
 set termguicolors
