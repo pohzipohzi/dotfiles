@@ -64,8 +64,10 @@ function! s:defx_settings() abort
         \ defx#is_directory() ?
         \ defx#do_action('open_or_close_tree') :
         \ defx#do_action('multi', ['drop', 'quit'])
-  nnoremap <silent><buffer><expr> s
+  nnoremap <silent><buffer><expr> v
         \ defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
+  nnoremap <silent><buffer><expr> s
+        \ defx#do_action('multi', [['drop', 'split'], 'quit'])
   nnoremap <silent><buffer><expr> t
         \ defx#do_action('multi', [['drop', 'tabe'], 'quit'])
   nnoremap <silent><buffer><expr> ma
