@@ -83,6 +83,9 @@ nmap <C-l> :tabn<CR>
 " git
 nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gd :Gdiff<CR>
+nmap <Leader>gs :Gstatus<CR>
+nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gw :Gwrite<CR>
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>ha <Plug>(GitGutterStageHunk)
