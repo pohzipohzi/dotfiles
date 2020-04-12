@@ -1,16 +1,48 @@
 {
-    "snippets.ultisnips.directories": ["./snippets"],
     "languageserver": {
+        "bash": {
+            "args": [
+                "start"
+            ],
+            "command": "bash-language-server",
+            "filetypes": [
+                "sh"
+            ],
+            "ignoredRootPaths": [
+                "~"
+            ]
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            },
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".git/",
+                ".hg/"
+            ]
+        },
         "golang": {
             "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "filetypes": ["go"]
-        },
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"]
+            "filetypes": [
+                "go"
+            ],
+            "rootPatterns": [
+                "go.mod"
+            ]
         }
-    }
+    },
+    "snippets.ultisnips.directories": [
+        "./snippets"
+    ]
 }
