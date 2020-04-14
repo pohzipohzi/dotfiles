@@ -108,7 +108,7 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
-" language specific
+" filetype specific
 autocmd FileType go nmap <buffer> <Leader>zz :vsplit term://go run % < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>zx :vsplit term://piper go run % < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>zi :vsplit term://piper go run %<CR> i
@@ -131,3 +131,4 @@ autocmd FileType terraform nmap <buffer> <Leader>ti :vsplit term://terraform ini
 autocmd FileType terraform nmap <buffer> <Leader>tsl :vsplit term://terraform state list<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>tss :vsplit term://terraform state show 
 autocmd FileType vim set shiftwidth=2
+autocmd FileType help set nu rnu
