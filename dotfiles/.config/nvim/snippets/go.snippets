@@ -16,6 +16,26 @@ snippet gcd "greatest common divisor"
 		return x
 	}
 
+snippet min "minimum"
+	func min(a int64, rest ...int64) int64 {
+		for _, r := range rest {
+			if r < a {
+				a = r
+			}
+		}
+		return r
+	}
+
+snippet max "maximum"
+	func max(a int64, rest ...int64) int64 {
+		for _, r := range rest {
+			if r > a {
+				a = r
+			}
+		}
+		return r
+	}
+
 snippet cpt "competitive programming template"
 	package main
 
