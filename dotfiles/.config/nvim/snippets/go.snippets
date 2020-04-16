@@ -36,6 +36,11 @@ snippet max "maximum"
 		return a
 	}
 
+snippet sortasc "sort ascending"
+	sort.Slice(${1}, func(a, b int) bool {
+		return ${1}[a] < ${1}[b]
+	})
+
 snippet cpt "competitive programming template"
 	package main
 
