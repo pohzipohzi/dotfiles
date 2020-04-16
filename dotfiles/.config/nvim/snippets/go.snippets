@@ -41,6 +41,11 @@ snippet sortasc "sort ascending"
 		return ${1}[a] < ${1}[b]
 	})
 
+snippet sortdesc "sort descending"
+	sort.Slice(${1}, func(a, b int) bool {
+		return ${1}[a] > ${1}[b]
+	})
+
 snippet cpt "competitive programming template"
 	package main
 
