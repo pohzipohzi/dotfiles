@@ -118,6 +118,7 @@ autocmd FileType go nmap <buffer> <Leader>t :tabe term://go test -v -count=1 %:p
 autocmd FileType go nmap <buffer> <Leader>gg :!go generate %<CR>
 autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
 autocmd FileType go set shiftwidth=4
+autocmd FileType go set noet
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint --fix %<CR>
 autocmd FileType typescript,typescriptreact set shiftwidth=2
