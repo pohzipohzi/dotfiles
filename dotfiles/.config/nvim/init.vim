@@ -1,5 +1,5 @@
 call plug#begin()
-  Plug 'lifepillar/vim-solarized8'
+  Plug 'arcticicestudio/nord-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'preservim/nerdcommenter'
@@ -41,9 +41,7 @@ nmap <Leader>cd :cd %:h<CR>
 
 " colors
 set termguicolors
-set bg=dark
-colorscheme solarized8
-let g:airline_theme='solarized'
+colorscheme nord
 
 " navigation
 let loaded_netrwPlugin = 1
