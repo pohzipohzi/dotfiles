@@ -1,11 +1,15 @@
-# Colors (Nord)
+key_bindings:
+  # word navigation
+  - { key: Left,  mods: Alt,     chars: "\x1bb" }
+  - { key: Right, mods: Alt,     chars: "\x1bf" }
+  # line navigation
+  - { key: Left,  mods: Command, chars: "\x01\x01" }
+  - { key: Right, mods: Command, chars: "\x05" }
+
 colors:
-   # Default colors
    primary:
      background: '#2E3440'
      foreground: '#D8DEE9'
-
-   # Normal colors
    normal:
      black:   '#3B4252'
      red:     '#BF616A'
@@ -15,8 +19,6 @@ colors:
      magenta: '#B48EAD'
      cyan:    '#88C0D0'
      white:   '#E5E9F0'
-
-   # Bright colors
    bright:
      black:   '#4C566A'
      red:     '#BF616A'
