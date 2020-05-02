@@ -51,7 +51,6 @@ snippet cpt "cp template"
 	}
 
 	type WordScanner interface {
-		NextInt() int
 		NextInt64() int64
 		NextUInt64() uint64
 		NextString() string
@@ -71,24 +70,6 @@ snippet cpt "cp template"
 		buf := make([]byte, size)
 		s.Buffer(buf, size)
 		return &wordScannerImpl{Scanner: s}
-	}
-
-	func (impl *wordScannerImpl) NextInt() int {
-		impl.Scan()
-		bb := impl.Bytes()
-		i := 0
-		if bb[0] == '-' {
-			for _, b := range bb[1:] {
-				i *= 10
-				i -= int(b - '0')
-			}
-			return i
-		}
-		for _, b := range bb {
-			i *= 10
-			i += int(b - '0')
-		}
-		return i
 	}
 
 	func (impl *wordScannerImpl) NextInt64() int64 {
