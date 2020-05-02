@@ -11,34 +11,6 @@ snippet ggm "go generate mockery"
 snippet cmod "const mod"
 	const MOD = 1e9 + 7
 
-snippet gcd "greatest common divisor"
-	func gcd(x, y int64) int64 {
-		for y != 0 {
-			x, y = y, x%y
-		}
-		return x
-	}
-
-snippet min "minimum"
-	func min(a int64, rest ...int64) int64 {
-		for _, r := range rest {
-			if r < a {
-				a = r
-			}
-		}
-		return a
-	}
-
-snippet max "maximum"
-	func max(a int64, rest ...int64) int64 {
-		for _, r := range rest {
-			if r > a {
-				a = r
-			}
-		}
-		return a
-	}
-
 snippet sortasc "sort ascending"
 	sort.Slice(${1}, func(a, b int) bool {
 		return ${1}[a] < ${1}[b]
@@ -153,6 +125,38 @@ snippet cpt "cp template"
 	func (impl *wordScannerImpl) NextString() string {
 		impl.Scan()
 		return impl.Text()
+	}
+
+	func gcd(x, y int64) int64 {
+		for y != 0 {
+			x, y = y, x%y
+		}
+		return x
+	}
+
+	func abs(a int64) int64 {
+		if a < 0 {
+			return a * -1
+		}
+		return a
+	}
+
+	func min(a int64, rest ...int64) int64 {
+		for _, r := range rest {
+			if r < a {
+				a = r
+			}
+		}
+		return a
+	}
+
+	func max(a int64, rest ...int64) int64 {
+		for _, r := range rest {
+			if r > a {
+				a = r
+			}
+		}
+		return a
 	}
 
 	var reader = NewWordScanner(os.Stdin)
