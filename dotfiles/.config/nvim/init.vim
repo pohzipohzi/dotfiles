@@ -36,7 +36,8 @@ let g:mapleader=","
 tnoremap <Esc> <C-\><C-n>
 nmap <Leader><Leader> :tabe $MYVIMRC<CR>
 nmap <Leader>s :so $MYVIMRC<CR>
-nmap <Leader>y :let @+=expand("%")<CR>
+nmap <Leader>yy :let @+=expand("%")<CR>
+nmap <Leader>yl :let @+=expand("%").":".line(".")<CR>
 nmap <Leader>cd :cd %:h<CR>
 
 " colors
