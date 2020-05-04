@@ -18,6 +18,21 @@ snippet sortdesc "sort descending"
 		return ${1}[a] > ${1}[b]
 	})
 
+snippet sorter "sorter"
+	type Sorter []${1}
+
+	func (s Sorter) Len() int {
+		return len(s)
+	}
+
+	func (s Sorter) Less(a, b int) bool {
+		${2}
+	}
+
+	func (s Sorter) Swap(a, b int) {
+		s[a], s[b] = s[b], s[a]
+	}
+
 snippet cpt "cp template"
 	package main
 
