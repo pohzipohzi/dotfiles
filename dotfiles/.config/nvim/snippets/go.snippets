@@ -121,11 +121,15 @@ snippet cpt "cp template"
 		return impl.Text()
 	}
 
-	func gcd(x, y int64) int64 {
-		for y != 0 {
-			x, y = y, x%y
+	func gcd(a, b int64) int64 {
+		for b != 0 {
+			a, b = b, a%b
 		}
-		return x
+		return a
+	}
+
+	func lcm(a, b int64) int64 {
+		return a * b / gcd(a, b)
 	}
 
 	func abs(a int64) int64 {
