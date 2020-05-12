@@ -79,6 +79,7 @@ function! s:defx_settings() abort
 endfunction
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
+nmap <Leader>f :GFiles<CR>
 
 " git
 nmap <Leader>gb :Gblame<CR>
