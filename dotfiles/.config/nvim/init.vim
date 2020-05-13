@@ -110,23 +110,11 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " filetype specific
-function! GoTestFunc() abort
-  let test = search('func \(Test\|Example\)', "bcnW")
-  if test == 0
-    echo "no test found"
-    return
-  end
-  let line = getline(test)
-  let name = split(split(line, " ")[1], "(")[0]
-  echo "running test: ".name
-  let cmd = "go test -v ".expand("%:p:h")." -run ^".name."$"
-  execute ":tabe term://".cmd
-endfunction
 autocmd FileType go nmap <buffer> <Leader>zz :vsplit term://go run % < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>zx :vsplit term://piper go run % < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>zi :vsplit term://piper go run %<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
-autocmd FileType go nmap <buffer> <Leader>ta :tabe term://go test -v -count=1 %:p:h<CR>
+autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
 autocmd FileType go nmap <buffer> <Leader>gg :!go generate %<CR>
 autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
@@ -147,3 +135,22 @@ autocmd FileType terraform nmap <buffer> <Leader>tsl :vsplit term://terraform st
 autocmd FileType terraform nmap <buffer> <Leader>tss :vsplit term://terraform state show 
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
+
+function! GoTestPkg() abort
+  echo "running tests in package: ".expand("%:h")
+  let cmd = "go test -v -count=1 ".expand("%:p:h")
+  execute ":tabe term://".cmd
+endfunction
+
+function! GoTestFunc() abort
+  let test = search('func \(Test\|Example\)', "bcnW")
+  if test == 0
+    echo "no test found"
+    return
+  end
+  let line = getline(test)
+  let name = split(split(line, " ")[1], "(")[0]
+  echo "running test: ".name
+  let cmd = "go test -v ".expand("%:p:h")." -run ^".name."$"
+  execute ":tabe term://".cmd
+endfunction
