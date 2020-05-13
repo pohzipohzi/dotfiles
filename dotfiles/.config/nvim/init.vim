@@ -110,9 +110,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
 
 " filetype specific
-autocmd FileType go nmap <buffer> <Leader>zz :vsplit term://go run % < %:h/in<CR> i
-autocmd FileType go nmap <buffer> <Leader>zx :vsplit term://piper go run % < %:h/in<CR> i
-autocmd FileType go nmap <buffer> <Leader>zi :vsplit term://piper go run %<CR> i
+autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
