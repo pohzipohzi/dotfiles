@@ -135,9 +135,10 @@ autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 
 function! GoTestPkg() abort
-  echo "running tests in package: ".expand("%:h")
-  let cmd = "go test -v -count=1 ".expand("%:p:h")
-  execute ":tabe term://".cmd
+  call RunTerm(
+        \"running tests in package: ".expand("%:h"),
+        \"go test -v -count=1 ".expand("%:p:h"),
+        \)
 endfunction
 
 function! GoTestFunc() abort
@@ -146,9 +147,14 @@ function! GoTestFunc() abort
     echo "no test found"
     return
   end
-  let line = getline(test)
-  let name = split(split(line, " ")[1], "(")[0]
-  echo "running test: ".name
-  let cmd = "go test -v ".expand("%:p:h")." -run ^".name."$"
-  execute ":tabe term://".cmd
+  let name = split(split(getline(test), " ")[1], "(")[0]
+  call RunTerm(
+        \"running test: ".name,
+        \"go test -v ".expand("%:p:h")." -run ^".name."$"
+        \)
+endfunction
+
+function! RunTerm(msg, cmd) abort
+  echo a:msg
+  execute ":tabe term://".a:cmd
 endfunction
