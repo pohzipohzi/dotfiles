@@ -13,6 +13,7 @@ noremap <C-b> <NOP>
 set clipboard=unnamedplus
 set visualbell
 set noerrorbells
+set nu rnu
 
 nmap <C-h> :action PreviousTab<CR>
 nmap <C-l> :action NextTab<CR>
