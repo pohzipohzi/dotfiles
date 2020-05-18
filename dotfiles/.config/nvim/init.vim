@@ -129,6 +129,7 @@ autocmd FileType terraform nmap <buffer> <Leader>tf :!terraform fmt -write=true 
 autocmd FileType terraform nmap <buffer> <Leader>tp :vsplit term://terraform plan<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>ta :vsplit term://terraform apply<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>ti :vsplit term://terraform init<CR> i
+autocmd FileType terraform nmap <buffer> <Leader>tv :vsplit term://terraform validate<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>tsl :vsplit term://terraform state list<CR> i
 autocmd FileType terraform nmap <buffer> <Leader>tss :vsplit term://terraform state show 
 autocmd FileType vim set shiftwidth=2
