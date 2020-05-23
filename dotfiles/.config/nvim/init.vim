@@ -38,7 +38,6 @@ nmap <Leader><Leader> :tabe $MYVIMRC<CR>
 nmap <Leader>s :so $MYVIMRC<CR>
 nmap <Leader>yy :let @+=expand("%")<CR>
 nmap <Leader>yl :let @+=expand("%").":".line(".")<CR>
-nmap <Leader>cd :cd %:h<CR>
 
 " colors
 set termguicolors
@@ -130,12 +129,9 @@ autocmd FileType css,scss set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType json nmap <buffer> <Leader>l :%!python -m json.tool<CR>
 autocmd FileType terraform nmap <buffer> <Leader>tf :!terraform fmt -write=true %<CR>
-autocmd FileType terraform nmap <buffer> <Leader>tp :tabe term://terraform plan<CR> i
-autocmd FileType terraform nmap <buffer> <Leader>ta :tabe term://terraform apply<CR> i
-autocmd FileType terraform nmap <buffer> <Leader>ti :tabe term://terraform init<CR> i
-autocmd FileType terraform nmap <buffer> <Leader>tv :tabe term://terraform validate<CR> i
-autocmd FileType terraform nmap <buffer> <Leader>tsl :tabe term://terraform state list<CR> i
-autocmd FileType terraform nmap <buffer> <Leader>tss :tabe term://terraform state show 
+autocmd FileType terraform nmap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
+autocmd FileType terraform nmap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
+autocmd FileType terraform nmap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 
