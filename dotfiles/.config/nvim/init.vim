@@ -48,6 +48,10 @@ colorscheme nord
 let loaded_netrwPlugin = 1
 call defx#custom#option('_', {
       \ 'split': 'floating',
+      \ 'wincol': &columns / 4,
+      \ 'winwidth': &columns / 2,
+      \ 'winrow': &lines / 4,
+      \ 'winheight': &lines / 2,
       \ 'show_ignored_files': 1,
       \ 'toggle': 1,
       \ 'resume': 1
@@ -62,7 +66,7 @@ function! s:defx_settings() abort
         \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> <CR>
         \ defx#is_directory() ?
-        \ defx#do_action('open_or_close_tree') :
+        \ defx#do_action('open_tree', 'toggle') :
         \ defx#do_action('multi', ['drop', 'quit'])
   nnoremap <silent><buffer><expr> v
         \ defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
