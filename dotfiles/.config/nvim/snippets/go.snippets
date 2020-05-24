@@ -66,9 +66,9 @@ snippet cpt "cp template"
 	}
 
 	type WordScanner interface {
-		NextInt64() int64
-		NextUInt64() uint64
-		NextString() string
+		Int64() int64
+		UInt64() uint64
+		String() string
 	}
 
 	type wordScannerImpl struct {
@@ -87,7 +87,7 @@ snippet cpt "cp template"
 		return &wordScannerImpl{Scanner: s}
 	}
 
-	func (impl *wordScannerImpl) NextInt64() int64 {
+	func (impl *wordScannerImpl) Int64() int64 {
 		impl.Scan()
 		bb := impl.Bytes()
 		i := int64(0)
@@ -105,7 +105,7 @@ snippet cpt "cp template"
 		return i
 	}
 
-	func (impl *wordScannerImpl) NextUInt64() uint64 {
+	func (impl *wordScannerImpl) UInt64() uint64 {
 		impl.Scan()
 		bb := impl.Bytes()
 		i := uint64(0)
@@ -116,7 +116,7 @@ snippet cpt "cp template"
 		return i
 	}
 
-	func (impl *wordScannerImpl) NextString() string {
+	func (impl *wordScannerImpl) String() string {
 		impl.Scan()
 		return impl.Text()
 	}
