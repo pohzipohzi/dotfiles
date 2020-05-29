@@ -23,6 +23,12 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
+                },
+                "clang": {
+                    "extraArgs": [
+                        "-isystem",
+                        "/usr/include"
+                    ]
                 }
             },
             "rootPatterns": [
