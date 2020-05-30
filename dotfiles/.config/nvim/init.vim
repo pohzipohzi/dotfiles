@@ -83,6 +83,8 @@ endfunction
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 nmap <Leader>f :GFiles<CR>
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " git
 nmap <Leader>gb :Gblame<CR>
