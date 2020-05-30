@@ -6,8 +6,7 @@ call plug#begin()
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  Plug 'itchyny/lightline.vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
@@ -42,6 +41,7 @@ nmap <Leader>yl :let @+=expand("%").":".line(".")<CR>
 " colors
 set termguicolors
 colorscheme nord
+let g:lightline = {'colorscheme': 'nord'}
 
 " navigation
 let loaded_netrwPlugin = 1
