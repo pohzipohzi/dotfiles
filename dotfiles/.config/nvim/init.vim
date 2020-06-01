@@ -41,7 +41,17 @@ nmap <Leader>yl :let @+=expand("%").":".line(".")<CR>
 " colors
 set termguicolors
 colorscheme nord
-let g:lightline = {'colorscheme': 'nord'}
+
+" status
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'FugitiveHead'
+      \ }
+      \ }
 
 " navigation
 let loaded_netrwPlugin = 1
