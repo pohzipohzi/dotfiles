@@ -46,7 +46,9 @@ colorscheme nord
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive' ] ]
+      \ 'left': [ [ 'mode', 'paste' ],
+      \           [ 'fugitive' ],
+      \           [ 'readonly', 'filename', 'modified' ] ],
       \ },
       \ 'component_function': {
       \   'fugitive': 'FugitiveHead'
