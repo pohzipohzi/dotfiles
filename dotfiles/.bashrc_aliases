@@ -1,4 +1,4 @@
-PS1="\w$ "
+export PS1="\e[01;34m\w$\e[m "
 export GOBIN=$(go env GOPATH)
 export TERM="screen-256color"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
