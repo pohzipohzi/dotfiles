@@ -88,7 +88,7 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 
 " git
 nmap <Leader>gb :Gblame<CR>
-nmap <Leader>gd :Gvdiffsplit<CR>
+nmap <Leader>gd :tab Git --paginate diff<CR>
 nmap <Leader>gs :Gstatus<CR>
 nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gw :Gwrite<CR>
