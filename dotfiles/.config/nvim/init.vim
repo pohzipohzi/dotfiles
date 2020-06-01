@@ -97,12 +97,11 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 " git
-nmap <Leader>gb :Gblame<CR>
+nmap <Leader>gb :Git blame<CR>
 nmap <Leader>gd :tab Git --paginate diff<CR>
-nmap <Leader>gs :Gstatus<CR>
-nmap <Leader>gc :Gcommit<CR>
-nmap <Leader>gw :Gwrite<CR>
-nmap <Leader>gp :Gpush<CR>
+nmap <Leader>gs :Git<CR>
+nmap <Leader>gc :Git commit -a<CR>
+nmap <Leader>gp :Git push<CR>
 nmap <Leader>hn <Plug>(GitGutterNextHunk)
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>hu <Plug>(GitGutterUndoHunk)
