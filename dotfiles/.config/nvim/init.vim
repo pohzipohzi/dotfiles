@@ -100,7 +100,7 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 
 " git
 nmap <Leader>gb :Git blame<CR>
-nmap <Leader>gd :tab Git --paginate diff<CR>
+nmap <Leader>gd :tab Git diff<CR>
 nmap <Leader>gs :Git<CR>
 nmap <Leader>gc :Git commit -a<CR>
 nmap <Leader>gp :Git push<CR>
