@@ -146,10 +146,10 @@ autocmd FileType css,scss set shiftwidth=2
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType json nmap <buffer> <Leader>l :%!python -m json.tool<CR>
-autocmd FileType terraform nmap <buffer> <Leader>tf :!terraform fmt -write=true %<CR>
-autocmd FileType terraform nmap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
-autocmd FileType terraform nmap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
-autocmd FileType terraform nmap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
+autocmd FileType tf nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
+autocmd FileType tf nmap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
+autocmd FileType tf nmap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
+autocmd FileType tf nmap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 
