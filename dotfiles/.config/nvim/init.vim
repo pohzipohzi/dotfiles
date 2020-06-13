@@ -10,7 +10,6 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " general
