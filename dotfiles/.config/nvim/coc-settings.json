@@ -110,19 +110,6 @@
                     }
                 }
             }
-        },
-        "terraform": {
-            "args": [
-                "serve"
-            ],
-            "command": "terraform-ls",
-            "filetypes": [
-                "tf"
-            ],
-            "rootPatterns": [
-                ".git/",
-                ".terraenv"
-            ]
         }
     },
     "snippets.ultisnips.directories": [
