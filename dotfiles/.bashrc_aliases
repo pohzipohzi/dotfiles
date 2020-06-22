@@ -5,4 +5,3 @@ alias tmux="tmux -2"
 alias b="bash $DOTFILES/.scripts/ba.sh"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-source ~/.fonts/*.sh
