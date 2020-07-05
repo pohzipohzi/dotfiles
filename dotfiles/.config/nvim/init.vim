@@ -7,7 +7,7 @@ call plug#begin()
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'itchyny/lightline.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neovim/nvim-lsp'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
@@ -116,22 +116,13 @@ nmap <Leader>hn <Plug>(GitGutterNextHunk)
 nmap <Leader>hp <Plug>(GitGutterPrevHunk)
 nmap <Leader>hu <Plug>(GitGutterUndoHunk)
 
-" coc
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
-                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-nmap <Leader>d :call CocAction('jumpDefinition')<CR>
-nmap <Leader>e :call CocAction('jumpDefinition', 'tab drop')<CR>
-nmap <Leader>q :call CocAction('doHover')<CR>
-nmap <Leader>u <Plug>(coc-references)
-nmap <Leader>r <Plug>(coc-rename)
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-nmap <Leader>p :tabe $DOTFILES/.config/nvim/snippets/%:e.snippets<CR>
+" lsp
+lua << EOF
+require'nvim_lsp'.gopls.setup{}
+require'nvim_lsp'.pyls.setup{}
+EOF
+nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
 
 " filetype specific
 autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR> i
