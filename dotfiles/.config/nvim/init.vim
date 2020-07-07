@@ -4,6 +4,7 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'preservim/nerdcommenter'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'nvim-lua/completion-nvim'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'itchyny/lightline.vim'
@@ -123,6 +124,11 @@ require'nvim_lsp'.pyls.setup{}
 EOF
 nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
+
+" autocomplete
+autocmd BufEnter * lua require'completion'.on_attach()
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
 " filetype specific
 autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR> i
