@@ -95,6 +95,7 @@ endfunction
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 nmap <Leader>f :GFiles<CR>
+nmap <Leader>gg :GGrep<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_colors = {
@@ -135,7 +136,6 @@ autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR>
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
-autocmd FileType go nmap <buffer> <Leader>gg :!go generate %<CR>
 autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
 autocmd FileType go set shiftwidth=4
 autocmd FileType go set noet
