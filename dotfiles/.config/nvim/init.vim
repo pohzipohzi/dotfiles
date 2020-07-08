@@ -3,7 +3,6 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'preservim/nerdcommenter'
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'itchyny/lightline.vim'
@@ -56,46 +55,11 @@ let g:lightline = {
       \ }
 
 " navigation
-let loaded_netrwPlugin = 1
-call defx#custom#option('_', {
-      \ 'split': 'floating',
-      \ 'wincol': &columns / 4,
-      \ 'winwidth': &columns / 2,
-      \ 'winrow': &lines / 4,
-      \ 'winheight': &lines / 2,
-      \ 'show_ignored_files': 1,
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
-map <C-n> :Defx<CR>
-map <C-f> :Defx -search=`expand('%:p')`<CR>
-autocmd FileType defx call s:defx_settings()
-function! s:defx_settings() abort
-  set nu
-  set rnu
-  nnoremap <silent><buffer><expr> <ESC>
-        \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <CR>
-        \ defx#is_directory() ?
-        \ defx#do_action('open_tree', 'toggle') :
-        \ defx#do_action('multi', ['drop', 'quit'])
-  nnoremap <silent><buffer><expr> v
-        \ defx#do_action('multi', [['drop', 'vsplit'], 'quit'])
-  nnoremap <silent><buffer><expr> s
-        \ defx#do_action('multi', [['drop', 'split'], 'quit'])
-  nnoremap <silent><buffer><expr> t
-        \ defx#do_action('multi', [['drop', 'tabe'], 'quit'])
-  nnoremap <silent><buffer><expr> ma
-        \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> md
-        \ defx#do_action('remove')
-  nnoremap <silent><buffer><expr> mm
-        \ defx#do_action('rename')
-endfunction
+nmap <C-t> :Texplore<CR>
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>gg :GGrep<CR>
+nmap <C-f> :GFiles<CR>
+nmap <C-g> :GGrep<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_colors = {
