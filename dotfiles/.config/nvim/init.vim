@@ -88,6 +88,7 @@ require'nvim_lsp'.gopls.setup{}
 require'nvim_lsp'.pyls.setup{}
 require'nvim_lsp'.solargraph.setup{}
 EOF
+nnoremap <Leader>e :tab split<CR> <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
 
