@@ -4,11 +4,11 @@ call plug#begin()
   Plug 'junegunn/fzf.vim'
   Plug 'preservim/nerdcommenter'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'nvim-lua/completion-nvim'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
   Plug 'itchyny/lightline.vim'
   Plug 'neovim/nvim-lsp'
+  Plug 'nvim-lua/completion-nvim'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
@@ -129,6 +129,8 @@ nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
 
 " autocomplete
 autocmd BufEnter * lua require'completion'.on_attach()
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
