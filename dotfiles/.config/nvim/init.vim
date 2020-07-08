@@ -122,6 +122,7 @@ nmap <Leader>hu <Plug>(GitGutterUndoHunk)
 lua << EOF
 require'nvim_lsp'.gopls.setup{}
 require'nvim_lsp'.pyls.setup{}
+require'nvim_lsp'.solargraph.setup{}
 EOF
 nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
