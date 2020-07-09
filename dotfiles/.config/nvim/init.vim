@@ -8,6 +8,7 @@ call plug#begin()
   Plug 'itchyny/lightline.vim'
   Plug 'neovim/nvim-lsp'
   Plug 'nvim-lua/completion-nvim'
+  Plug 'SirVer/ultisnips'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
@@ -101,12 +102,14 @@ nnoremap <Leader>e :tab split<CR><cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
 
-" autocomplete
+" completion
 autocmd BufEnter * lua require'completion'.on_attach()
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+let g:completion_enable_snippet = "UltiSnips"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " filetype specific
 autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR> i
