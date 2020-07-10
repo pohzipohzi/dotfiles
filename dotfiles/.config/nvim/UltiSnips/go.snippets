@@ -44,57 +44,36 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io"
 	"math"
 	"os"
 )
 
-type BufferedWriter interface {
-	Printf(format string, a ...interface{})
-	Flush()
+const (
+	SCANNER_BUF_SIZE = 2 << 20
+
+	INF = int64(math.MaxInt64)
+	MOD = 1e9 + 7
+)
+
+var (
+	writer  *bufio.Writer
+	scanner *bufio.Scanner
+)
+
+func init() {
+	writer = bufio.NewWriter(os.Stdout)
+	scanner = bufio.NewScanner(os.Stdin)
+	scanner.Split(bufio.ScanWords)
+	scanner.Buffer(make([]byte, SCANNER_BUF_SIZE), SCANNER_BUF_SIZE)
 }
 
-type writerImpl struct {
-	*bufio.Writer
+func printf(f string, a ...interface{}) {
+	fmt.Fprintf(writer, f, a...)
 }
 
-func NewBufferedWriter(writer io.Writer) BufferedWriter {
-	return &writerImpl{Writer: bufio.NewWriter(writer)}
-}
-
-func (impl *writerImpl) Printf(f string, a ...interface{}) {
-	fmt.Fprintf(impl.Writer, f, a...)
-}
-
-func (impl *writerImpl) Flush() {
-	impl.Writer.Flush()
-}
-
-type WordScanner interface {
-	Int64() int64
-	UInt64() uint64
-	String() string
-}
-
-type wordScannerImpl struct {
-	*bufio.Scanner
-}
-
-func NewWordScanner(reader io.Reader) WordScanner {
-	s := bufio.NewScanner(reader)
-	s.Split(bufio.ScanWords)
-	// adjust the following size as needed
-	// 2 << 17 is good enough to scan strings of len 2*10^5
-	// it could go as high as 2 << 26 before cf judge breaks
-	size := 2 << 20
-	buf := make([]byte, size)
-	s.Buffer(buf, size)
-	return &wordScannerImpl{Scanner: s}
-}
-
-func (impl *wordScannerImpl) Int64() int64 {
-	impl.Scan()
-	bb := impl.Bytes()
+func sint64() int64 {
+	scanner.Scan()
+	bb := scanner.Bytes()
 	i := int64(0)
 	if bb[0] == '-' {
 		for _, b := range bb[1:] {
@@ -110,9 +89,9 @@ func (impl *wordScannerImpl) Int64() int64 {
 	return i
 }
 
-func (impl *wordScannerImpl) UInt64() uint64 {
-	impl.Scan()
-	bb := impl.Bytes()
+func suint64() uint64 {
+	scanner.Scan()
+	bb := scanner.Bytes()
 	i := uint64(0)
 	for _, b := range bb {
 		i *= 10
@@ -121,9 +100,9 @@ func (impl *wordScannerImpl) UInt64() uint64 {
 	return i
 }
 
-func (impl *wordScannerImpl) String() string {
-	impl.Scan()
-	return impl.Text()
+func sstring() string {
+	scanner.Scan()
+	return scanner.Text()
 }
 
 func gcd(a, b int64) int64 {
@@ -161,14 +140,6 @@ func max(a int64, rest ...int64) int64 {
 	}
 	return a
 }
-
-const (
-	INF = int64(math.MaxInt64)
-	MOD = 1e9 + 7
-)
-
-var reader = NewWordScanner(os.Stdin)
-var writer = NewBufferedWriter(os.Stdout)
 
 func main() {
 	defer writer.Flush()
