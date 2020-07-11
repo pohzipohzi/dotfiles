@@ -66,6 +66,7 @@ endfunction
 
 " navigation
 let g:netrw_bufsettings = 'nu rnu'
+let g:netrw_fastbrowse = 0
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 nmap <C-f> :GFiles<CR>
