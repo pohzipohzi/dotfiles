@@ -102,6 +102,7 @@ EOF
 nnoremap <Leader>e :tab split<CR><cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>u <cmd>lua vim.lsp.buf.references()<CR>
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
@@ -111,7 +112,6 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 let g:completion_enable_snippet = "UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-nmap <Leader>u :UltiSnipsEdit %:e<CR>
 
 " filetype specific
 autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR> i
