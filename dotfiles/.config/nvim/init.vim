@@ -103,6 +103,7 @@ nnoremap <Leader>e :tab split<CR><cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>u <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <Leader>r <cmd>lua vim.lsp.buf.rename()<CR>
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
