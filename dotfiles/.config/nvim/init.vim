@@ -65,7 +65,7 @@ function! LightlineFilename()
 endfunction
 
 " navigation
-nmap <C-t> :Texplore<CR>
+let g:netrw_bufsettings = 'nu rnu'
 nmap <C-h> :tabp<CR>
 nmap <C-l> :tabn<CR>
 nmap <C-f> :GFiles<CR>
