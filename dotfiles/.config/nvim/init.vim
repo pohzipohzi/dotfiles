@@ -155,7 +155,7 @@ function! GoTestFunc() abort
   let name = split(split(getline(test), " ")[1], "(")[0]
   call RunTerm(
         \"running test: ".name,
-        \"go test -v ".expand("%:p:h")." -run ^".name."$"
+        \"go test -v -count=1 ".expand("%:p:h")." -run ^".name."$"
         \)
 endfunction
 
