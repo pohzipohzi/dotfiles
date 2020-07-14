@@ -85,7 +85,7 @@ command! -bang -nargs=* GGrep
 
 " git
 nmap <Leader>gb :Git blame<CR>
-nmap <Leader>gd :tab Git diff<CR>
+nmap <Leader>gd :Git diff<CR>
 nmap <Leader>gs :Git<CR>
 nmap <Leader>gc :Git commit -a<CR>
 nmap <Leader>gp :Git push<CR>
