@@ -1,11 +1,11 @@
 call plug#begin()
   Plug 'arcticicestudio/nord-vim'
+  Plug 'itchyny/lightline.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'preservim/nerdcommenter'
-  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
-  Plug 'itchyny/lightline.vim'
+  Plug 'airblade/vim-gitgutter'
   Plug 'neovim/nvim-lsp'
   Plug 'nvim-lua/completion-nvim'
   Plug 'SirVer/ultisnips'
