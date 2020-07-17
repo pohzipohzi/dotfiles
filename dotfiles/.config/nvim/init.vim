@@ -118,7 +118,7 @@ let g:completion_enable_snippet = "UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " filetype specific
-autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go run % < %:h/in<CR> i
+autocmd FileType go nmap <buffer> <Leader>z :vsplit term://go build % && piper -c ./%:r < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
