@@ -140,6 +140,7 @@ autocmd FileType tf nmap <buffer> <Leader>tp :tabe term://cd %:h && terraform pl
 autocmd FileType tf nmap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
+autocmd BufNewFile,BufRead Jenkinsfile setf groovy
 
 function! GoTestPkg() abort
   call RunTerm(
