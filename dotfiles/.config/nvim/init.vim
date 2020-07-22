@@ -20,6 +20,7 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <C-f> <NOP>
 noremap <C-b> <NOP>
+noremap <Space> <NOP>
 set nu
 set rnu
 set colorcolumn=80
@@ -31,7 +32,7 @@ set foldmethod=syntax
 set foldnestmax=1
 set nofoldenable
 set noswapfile
-let g:mapleader=","
+let g:mapleader=" "
 tnoremap <Esc> <C-\><C-n>
 nmap <Leader><Leader> :tabe $MYVIMRC<CR>
 nmap <Leader>s :so $MYVIMRC<CR>
