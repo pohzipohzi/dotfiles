@@ -90,9 +90,10 @@ nmap <Leader>gd :Git diff<CR>
 nmap <Leader>gs :Git<CR>
 nmap <Leader>gc :Git commit -a<CR>
 nmap <Leader>gp :Git push<CR>
-nmap <Leader>hn <Plug>(GitGutterNextHunk)
-nmap <Leader>hp <Plug>(GitGutterPrevHunk)
-nmap <Leader>hu <Plug>(GitGutterUndoHunk)
+nmap <Leader>hn :GitGutterNextHunk<CR>
+nmap <Leader>hp :GitGutterPrevHunk<CR>
+nmap <Leader>hu :GitGutterUndoHunk<CR>
+nmap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
 lua << EOF
