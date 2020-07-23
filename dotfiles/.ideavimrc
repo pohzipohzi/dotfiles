@@ -10,6 +10,7 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 noremap <C-f> <NOP>
 noremap <C-b> <NOP>
+noremap <Space> <NOP>
 set clipboard=unnamedplus
 set visualbell
 set noerrorbells
@@ -21,7 +22,7 @@ nmap <C-o> :action Back<CR>
 nmap <C-i> :action Forward<CR>
 nmap / :action Find<CR>
 
-let mapleader = ","
+let mapleader = " "
 nmap <Leader><Leader> :e ~/.ideavimrc<CR>
 nmap <Leader>s :so ~/.ideavimrc<CR>
 nmap <Leader>d :action GotoDeclaration<CR>
