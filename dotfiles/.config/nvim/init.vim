@@ -122,6 +122,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " filetype specific
 autocmd FileType go nmap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:r < %:h/in<CR> i
 autocmd FileType go nmap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:r<CR> i
+autocmd FileType go nmap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r % && piper -o -c %:r < %:h/in) <(piper -o -c cat < %:h/out)<CR> i
 autocmd FileType go nmap <buffer> <Leader>l :!goimports -w %<CR>
 autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
