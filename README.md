@@ -23,6 +23,7 @@ Then symlink everything:
 ln -s $DOTFILES/.bash_aliases $HOME/.bash_aliases
 ln -s $DOTFILES/.tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES/.ideavimrc $HOME/.ideavimrc
+ln -s $DOTFILES/.xinitrc $HOME/.xinitrc
 ln -s -d $DOTFILES/.config/nvim $HOME/.config/nvim
 ln -s -d $DOTFILES/.config/alacritty $HOME/.config/alacritty
 ln -s -d $DOTFILES/.config/git $HOME/.config/git
