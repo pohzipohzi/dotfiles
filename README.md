@@ -24,7 +24,6 @@ ln -s $DOTFILES/.bash_aliases $HOME/.bash_aliases
 ln -s $DOTFILES/.tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES/.ideavimrc $HOME/.ideavimrc
 ln -s -d $DOTFILES/.config/nvim $HOME/.config/nvim
-ln -s -d $DOTFILES/.config/i3 $HOME/.config/i3
 ln -s -d $DOTFILES/.config/alacritty $HOME/.config/alacritty
 ln -s -d $DOTFILES/.config/git $HOME/.config/git
 source ~/.bashrc
