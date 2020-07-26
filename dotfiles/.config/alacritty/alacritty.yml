@@ -1,6 +1,3 @@
-font:
-  size: 22.0
-
 key_bindings:
   - { key: Left,  mods: Alt,     chars: "\x1bb" }
   - { key: Right, mods: Alt,     chars: "\x1bf" }
