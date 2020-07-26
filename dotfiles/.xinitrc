@@ -1,2 +1,2 @@
-bash $DOTFILES/.scripts/dwm/status.sh &
+$DOTFILES/.scripts/wm/status &
 exec dwm
