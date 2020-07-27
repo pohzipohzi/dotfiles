@@ -12,11 +12,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	ln -s $(pwd)/dotfiles/.bashrc $HOME/.bashrc
-	ln -s $(pwd)/dotfiles/.tmux.conf $HOME/.tmux.conf
-	ln -s $(pwd)/dotfiles/.ideavimrc $HOME/.ideavimrc
-	ln -s $(pwd)/dotfiles/.config/nvim $HOME/.config/nvim
-	ln -s $(pwd)/dotfiles/.config/alacritty $HOME/.config/alacritty
-	ln -s $(pwd)/dotfiles/.config/git $HOME/.config/git
-	source ~/.bashrc
+    ln -s $(pwd)/dotfiles/.bashrc $HOME/.bashrc
+    ln -s $(pwd)/dotfiles/.tmux.conf $HOME/.tmux.conf
+    ln -s $(pwd)/dotfiles/.ideavimrc $HOME/.ideavimrc
+    ln -s $(pwd)/dotfiles/.config/nvim $HOME/.config/nvim
+    ln -s $(pwd)/dotfiles/.config/alacritty $HOME/.config/alacritty
+    ln -s $(pwd)/dotfiles/.config/git $HOME/.config/git
+    source ~/.bashrc
 fi
