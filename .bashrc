@@ -1,5 +1,5 @@
 # dotfiles
-export DOTFILES=$HOME/dotfiles/dotfiles
+export DOTFILES=$HOME/dotfiles
 alias b="bash $DOTFILES/.scripts/ba.sh"
 
 # terminal
