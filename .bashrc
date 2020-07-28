@@ -11,6 +11,9 @@ export GOPATH=$HOME/go
 export GOBIN=$(go env GOPATH)/bin
 export PATH=$PATH:$GOBIN
 
+# keyboard
+setxkbmap -option caps:swapescape
+
 # dotfiles
 export DOTFILES=$HOME/dotfiles
 alias b="bash $DOTFILES/.scripts/ba.sh"
