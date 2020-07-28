@@ -6,6 +6,7 @@ export EDITOR="$VISUAL"
 alias tmux="tmux -2"
 
 # go
+export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export GOBIN=$(go env GOPATH)/bin
 export PATH=$PATH:$GOBIN
