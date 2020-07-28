@@ -98,6 +98,7 @@ nmap <Leader>hs :GitGutterStageHunk<CR>
 " lsp
 lua << EOF
 require'nvim_lsp'.gopls.setup{}
+require'nvim_lsp'.ccls.setup{}
 require'nvim_lsp'.pyls.setup{}
 require'nvim_lsp'.solargraph.setup{}
 require'nvim_lsp'.tsserver.setup{}
