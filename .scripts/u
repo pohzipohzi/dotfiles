@@ -1,3 +1,4 @@
+#!/bin/bash
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo pacman -Syyu
 elif [[ "$OSTYPE" == "darwin"* ]]; then

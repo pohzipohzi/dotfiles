@@ -17,7 +17,6 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 # dotfiles
-export DOTFILES=$HOME/dotfiles
-alias b="bash $DOTFILES/.scripts/ba.sh"
+export PATH=$PATH:$HOME/dotfiles/.scripts
 [ -f $HOME/.bashrc2 ] && source $HOME/.bashrc2
 [ -f $HOME/.fzf.bash ] && source $HOME/.fzf.bash

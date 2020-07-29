@@ -1,2 +1,2 @@
-$DOTFILES/.scripts/wm/status &
+wmstatus &
 exec dwm

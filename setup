@@ -7,7 +7,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     ln -sT $(pwd)/.config/nvim $HOME/.config/nvim
     ln -sT $(pwd)/.config/alacritty $HOME/.config/alacritty
     ln -sT $(pwd)/.config/git $HOME/.config/git
-    source $HOME/.bashrc
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     ln -s $(pwd)/.bashrc $HOME/.bashrc
     ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
@@ -15,5 +14,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     ln -s $(pwd)/.config/nvim $HOME/.config/nvim
     ln -s $(pwd)/.config/alacritty $HOME/.config/alacritty
     ln -s $(pwd)/.config/git $HOME/.config/git
-    source $HOME/.bashrc
 fi
+
+source $HOME/.bashrc
