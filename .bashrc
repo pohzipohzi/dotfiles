@@ -12,7 +12,9 @@ export GOBIN=$(go env GOPATH)/bin
 export PATH=$PATH:$GOBIN
 
 # keyboard
-setxkbmap -option caps:swapescape
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    setxkbmap -option caps:swapescape
+fi
 
 # dotfiles
 export DOTFILES=$HOME/dotfiles
