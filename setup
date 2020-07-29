@@ -1,17 +1,14 @@
 #!/bin/bash
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     ln -s $(pwd)/.bashrc $HOME/.bashrc
     ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
     ln -s $(pwd)/.ideavimrc $HOME/.ideavimrc
     ln -s $(pwd)/.xinitrc $HOME/.xinitrc
-    ln -s -d $(pwd)/.config/nvim $HOME/.config/nvim
-    ln -s -d $(pwd)/.config/alacritty $HOME/.config/alacritty
-    ln -s -d $(pwd)/.config/git $HOME/.config/git
+    ln -sT $(pwd)/.config/nvim $HOME/.config/nvim
+    ln -sT $(pwd)/.config/alacritty $HOME/.config/alacritty
+    ln -sT $(pwd)/.config/git $HOME/.config/git
     source $HOME/.bashrc
-fi
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
+elif [[ "$OSTYPE" == "darwin"* ]]; then
     ln -s $(pwd)/.bashrc $HOME/.bashrc
     ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
     ln -s $(pwd)/.ideavimrc $HOME/.ideavimrc
