@@ -1,7 +1,7 @@
 call plug#begin()
   Plug 'arcticicestudio/nord-vim'
   Plug 'itchyny/lightline.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
