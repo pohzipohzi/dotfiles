@@ -3,5 +3,3 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew upgrade
 fi
-
-nvim +'PlugUpdate --sync' +qa
