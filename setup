@@ -11,9 +11,9 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     ln -s $(pwd)/.bashrc $HOME/.bashrc
     ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
     ln -s $(pwd)/.ideavimrc $HOME/.ideavimrc
-    ln -s $(pwd)/.config/nvim $HOME/.config/nvim
-    ln -s $(pwd)/.config/alacritty $HOME/.config/alacritty
-    ln -s $(pwd)/.config/git $HOME/.config/git
+    ln -sh $(pwd)/.config/nvim $HOME/.config/nvim
+    ln -sh $(pwd)/.config/alacritty $HOME/.config/alacritty
+    ln -sh $(pwd)/.config/git $HOME/.config/git
 fi
 
 source $HOME/.bashrc
