@@ -1,4 +1,4 @@
 #!/bin/bash
 pactl set-sink-mute 0 toggle
 MUTE=$(pactl list sinks | grep "Mute:" | sed -e 's/^[ \t]*//')
-notify-send "Toggle mute" "$MUTE" -t 300
+notify-send "Volume Toggle" "$MUTE" -i audio-volume-high-symbolic -t 300
