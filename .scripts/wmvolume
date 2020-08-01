@@ -1,0 +1,35 @@
+#!/bin/bash
+function is_mute {
+    amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
+}
+
+function get_volume {
+    amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
+}
+
+case $1 in
+    up)
+	amixer -D pulse set Master on > /dev/null
+	amixer -D pulse sset Master 5%+ > /dev/null
+	;;
+    down)
+	amixer -D pulse set Master on > /dev/null
+	amixer -D pulse sset Master 5%- > /dev/null
+	;;
+    mute)
+	amixer -D pulse set Master 1+ toggle > /dev/null
+	;;
+esac
+
+wmsetstatus
+
+ID=991049
+if is_mute ; then
+    dunstify -i audio-volume-muted-symbolic -r $ID "Volume Muted"
+else
+    VOLUME=`get_volume`
+    BAR=$(seq -s "─" $(($VOLUME / 5 + 1)) | sed 's/[0-9]//g')
+    SPACE=$(seq -s " " $((20 - $VOLUME / 5 + 1)) | sed 's/[0-9]//g')
+    dunstify -i audio-volume-high-symbolic -r $ID "$BAR$SPACE ($VOLUME%)"
+    canberra-gtk-play -i audio-volume-change
+fi

@@ -19,7 +19,4 @@ xsetrootname() {
     printf "$(date +"%F %R")"
 }
 
-while true; do
-	xsetroot -name "$(xsetrootname)"
-	sleep 2
-done
+xsetroot -name "$(xsetrootname)"
