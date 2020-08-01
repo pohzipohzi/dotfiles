@@ -1,8 +1,7 @@
 #!/bin/bash
-D=$HOME/dotfiles/.config/whitefox
-
+P=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo dfu-util -D $D/linux.bin
+    sudo dfu-util -D $P/assets/linux.bin
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    sudo dfu-util -D $D/mac.bin
+    sudo dfu-util -D $P/assets/mac.bin
 fi
