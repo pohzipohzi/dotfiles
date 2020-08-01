@@ -10,6 +10,11 @@ xsetrootname() {
 
     printf " / "
 
+    BRI=$(printf "%.0f" "$(xbacklight)")
+    printf "BRI %s%%" "$BRI"
+
+    printf " / "
+
     CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
     STATUS=$(cat /sys/class/power_supply/BAT0/status)
     printf "BAT %s%% %s" "$CAPACITY" "$STATUS"

@@ -1,0 +1,18 @@
+#!/bin/bash
+BRIGHTNESS=$(($(printf "%.0f" "$(xbacklight)") / 5 * 5))
+case $1 in
+    up)
+    BRIGHTNESS=$(($BRIGHTNESS + 5))
+	;;
+    down)
+    BRIGHTNESS=$(($BRIGHTNESS - 5))
+	;;
+esac
+xbacklight -set $BRIGHTNESS
+
+wmsetstatus
+
+ID=991050
+BAR=$(seq -s "─" $(($BRIGHTNESS / 5 + 1)) | sed 's/[0-9]//g')
+SPACE=$(seq -s " " $((20 - $BRIGHTNESS / 5 + 1)) | sed 's/[0-9]//g')
+dunstify -i display-brightness-symbolic -r $ID "$BAR$SPACE ($BRIGHTNESS%)"

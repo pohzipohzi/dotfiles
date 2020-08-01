@@ -1,3 +1,0 @@
-#!/bin/bash
-xbacklight -inc 10
-notify-send "Brightness Up" "$(xbacklight)" -i display-brightness-symbolic -t 300
