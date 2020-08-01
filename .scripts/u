@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo pacman -Syyu
+    sudo pacman -Syu
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew upgrade
 fi
