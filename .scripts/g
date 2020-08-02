@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ "$#" -ne 1 ]; then    
+    echo "invalid parameters"
+    exit 1
+fi
+
+mkdir -p $1
+cp -n $( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/assets/sol.go $1/
+touch $1/in $1/out
+cd $1
+nvim +'e sol.go' +'vsplit out' +'split in'
