@@ -1,9 +1,6 @@
 key_bindings:
   - { key: Left,  mods: Alt,     chars: "\x1bb" }
   - { key: Right, mods: Alt,     chars: "\x1bf" }
-  - { key: Left,  mods: Command, chars: "\x01\x01" }
-  - { key: Right, mods: Command, chars: "\x05" }
-  - { key: Back,  mods: Command, chars: "\x15" }
 
 colors:
    primary:
