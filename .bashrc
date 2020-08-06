@@ -1,5 +1,5 @@
 # terminal
-export PS1="\e[01;34m\w$\e[m "
+export PS1="\[\e[01;34m\]\w$\[\e[m\] "
 export TERM="screen-256color"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
