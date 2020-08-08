@@ -105,11 +105,11 @@ require'nvim_lsp'.tsserver.setup{}
 require'nvim_lsp'.yamlls.setup{}
 require'nvim_lsp'.sumneko_lua.setup{}
 EOF
-nnoremap <Leader>e :tab split<CR><cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader>d <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader>q <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>u <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <Leader>r <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader>e :tab split<bar>lua vim.lsp.buf.definition()<CR>
+nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
+nnoremap <Leader>q :lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>u :lua vim.lsp.buf.references()<CR>
+nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
