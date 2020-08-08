@@ -128,7 +128,6 @@ autocmd FileType go nmap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r
 autocmd FileType go nmap <buffer> <Leader>l :mark l<bar>execute "%!goimports"<bar>'l<CR>
 autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
-autocmd FileType go nmap <buffer> <Leader>gr :!grabbyright -w %<CR>
 autocmd FileType go set shiftwidth=4
 autocmd FileType go set noet
 autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
