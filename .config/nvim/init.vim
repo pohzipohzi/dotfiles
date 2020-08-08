@@ -34,10 +34,10 @@ set nofoldenable
 set noswapfile
 let g:mapleader=" "
 tnoremap <Esc> <C-\><C-n>
-nmap <Leader><Leader> :tabe $MYVIMRC<CR>
-nmap <Leader>s :so $MYVIMRC<CR>
-nmap <Leader>yy :let @+=expand("%")<CR>
-nmap <Leader>yl :let @+=expand("%").":".line(".")<CR>
+nnoremap <Leader><Leader> :tabe $MYVIMRC<CR>
+nnoremap <Leader>s :so $MYVIMRC<CR>
+nnoremap <Leader>yy :let @+=expand("%")<CR>
+nnoremap <Leader>yl :let @+=expand("%").":".line(".")<CR>
 
 " colors
 set termguicolors
@@ -68,10 +68,10 @@ endfunction
 " navigation
 let g:netrw_bufsettings = 'nu rnu'
 let g:netrw_fastbrowse = 0
-nmap <C-h> :tabp<CR>
-nmap <C-l> :tabn<CR>
-nmap <C-f> :GFiles<CR>
-nmap <C-g> :GGrep<CR>
+nnoremap <C-h> :tabp<CR>
+nnoremap <C-l> :tabn<CR>
+nnoremap <C-f> :GFiles<CR>
+nnoremap <C-g> :GGrep<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_colors = {
@@ -85,15 +85,15 @@ command! -bang -nargs=* GGrep
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " git
-nmap <Leader>gb :Git blame<CR>
-nmap <Leader>gd :Git diff<CR>
-nmap <Leader>gs :Git<CR>
-nmap <Leader>gc :Git commit -a<CR>
-nmap <Leader>gp :Git push<CR>
-nmap <Leader>hn :GitGutterNextHunk<CR>
-nmap <Leader>hp :GitGutterPrevHunk<CR>
-nmap <Leader>hu :GitGutterUndoHunk<CR>
-nmap <Leader>hs :GitGutterStageHunk<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gd :Git diff<CR>
+nnoremap <Leader>gs :Git<CR>
+nnoremap <Leader>gc :Git commit -a<CR>
+nnoremap <Leader>gp :Git push<CR>
+nnoremap <Leader>hn :GitGutterNextHunk<CR>
+nnoremap <Leader>hp :GitGutterPrevHunk<CR>
+nnoremap <Leader>hu :GitGutterUndoHunk<CR>
+nnoremap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
 lua << EOF
@@ -121,27 +121,27 @@ let g:completion_enable_snippet = "UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
 " filetype specific
-autocmd FileType go nmap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
-autocmd FileType go nmap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
-autocmd FileType go nmap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
-autocmd FileType go nmap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r % && piper -o -c %:r < %:h/in) <(piper -o -c cat < %:h/out)<CR> i
-autocmd FileType go nmap <buffer> <Leader>l :mark l<bar>execute "%!goimports"<bar>'l<CR>
-autocmd FileType go nmap <buffer> <Leader>tp :call GoTestPkg()<CR>
-autocmd FileType go nmap <buffer> <Leader>tf :call GoTestFunc()<CR>
+autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
+autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
+autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
+autocmd FileType go nnoremap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r % && piper -o -c %:r < %:h/in) <(piper -o -c cat < %:h/out)<CR> i
+autocmd FileType go nnoremap <buffer> <Leader>l :mark l<bar>execute "%!goimports"<bar>'l<CR>
+autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
+autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
 autocmd FileType go set shiftwidth=4
 autocmd FileType go set noet
-autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
-autocmd FileType typescript,typescriptreact nmap <buffer> <Leader>l :!npx eslint --fix %<CR>
+autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
+autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>l :!npx eslint --fix %<CR>
 autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType json set shiftwidth=2
-autocmd FileType json nmap <buffer> <Leader>l :%!python -m json.tool<CR>
-autocmd FileType tf nmap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
-autocmd FileType tf nmap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
-autocmd FileType tf nmap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
-autocmd FileType tf nmap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
+autocmd FileType json nnoremap <buffer> <Leader>l :%!python -m json.tool<CR>
+autocmd FileType tf nnoremap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
+autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
+autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
+autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 autocmd BufNewFile,BufRead Jenkinsfile setf groovy
