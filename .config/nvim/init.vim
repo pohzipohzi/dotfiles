@@ -119,6 +119,7 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 let g:completion_enable_snippet = "UltiSnips"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsExpandTrigger = "<NOP>"
 
 " filetype specific
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
