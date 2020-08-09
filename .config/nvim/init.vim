@@ -1,16 +1,16 @@
 call plug#begin()
-  Plug 'arcticicestudio/nord-vim'
-  Plug 'itchyny/lightline.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'neovim/nvim-lsp'
-  Plug 'nvim-lua/completion-nvim'
-  Plug 'SirVer/ultisnips'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'neovim/nvim-lsp'
+Plug 'nvim-lua/completion-nvim'
+Plug 'SirVer/ultisnips'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " general
@@ -53,7 +53,7 @@ let g:lightline = {
       \           [ 'readonly', 'filename', 'modified' ] ],
       \ },
       \ 'component_function': {
-	  \   'filename': 'LightlineFilename',
+      \   'filename': 'LightlineFilename',
       \   'fugitive': 'FugitiveHead'
       \ }
       \ }
@@ -81,9 +81,9 @@ let g:fzf_colors = {
       \ 'pointer': ['fg', 'Exception'],
       \}
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+      \ call fzf#vim#grep(
+      \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " git
 nnoremap <Leader>gb :Git blame<CR>
