@@ -32,6 +32,7 @@ set foldmethod=syntax
 set foldnestmax=1
 set nofoldenable
 set noswapfile
+set updatetime=100
 let g:mapleader=" "
 tnoremap <Esc> <C-\><C-n>
 nnoremap <Leader><Leader> :tabe $MYVIMRC<CR>
