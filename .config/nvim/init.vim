@@ -96,6 +96,7 @@ nnoremap <Leader>gp :Git push<CR>
 nnoremap <Leader>hn :GitGutterNextHunk<CR>
 nnoremap <Leader>hp :GitGutterPrevHunk<CR>
 nnoremap <Leader>hu :GitGutterUndoHunk<CR>
+nnoremap <Leader>hh :GitGutterPreviewHunk<CR>
 nnoremap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
