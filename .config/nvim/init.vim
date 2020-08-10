@@ -132,7 +132,7 @@ autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<
 autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r % && piper -o -c %:r < %:h/in) <(piper -o -c cat < %:h/out)<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>l :mark l<bar>execute "%!goimports"<bar>'l<CR>
+autocmd FileType go nnoremap <buffer> <Leader>l :call GoImports()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
 autocmd FileType go set shiftwidth=4
@@ -152,6 +152,17 @@ autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 autocmd BufNewFile,BufRead Jenkinsfile setf groovy
+
+function! GoImports() abort
+  let output = system("goimports " . expand("%"))
+  if v:shell_error
+    echo output
+    return
+  endif
+  let pos = getcurpos()
+  execute "%!goimports"
+  call setpos('.', pos)
+endfunction
 
 function! GoTestPkg() abort
   call RunTerm(
