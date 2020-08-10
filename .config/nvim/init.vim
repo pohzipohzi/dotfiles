@@ -71,6 +71,8 @@ let g:netrw_bufsettings = 'nu rnu'
 let g:netrw_fastbrowse = 0
 nnoremap <C-h> :tabp<CR>
 nnoremap <C-l> :tabn<CR>
+nnoremap <C-j> :cnext<CR>
+nnoremap <C-k> :cprev<CR>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <C-g> :GGrep<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
@@ -87,7 +89,7 @@ command! -bang -nargs=* GGrep
 
 " git
 nnoremap <Leader>gb :Git blame<CR>
-nnoremap <Leader>gd :Git diff<CR>
+nnoremap <Leader>gd :Git difftool<CR>
 nnoremap <Leader>gs :Git<CR>
 nnoremap <Leader>gc :Git commit -a<CR>
 nnoremap <Leader>gp :Git push<CR>
@@ -119,8 +121,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 let g:completion_enable_snippet = "UltiSnips"
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
 let g:UltiSnipsExpandTrigger = "<NOP>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " filetype specific
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
