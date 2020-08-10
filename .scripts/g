@@ -8,4 +8,4 @@ mkdir -p $1
 cp -n $( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/assets/sol.go $1/
 touch $1/in $1/out
 cd $1
-nvim +'e sol.go' +'vsplit out' +'split in'
+nvim +'e sol.go' +'vsplit out' +'split in' +'vert 3resize 88'
