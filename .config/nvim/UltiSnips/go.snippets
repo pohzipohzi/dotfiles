@@ -37,3 +37,31 @@ func (s Sorter) Swap(a, b int) {
 	s[a], s[b] = s[b], s[a]
 }
 endsnippet
+
+snippet heap "heap"
+type Heap []${1}
+
+func (h Heap) Len() int {
+	return len(h)
+}
+
+func (h Heap) Less(a, b int) bool {
+	return ${2}
+}
+
+func (h Heap) Swap(a, b int) {
+	h[a], h[b] = h[b], h[a]
+}
+
+func (h *Heap) Push(x interface{}) {
+	*h = append(*h, x.(${1///g}))
+}
+
+func (h *Heap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
+}
+endsnippet
