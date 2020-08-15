@@ -123,7 +123,7 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 let g:completion_enable_snippet = "UltiSnips"
 let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
-let g:UltiSnipsExpandTrigger = "<NOP>"
+let g:UltiSnipsExpandTrigger = "<NUL>"
 let g:UltiSnipsJumpForwardTrigger = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
