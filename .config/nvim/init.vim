@@ -8,7 +8,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/completion-nvim'
-Plug 'SirVer/ultisnips'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
@@ -121,11 +122,7 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
-let g:completion_enable_snippet = "UltiSnips"
-let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
-let g:UltiSnipsExpandTrigger = "<NUL>"
-let g:UltiSnipsJumpForwardTrigger = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:completion_enable_snippet = "vim-vsnip"
 
 " filetype specific
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
