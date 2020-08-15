@@ -144,7 +144,7 @@ autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType json set shiftwidth=2
-autocmd FileType json nnoremap <buffer> <Leader>l :call RunBuf("python -m json.tool")<CR>
+autocmd FileType json nnoremap <buffer> <Leader>l :call RunBuf("jq .")<CR>
 autocmd FileType tf nnoremap <buffer> <Leader>l :call RunBuf("terraform fmt")<CR>
 autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
