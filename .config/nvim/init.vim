@@ -132,7 +132,7 @@ autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<
 autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r % && piper -o -c %:r < %:h/in) <(piper -o -c cat < %:h/out)<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>l :call GoImports()<CR>
+autocmd FileType go nnoremap <buffer> <Leader>l :call RunBuf("goimports")<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
 autocmd FileType go set shiftwidth=4
@@ -144,25 +144,14 @@ autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType json set shiftwidth=2
-autocmd FileType json nnoremap <buffer> <Leader>l :%!python -m json.tool<CR>
-autocmd FileType tf nnoremap <buffer> <Leader>l :!terraform fmt -write=true %<CR>
+autocmd FileType json nnoremap <buffer> <Leader>l :call RunBuf("python -m json.tool")<CR>
+autocmd FileType tf nnoremap <buffer> <Leader>l :call RunBuf("terraform fmt")<CR>
 autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 autocmd BufNewFile,BufRead Jenkinsfile setf groovy
-
-function! GoImports() abort
-  let output = system("goimports " . expand("%"))
-  if v:shell_error
-    echo output
-    return
-  endif
-  let pos = getcurpos()
-  execute "%!goimports"
-  call setpos('.', pos)
-endfunction
 
 function! GoTestPkg() abort
   call RunTerm(
@@ -182,6 +171,17 @@ function! GoTestFunc() abort
         \"running test: ".name,
         \"go test -v -count=1 ".expand("%:p:h")." -run ^".name."$"
         \)
+endfunction
+
+function! RunBuf(cmd) abort
+  let output = system(a:cmd . " " . expand("%"))
+  if v:shell_error
+    echo output
+    return
+  endif
+  let pos = getcurpos()
+  execute "%!" . a:cmd
+  call setpos('.', pos)
 endfunction
 
 function! RunTerm(msg, cmd) abort
