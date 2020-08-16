@@ -142,10 +142,11 @@ autocmd FileType css,scss set shiftwidth=2
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType json nnoremap <buffer> <Leader>l :call RunBuf("jq -e .")<CR>
-autocmd FileType tf nnoremap <buffer> <Leader>l :call RunBuf("terraform fmt")<CR>
+autocmd FileType tf nnoremap <buffer> <Leader>l :!terraform fmt %<CR>
 autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
+autocmd FileType tf setlocal commentstring=#\ %s
 autocmd FileType vim set shiftwidth=2
 autocmd FileType help set nu rnu
 autocmd BufNewFile,BufRead Jenkinsfile setf groovy
