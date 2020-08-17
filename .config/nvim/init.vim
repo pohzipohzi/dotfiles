@@ -74,6 +74,7 @@ nnoremap <C-h> :tabp<CR>
 nnoremap <C-l> :tabn<CR>
 nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprev<CR>
+nnoremap <C-c> :ccl<CR>
 nnoremap <C-f> :GFiles<CR>
 nnoremap <C-g> :GGrep<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
