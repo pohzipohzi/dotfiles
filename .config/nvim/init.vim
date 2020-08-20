@@ -173,7 +173,9 @@ function! GoTestFunc() abort
 endfunction
 
 function! RunBuf(cmd) abort
-  let output = system(a:cmd . " " . expand("%"))
+  redir => output
+  silent execute ":w !" . a:cmd
+  redir END
   if v:shell_error
     echo output
     return
