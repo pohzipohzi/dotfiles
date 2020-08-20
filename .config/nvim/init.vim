@@ -174,7 +174,7 @@ endfunction
 
 function! RunBuf(cmd) abort
   redir => output
-  silent execute ":w !" . a:cmd
+  silent execute "w !" . a:cmd
   redir END
   if v:shell_error
     echo output
