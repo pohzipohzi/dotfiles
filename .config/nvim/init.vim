@@ -93,7 +93,7 @@ command! -bang -nargs=* GGrep
 nnoremap <Leader>gb :Git blame<CR>
 nnoremap <Leader>gd :Git difftool<CR>
 nnoremap <Leader>gs :Git<CR>
-nnoremap <Leader>gc :Git commit -a<CR>
+nnoremap <Leader>gc :Git commit<CR>
 nnoremap <Leader>gp :Git push<CR>
 nnoremap <Leader>hn :GitGutterNextHunk<CR>
 nnoremap <Leader>hp :GitGutterPrevHunk<CR>
