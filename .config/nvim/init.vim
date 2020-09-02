@@ -111,6 +111,7 @@ require'nvim_lsp'.solargraph.setup{}
 require'nvim_lsp'.tsserver.setup{}
 require'nvim_lsp'.yamlls.setup{}
 require'nvim_lsp'.sumneko_lua.setup{}
+require'nvim_lsp'.vimls.setup{}
 EOF
 nnoremap <Leader>e :tab split<bar>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
