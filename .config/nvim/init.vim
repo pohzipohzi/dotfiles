@@ -5,6 +5,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/completion-nvim'
