@@ -30,9 +30,6 @@ set colorcolumn=80
 set cursorline
 set expandtab
 set clipboard=unnamedplus
-set foldmethod=syntax
-set foldnestmax=1
-set nofoldenable
 set noswapfile
 set updatetime=100
 let g:mapleader=" "
