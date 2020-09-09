@@ -173,16 +173,16 @@ function! GoTestFunc() abort
 endfunction
 
 function! RunBuf(cmd) abort
-  redir => output
-  silent execute "w !" . a:cmd
-  redir END
+  let buffer_content = getline(1, '$')
+  let lines = systemlist(a:cmd, join(buffer_content, "\n"))
   if v:shell_error
-    echo output
+    echo join(lines, "\n")
     return
   endif
-  let pos = getcurpos()
-  execute "%!" . a:cmd
-  call setpos('.', pos)
+  silent keepjumps call setline(1, lines)
+  if line('$') > len(lines)
+    silent keepjumps execute string(len(lines)+1).',$ delete'
+  endif
 endfunction
 
 function! RunTerm(msg, cmd) abort
