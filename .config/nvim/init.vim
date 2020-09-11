@@ -135,6 +135,7 @@ autocmd FileType go nnoremap <buffer> <Leader>zd :tabe term://diff <(go build -o
 autocmd FileType go nnoremap <buffer> <Leader>l :call RunBuf("goimports")<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
+autocmd FileType go set tabstop=4
 autocmd FileType go set shiftwidth=4
 autocmd FileType go set noet
 autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
