@@ -126,6 +126,13 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 let g:completion_enable_snippet = "vim-vsnip"
+let g:completion_chain_complete_list = {
+      \'go': {
+      \  'default': [
+      \    {'complete_items': ['snippet', 'lsp']},
+      \  ],
+      \},
+      \}
 
 " filetype specific
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
