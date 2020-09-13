@@ -1,5 +1,5 @@
 #!/bin/bash
-xsetrootname() {
+volume() {
     STATUS=$(amixer sget Master | tail -n1 | sed -r "s/.*\[(.*)\]/\1/")
     VOL=$(amixer get Master | tail -n1 | sed -r "s/.*\[(.*)%\].*/\1/")
     if [ "$STATUS" = "off" ]; then
@@ -7,21 +7,23 @@ xsetrootname() {
     else
         printf "VOL %s%%" "$VOL"
     fi
-
-    printf " / "
-
-    BRI=$(printf "%.0f" "$(xbacklight)")
-    printf "BRI %s%%" "$BRI"
-
-    printf " / "
-
-    CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
-    STATUS=$(cat /sys/class/power_supply/BAT0/status)
-    printf "BAT %s%% %s" "$CAPACITY" "$STATUS"
-
-    printf " / "
-
-    printf "$(date +"%F %R")"
 }
 
-xsetroot -name "$(xsetrootname)"
+brightness() {
+    BRI=$(printf "%.0f" "$(xbacklight)")
+    printf "BRI %s%%" "$BRI"
+}
+
+battery() {
+    ID=991051
+    CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
+    STATUS=$(cat /sys/class/power_supply/BAT0/status)
+    if [[ $CAPACITY -lt 10 && "$STATUS" = "Discharging" ]]; then
+        dunstify -i battery-level-10-symbolic -r $ID -u critical "Battery Low"
+    else
+        dunstify -C $ID
+    fi
+    printf "BAT %s%% %s" "$CAPACITY" "$STATUS"
+}
+
+xsetroot -name "$(volume) / $(brightness) / $(battery) / $(date +"%F %R")"
