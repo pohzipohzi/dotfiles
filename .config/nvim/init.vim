@@ -118,6 +118,7 @@ nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>u :lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
