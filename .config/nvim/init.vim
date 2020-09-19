@@ -140,7 +140,6 @@ let g:completion_chain_complete_list = {
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>zd :tabe term://diff <(go build -o %:r % && piper -o -c %:r < %:h/in) <(piper -o -c cat < %:h/out)<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>l :call RunBuf("goimports")<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
