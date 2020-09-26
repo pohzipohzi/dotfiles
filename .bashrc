@@ -11,6 +11,9 @@ export GOPATH=$HOME/go
 export GOBIN=$(go env GOPATH)/bin
 export PATH=$PATH:$GOBIN
 
+# postgres
+export PSQL_PAGER='less -S'
+
 # keyboard
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     setxkbmap -option caps:swapescape
