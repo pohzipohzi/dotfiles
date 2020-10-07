@@ -5,6 +5,9 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias tmux="tmux -2"
 
+# aws
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli:2.0.55'
+
 # go
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
