@@ -41,3 +41,4 @@ nmap <Leader>g :action GoImportsFileAction<CR>
 nmap <Leader>l :action Javascript.Linters.EsLint.Fix<CR>
 nmap <Leader>yy :action CopyFileReference<CR>
 nmap <Leader>yl :action CopyReference<CR>
+nmap <Leader>b :action Bookmarks<CR>
