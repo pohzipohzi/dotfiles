@@ -16,7 +16,7 @@
       "ggm"
     ],
     "body": [
-      "//go:generate mockery -name=$1 -case=underscore -inpkg"
+      "//go:generate mockery --name=$1 --case=underscore --inpackage"
     ]
   },
   "sort slice": {
