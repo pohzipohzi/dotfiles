@@ -14,6 +14,9 @@ export GOPATH=$HOME/go
 export GOBIN=$(go env GOPATH)/bin
 export PATH=$PATH:$GOBIN
 
+# python
+export PATH=$PATH:$(python -m site --user-base)/bin
+
 # postgres
 export PSQL_PAGER='less -S'
 
