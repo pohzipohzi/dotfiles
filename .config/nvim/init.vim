@@ -10,6 +10,7 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -105,7 +106,7 @@ nnoremap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
 lua << EOF
-require'nvim_lsp'.gopls.setup{}
+require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.ccls.setup{}
 require'nvim_lsp'.pyls.setup{}
 require'nvim_lsp'.solargraph.setup{}
@@ -121,6 +122,8 @@ nnoremap <Leader>u :lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <Leader>f :lua vim.lsp.buf.formatting()<CR>
+nnoremap <C-n> :NextDiagnostic<CR>
+nnoremap <C-p> :PrevDiagnostic<CR>
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
