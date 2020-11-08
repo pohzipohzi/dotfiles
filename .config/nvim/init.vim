@@ -124,6 +124,7 @@ nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <Leader>f :lua vim.lsp.buf.formatting()<CR>
 nnoremap <C-n> :NextDiagnostic<CR>
 nnoremap <C-p> :PrevDiagnostic<CR>
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
