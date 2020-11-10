@@ -111,7 +111,8 @@ require'nvim_lsp'.ccls.setup{}
 require'nvim_lsp'.pyls.setup{}
 require'nvim_lsp'.solargraph.setup{}
 require'nvim_lsp'.tsserver.setup{}
-require'nvim_lsp'.yamlls.setup{}
+require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
+require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
 require'nvim_lsp'.sumneko_lua.setup{}
 require'nvim_lsp'.vimls.setup{}
 EOF
