@@ -106,15 +106,15 @@ nnoremap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
 lua << EOF
-require'nvim_lsp'.gopls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.ccls.setup{}
-require'nvim_lsp'.pyls.setup{}
-require'nvim_lsp'.solargraph.setup{}
-require'nvim_lsp'.tsserver.setup{}
-require'nvim_lsp'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
-require'nvim_lsp'.sumneko_lua.setup{}
-require'nvim_lsp'.vimls.setup{}
+require'lspconfig'.gopls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.ccls.setup{}
+require'lspconfig'.pyls.setup{}
+require'lspconfig'.solargraph.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.sumneko_lua.setup{}
+require'lspconfig'.vimls.setup{}
 EOF
 nnoremap <Leader>e :tab split<bar>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
