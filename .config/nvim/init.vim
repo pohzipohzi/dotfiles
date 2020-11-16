@@ -10,7 +10,6 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -106,15 +105,22 @@ nnoremap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
 lua << EOF
-require'lspconfig'.gopls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.gopls.setup{}
 require'lspconfig'.ccls.setup{}
 require'lspconfig'.pyls.setup{}
 require'lspconfig'.solargraph.setup{}
 require'lspconfig'.tsserver.setup{}
-require'lspconfig'.yamlls.setup{on_attach=require'diagnostic'.on_attach}
-require'lspconfig'.jsonls.setup{on_attach=require'diagnostic'.on_attach}
+require'lspconfig'.yamlls.setup{}
+require'lspconfig'.jsonls.setup{}
 require'lspconfig'.sumneko_lua.setup{}
 require'lspconfig'.vimls.setup{}
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  }
+)
 EOF
 nnoremap <Leader>e :tab split<bar>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
@@ -123,8 +129,8 @@ nnoremap <Leader>u :lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <Leader>f :lua vim.lsp.buf.formatting()<CR>
-nnoremap <C-n> :NextDiagnostic<CR>
-nnoremap <C-p> :PrevDiagnostic<CR>
+nnoremap <C-n> :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <C-p> :lua vim.lsp.diagnostic.goto_prev()<CR>
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 " completion
