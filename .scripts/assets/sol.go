@@ -8,22 +8,18 @@ import (
 )
 
 const (
-	SCANNER_BUF_SIZE = 2 << 20
-
 	INF = int64(math.MaxInt64)
 	MOD = 1e9 + 7
 )
 
 var (
-	writer  *bufio.Writer
-	scanner *bufio.Scanner
+	writer  = bufio.NewWriter(os.Stdout)
+	scanner = bufio.NewScanner(os.Stdin)
 )
 
 func init() {
-	writer = bufio.NewWriter(os.Stdout)
-	scanner = bufio.NewScanner(os.Stdin)
 	scanner.Split(bufio.ScanWords)
-	scanner.Buffer(make([]byte, SCANNER_BUF_SIZE), SCANNER_BUF_SIZE)
+	scanner.Buffer(make([]byte, 1e6), 1e6)
 }
 
 func printf(f string, a ...interface{}) {
