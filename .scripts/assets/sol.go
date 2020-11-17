@@ -64,6 +64,11 @@ func sstring() string {
 	return scanner.Text()
 }
 
+func sbytes() []byte {
+	scanner.Scan()
+	return scanner.Bytes()
+}
+
 func main() {
 	defer writer.Flush()
 
