@@ -64,42 +64,6 @@ func sstring() string {
 	return scanner.Text()
 }
 
-func gcd(a, b int64) int64 {
-	for b != 0 {
-		a, b = b, a%b
-	}
-	return a
-}
-
-func lcm(a, b int64) int64 {
-	return a * b / gcd(a, b)
-}
-
-func abs(a int64) int64 {
-	if a < 0 {
-		return a * -1
-	}
-	return a
-}
-
-func min(a int64, rest ...int64) int64 {
-	for _, r := range rest {
-		if r < a {
-			a = r
-		}
-	}
-	return a
-}
-
-func max(a int64, rest ...int64) int64 {
-	for _, r := range rest {
-		if r > a {
-			a = r
-		}
-	}
-	return a
-}
-
 func main() {
 	defer writer.Flush()
 
