@@ -14,7 +14,6 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'pohzipohzi/delve.nvim', { 'do': 'go install' }
 call plug#end()
 
 " general
