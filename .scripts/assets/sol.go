@@ -3,13 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
-)
-
-const (
-	INF = int64(math.MaxInt64)
-	MOD = 1e9 + 7
 )
 
 var (
