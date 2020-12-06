@@ -6,7 +6,7 @@ export EDITOR="$VISUAL"
 alias tmux="tmux -2"
 
 # aws
-alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli:2.0.55'
+alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli:2.1.4'
 
 # go
 export PATH=$PATH:/usr/local/go/bin
