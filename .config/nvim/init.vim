@@ -103,24 +103,7 @@ nnoremap <Leader>hh :GitGutterPreviewHunk<CR>
 nnoremap <Leader>hs :GitGutterStageHunk<CR>
 
 " lsp
-lua << EOF
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.ccls.setup{}
-require'lspconfig'.pyls.setup{}
-require'lspconfig'.solargraph.setup{}
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.jsonls.setup{}
-require'lspconfig'.sumneko_lua.setup{}
-require'lspconfig'.vimls.setup{}
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-  }
-)
-EOF
+lua require'lsp'
 nnoremap <Leader>e :tab split<bar>lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
 nnoremap <Leader>q :lua vim.lsp.buf.hover()<CR>
