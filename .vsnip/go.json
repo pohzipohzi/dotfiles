@@ -29,6 +29,16 @@
       "})"
     ]
   },
+  "for test": {
+    "prefix": [
+      "fort"
+    ],
+    "body": [
+      "for t := sint64(); t > 0; t-- {",
+      "\t$1",
+      "}"
+    ]
+  },
   "heap": {
     "prefix": [
       "heap"
