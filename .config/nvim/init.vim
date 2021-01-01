@@ -134,7 +134,7 @@ let g:completion_chain_complete_list = {
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>l :call RunBuf("goimports")<CR>
+autocmd FileType go nnoremap <buffer> <Leader>l :lua GoImports(1000)<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
 autocmd FileType go set tabstop=4
