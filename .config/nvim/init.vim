@@ -111,7 +111,6 @@ nnoremap <Leader>q :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>u :lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
-nnoremap <Leader>f :lua vim.lsp.buf.formatting()<CR>
 nnoremap <C-n> :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <C-p> :lua vim.lsp.diagnostic.goto_prev()<CR>
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
@@ -135,7 +134,7 @@ let g:completion_chain_complete_list = {
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
 autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>l :lua GoImports(1000)<CR>
+autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
 autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
 autocmd FileType go set tabstop=4

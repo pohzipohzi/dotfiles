@@ -26,7 +26,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-function GoImports(timeoutms)
+function GoImports()
   local context = { source = { organizeImports = true } }
   vim.validate { context = { context, "t", true } }
 
@@ -34,7 +34,7 @@ function GoImports(timeoutms)
   params.context = context
 
   local method = "textDocument/codeAction"
-  local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+  local resp = vim.lsp.buf_request_sync(0, method, params)
   if resp and resp[1] then
     local result = resp[1].result
     if result and result[1] then
