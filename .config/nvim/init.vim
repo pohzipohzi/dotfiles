@@ -113,7 +113,6 @@ nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <C-n> :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <C-p> :lua vim.lsp.diagnostic.goto_prev()<CR>
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
