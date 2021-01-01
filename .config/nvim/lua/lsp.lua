@@ -1,6 +1,8 @@
 local lsp = require 'lspconfig'
 
-lsp.gopls.setup{}
+lsp.gopls.setup{
+  cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'};
+}
 lsp.ccls.setup{}
 lsp.pyls.setup{}
 lsp.solargraph.setup{}
