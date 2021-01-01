@@ -87,8 +87,9 @@ let g:fzf_layout = { 'window': {
       \}}
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
-      \   'git grep --line-number -- '.shellescape(<q-args>), 0,
-      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+      \   'git grep -n -- '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'dir': input('dir: ', expand('%:p:h'))}),
+      \   <bang>0)
 
 " git
 nnoremap <Leader>gb :Git blame<CR>
