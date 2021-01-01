@@ -28,6 +28,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+-- lsp debug, see logs via ":e `=luaeval('vim.lsp.get_log_path()')`"
+vim.lsp.set_log_level("debug")
+
 function GoImports()
   local context = { source = { organizeImports = true } }
   vim.validate { context = { context, "t", true } }
