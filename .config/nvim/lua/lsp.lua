@@ -11,11 +11,21 @@ lsp.yamlls.setup{}
 lsp.jsonls.setup{}
 lsp.sumneko_lua.setup{
   settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
+	Lua = {
+	  runtime = {
+		version = 'LuaJIT',
+		path = vim.split(package.path, ';'),
+	  },
+	  diagnostics = {
+		globals = { 'vim' }
+	  },
+	  workspace = {
+		library = {
+		  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+		  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+		},
+	  },
+	}
   }
 }
 lsp.vimls.setup{}
