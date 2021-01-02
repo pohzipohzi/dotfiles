@@ -113,6 +113,7 @@ nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <C-n> :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <C-p> :lua vim.lsp.diagnostic.goto_prev()<CR>
+command! LspLog :tabe `=luaeval('vim.lsp.get_log_path()')`
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
