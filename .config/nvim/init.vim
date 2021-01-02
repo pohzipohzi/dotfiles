@@ -15,46 +15,9 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 call plug#end()
 
-" general
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-noremap <C-f> <NOP>
-noremap <C-b> <NOP>
-noremap <Space> <NOP>
-set nu
-set rnu
-set colorcolumn=80
-set cursorline
-set expandtab
-set clipboard=unnamedplus
-set noswapfile
-set updatetime=100
-let g:mapleader=" "
-tnoremap <Esc> <C-\><C-n>
-nnoremap <Leader><Leader> :tabe $MYVIMRC<CR>
-nnoremap <Leader>s :so $MYVIMRC<CR>
-nnoremap <Leader>yy :let @+=expand("%")<CR>
-nnoremap <Leader>yl :let @+=expand("%").":".line(".")<CR>
-
-" colors
-set termguicolors
-colorscheme nord
+lua require'init'
 
 " status
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \ 'left': [ [ 'mode', 'paste' ],
-      \           [ 'fugitive' ],
-      \           [ 'readonly', 'filename', 'modified' ] ],
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'fugitive': 'FugitiveHead'
-      \ }
-      \ }
 function! LightlineFilename()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
   let path = expand('%:p')
@@ -65,72 +28,17 @@ function! LightlineFilename()
 endfunction
 
 " navigation
-let g:netrw_bufsettings = 'nu rnu'
-let g:netrw_fastbrowse = 0
-nnoremap <C-h> :tabp<CR>
-nnoremap <C-l> :tabn<CR>
-nnoremap <C-j> :cnext<CR>
-nnoremap <C-k> :cprev<CR>
-nnoremap <C-x> :pc<CR>
-nnoremap <C-c> :ccl<CR>
-nnoremap <C-f> :GFiles<CR>
-nnoremap <C-g> :GGrep<CR>
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
       \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-let g:fzf_colors = {
-      \'gutter': ['bg', 'Normal'],
-      \}
-let g:fzf_layout = { 'window': {
-      \'width': 0.9,
-      \'height': 0.8,
-      \}}
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
       \   'git grep -n -- '.shellescape(<q-args>), 0,
       \   fzf#vim#with_preview({'dir': input('dir: ', expand('%:p:h'))}),
       \   <bang>0)
 
-" git
-nnoremap <Leader>gb :Git blame<CR>
-nnoremap <Leader>gd :Git difftool<CR>
-nnoremap <Leader>gs :Git<CR>
-nnoremap <Leader>gc :Git commit -a<CR>
-nnoremap <Leader>gp :Git push<CR>
-nnoremap <Leader>hn :GitGutterNextHunk<CR>
-nnoremap <Leader>hp :GitGutterPrevHunk<CR>
-nnoremap <Leader>hu :GitGutterUndoHunk<CR>
-nnoremap <Leader>hh :GitGutterPreviewHunk<CR>
-nnoremap <Leader>hs :GitGutterStageHunk<CR>
-
-" lsp
-lua require'lsp'
-nnoremap <Leader>e :tab split<bar>lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader>d :lua vim.lsp.buf.definition()<CR>
-nnoremap <Leader>q :lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>u :lua vim.lsp.buf.references()<CR>
-nnoremap <Leader>r :lua vim.lsp.buf.rename()<CR>
-nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
-nnoremap <C-n> :lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <C-p> :lua vim.lsp.diagnostic.goto_prev()<CR>
-command! LspLog :tabe `=luaeval('vim.lsp.get_log_path()')`
-
-" treesitter
-lua require'ts'
-
 " completion
-autocmd BufEnter * lua require'completion'.on_attach()
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-let g:completion_enable_snippet = "vim-vsnip"
-let g:completion_chain_complete_list = {
-      \'go': {
-      \  'default': [
-      \    {'complete_items': ['snippet', 'lsp']},
-      \  ],
-      \},
-      \}
+inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " filetype specific
 autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
@@ -143,14 +51,14 @@ autocmd FileType go set tabstop=4
 autocmd FileType go set shiftwidth=4
 autocmd FileType go set noet
 autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
-autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>l :!npx eslint --fix %<CR>
+autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>
 autocmd FileType typescript,typescriptreact set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType css,scss set shiftwidth=2
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType json set shiftwidth=2
-autocmd FileType json nnoremap <buffer> <Leader>l :call RunBuf("jq -e .")<CR>
-autocmd FileType tf nnoremap <buffer> <Leader>l :call RunBuf("terraform fmt -")<CR>
+autocmd FileType json nnoremap <buffer> <Leader>f :call RunBuf("jq -e .")<CR>
+autocmd FileType tf nnoremap <buffer> <Leader>f :call RunBuf("terraform fmt -")<CR>
 autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
 autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
