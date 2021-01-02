@@ -10,10 +10,9 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 " general
@@ -114,6 +113,9 @@ nnoremap <Leader>i :lua vim.lsp.buf.implementation()<CR>
 nnoremap <C-n> :lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <C-p> :lua vim.lsp.diagnostic.goto_prev()<CR>
 command! LspLog :tabe `=luaeval('vim.lsp.get_log_path()')`
+
+" treesitter
+lua require'ts'
 
 " completion
 autocmd BufEnter * lua require'completion'.on_attach()
