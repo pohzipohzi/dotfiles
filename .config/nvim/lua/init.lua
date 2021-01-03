@@ -38,14 +38,43 @@ vim.api.nvim_set_var('lightline', {
     left = {
       { 'mode', 'paste' },
       { 'fugitive' },
-      { 'readonly', 'filename', 'modified' },
+      { 'lspstatus' },
+    },
+    right = {
+      { 'readonly', 'filename', 'modified', 'filetype' },
     },
   },
   component_function = {
     filename = 'LightlineFilename',
     fugitive = 'FugitiveHead',
+    lspstatus = 'LspStatus',
   },
 })
+local messaging = require('lsp-status/messaging')
+function LspStatus()
+  if vim.lsp.buf_get_clients() == 0 then
+    return ''
+  end
+  local buf_messages = messaging.messages()
+  local msgs = {}
+  local function build_message(msg)
+    if msg.progress then
+      local contents = msg.title
+      if msg.message then
+	contents = contents .. ': ' .. msg.message
+      end
+      if msg.percentage then
+	contents = contents .. ' (' .. msg.percentage .. ')'
+      end
+      return contents
+    end
+    return msg.content
+  end
+  for _, msg in ipairs(buf_messages) do
+    table.insert(msgs, '[' .. msg.name .. '] ' .. build_message(msg))
+  end
+  return table.concat(msgs, ' ')
+end
 
 -- navigation
 vim.api.nvim_set_var('netrw_bufsettings', 'nu rnu')
@@ -81,40 +110,48 @@ vim.api.nvim_set_keymap('n', '<Leader>hh', ':GitGutterPreviewHunk<CR>', { norema
 vim.api.nvim_set_keymap('n', '<Leader>hs', ':GitGutterStageHunk<CR>', { noremap = true })
 
 -- lsp
-local lsp = require 'lspconfig'
-local compl = require 'completion'
+local lspconfig = require 'lspconfig'
+local completion = require 'completion'
+local lsp_status = require 'lsp-status'
+lsp_status.register_progress()
+local function OnAttach(client)
+  completion.on_attach(client)
+  lsp_status.on_attach(client)
+end
 
-lsp.gopls.setup{
+lspconfig.gopls.setup{
   cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
-  on_attach = compl.on_attach,
+  on_attach = OnAttach,
+  capabilities = lsp_status.capabilities,
 }
-lsp.sumneko_lua.setup{
+lspconfig.sumneko_lua.setup{
   settings = {
-	Lua = {
-	  runtime = {
-		version = 'LuaJIT',
-		path = vim.split(package.path, ';'),
-	  },
-	  diagnostics = {
-		globals = { 'vim' }
-	  },
-	  workspace = {
-		library = {
-		  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-		  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-		},
-	  },
-	}
+    Lua = {
+      runtime = {
+	version = 'LuaJIT',
+	path = vim.split(package.path, ';'),
+      },
+      diagnostics = {
+	globals = { 'vim' }
+      },
+      workspace = {
+	library = {
+	  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+	  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+	},
+      },
+    }
   },
-  on_attach = compl.on_attach,
+  on_attach = OnAttach,
+  capabilities = lsp_status.capabilities,
 }
-lsp.ccls.setup{}
-lsp.pyls.setup{}
-lsp.solargraph.setup{}
-lsp.tsserver.setup{}
-lsp.yamlls.setup{}
-lsp.jsonls.setup{}
-lsp.vimls.setup{}
+lspconfig.ccls.setup{}
+lspconfig.pyls.setup{}
+lspconfig.solargraph.setup{}
+lspconfig.tsserver.setup{}
+lspconfig.yamlls.setup{}
+lspconfig.jsonls.setup{}
+lspconfig.vimls.setup{}
 
 vim.api.nvim_set_keymap('n', '<Leader>e', ':tab split<bar>lua vim.lsp.buf.definition()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
