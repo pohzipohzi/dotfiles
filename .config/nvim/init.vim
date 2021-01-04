@@ -40,37 +40,6 @@ command! -bang -nargs=* GGrep
       \   fzf#vim#with_preview({'dir': input('git grep dir: ', expand('%:p:h'), 'file')}),
       \   <bang>0)
 
-" completion
-inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" filetype specific
-autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i
-autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>
-autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>
-autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>
-autocmd FileType go set tabstop=4
-autocmd FileType go set shiftwidth=4
-autocmd FileType go set noet
-autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i
-autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>
-autocmd FileType typescript,typescriptreact set shiftwidth=2
-autocmd FileType html set shiftwidth=2
-autocmd FileType css,scss set shiftwidth=2
-autocmd FileType yaml set shiftwidth=2
-autocmd FileType json set shiftwidth=2
-autocmd FileType json nnoremap <buffer> <Leader>f :call RunBuf("jq -e .")<CR>
-autocmd FileType tf nnoremap <buffer> <Leader>f :call RunBuf("terraform fmt -")<CR>
-autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i
-autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i
-autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>
-autocmd FileType tf setlocal commentstring=#\ %s
-autocmd FileType vim set shiftwidth=2
-autocmd FileType help set nu rnu
-autocmd BufNewFile,BufRead Jenkinsfile setf groovy
-
 function! GoTestPkg() abort
   call RunTerm(
         \"running tests in package: ".expand("%:h"),

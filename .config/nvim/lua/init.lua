@@ -202,6 +202,8 @@ vim.api.nvim_set_var('completion_chain_complete_list', {
     },
   },
 })
+vim.api.nvim_command('inoremap <expr><Tab>   pumvisible() ? "\\<C-n>" : "\\<Tab>"')
+vim.api.nvim_command('inoremap <expr><S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"')
 
 -- treesitter
 local ts = require 'nvim-treesitter.configs'
@@ -211,3 +213,30 @@ ts.setup {
     enable = true,
   },
 }
+
+-- filetype specific
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>')
+vim.api.nvim_command('autocmd FileType go set tabstop=4')
+vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
+vim.api.nvim_command('autocmd FileType go set noet')
+vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i')
+vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>')
+vim.api.nvim_command('autocmd FileType typescript,typescriptreact set shiftwidth=2')
+vim.api.nvim_command('autocmd FileType html set shiftwidth=2')
+vim.api.nvim_command('autocmd FileType css,scss set shiftwidth=2')
+vim.api.nvim_command('autocmd FileType yaml set shiftwidth=2')
+vim.api.nvim_command('autocmd FileType json set shiftwidth=2')
+vim.api.nvim_command('autocmd FileType json nnoremap <buffer> <Leader>f :call RunBuf("jq -e .")<CR>')
+vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>f :call RunBuf("terraform fmt -")<CR>')
+vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i')
+vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i')
+vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>')
+vim.api.nvim_command('autocmd FileType tf setlocal commentstring=#\\ %s')
+vim.api.nvim_command('autocmd FileType vim set shiftwidth=2')
+vim.api.nvim_command('autocmd FileType help set nu rnu')
+vim.api.nvim_command('autocmd BufNewFile,BufRead Jenkinsfile setf groovy')
