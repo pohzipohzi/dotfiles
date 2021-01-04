@@ -221,8 +221,8 @@ vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zz :tabe ter
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>')
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :call GoTestPkg()<CR>')
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :call GoTestFunc()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
 vim.api.nvim_command('autocmd FileType go set tabstop=4')
 vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
 vim.api.nvim_command('autocmd FileType go set noet')
@@ -242,3 +242,29 @@ vim.api.nvim_command('autocmd FileType tf setlocal commentstring=#\\ %s')
 vim.api.nvim_command('autocmd FileType vim set shiftwidth=2')
 vim.api.nvim_command('autocmd FileType help set nu rnu')
 vim.api.nvim_command('autocmd BufNewFile,BufRead Jenkinsfile setf groovy')
+
+-- helper functions
+function GoTestPkg()
+  print('running tests in package: ' .. vim.fn.expand('%:h'))
+  RunTerm('go test -v -count=1 ' .. vim.fn.expand('%:p:h'))
+end
+
+function GoTestFunc()
+  local linenum = vim.fn.search('func \\(Test\\|Example\\)', 'bcnW')
+  if linenum == 0 then
+    print('no test found')
+    return
+  end
+  local line = vim.fn.getline(linenum)
+  local testname = string.sub(line, string.len('func ')+1, string.find(line, '%(')-1)
+  if testname == '' then
+    print('no test found')
+    return
+  end
+  print('running test: ' .. testname)
+  RunTerm('go test -v -count=1 ' .. vim.fn.expand('%:p:h') .. ' -run ^' .. testname .. '$')
+end
+
+function RunTerm(cmd)
+  vim.api.nvim_command('tabe term://' .. cmd)
+end

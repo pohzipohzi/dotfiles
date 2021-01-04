@@ -31,26 +31,6 @@ function! LspStatus()
   return luaeval("LspStatus()")
 endfunction
 
-function! GoTestPkg() abort
-  call RunTerm(
-        \"running tests in package: ".expand("%:h"),
-        \"go test -v -count=1 ".expand("%:p:h"),
-        \)
-endfunction
-
-function! GoTestFunc() abort
-  let test = search('func \(Test\|Example\)', "bcnW")
-  if test == 0
-    echo "no test found"
-    return
-  end
-  let name = split(split(getline(test), " ")[1], "(")[0]
-  call RunTerm(
-        \"running test: ".name,
-        \"go test -v -count=1 ".expand("%:p:h")." -run ^".name."$"
-        \)
-endfunction
-
 function! RunBuf(cmd) abort
   let buffer_content = getline(1, '$')
   let lines = systemlist(a:cmd, join(buffer_content, "\n"))
@@ -62,9 +42,4 @@ function! RunBuf(cmd) abort
   if line('$') > len(lines)
     silent keepjumps execute string(len(lines)+1).',$ delete'
   endif
-endfunction
-
-function! RunTerm(msg, cmd) abort
-  echo a:msg
-  execute ":tabe term://".a:cmd
 endfunction
