@@ -1,1 +1,6 @@
-ls -lah --color=always
+#!/bin/bash
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    ls -lah --color=always $1
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    ls -lahG $1
+fi
