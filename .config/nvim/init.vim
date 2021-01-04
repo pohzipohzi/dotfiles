@@ -37,7 +37,7 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 command! -bang -nargs=* GGrep
       \ call fzf#vim#grep(
       \   'git grep -n -- '.shellescape(<q-args>), 0,
-      \   fzf#vim#with_preview({'dir': input('dir: ', expand('%:p:h'))}),
+      \   fzf#vim#with_preview({'dir': input('git grep dir: ', expand('%:p:h'), 'file')}),
       \   <bang>0)
 
 " completion
