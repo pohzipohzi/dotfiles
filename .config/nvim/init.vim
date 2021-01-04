@@ -31,15 +31,6 @@ function! LspStatus()
   return luaeval("LspStatus()")
 endfunction
 
-" navigation
-autocmd! FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-command! -bang -nargs=* GGrep
-      \ call fzf#vim#grep(
-      \   'git grep -n -- '.shellescape(<q-args>), 0,
-      \   fzf#vim#with_preview({'dir': input('git grep dir: ', expand('%:p:h'), 'file')}),
-      \   <bang>0)
-
 function! GoTestPkg() abort
   call RunTerm(
         \"running tests in package: ".expand("%:h"),
