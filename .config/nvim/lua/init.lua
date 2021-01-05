@@ -155,7 +155,7 @@ lspconfig.yamlls.setup{}
 lspconfig.jsonls.setup{}
 lspconfig.vimls.setup{}
 
-vim.api.nvim_set_keymap('n', '<Leader>e', ':tab split<bar>lua vim.lsp.buf.definition()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>e', ':lua GoToDefinitionTab()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>q', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>u', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
@@ -178,10 +178,10 @@ vim.api.nvim_set_keymap('n', '<Leader>gl', ':tabe ' .. os.getenv('HOME') .. '/.g
 
 function GoImports()
   local context = { source = { organizeImports = true } }
-  vim.validate { context = { context, "t", true } }
+  vim.validate { context = { context, 't', true } }
   local params = vim.lsp.util.make_range_params()
   params.context = context
-  local method = "textDocument/codeAction"
+  local method = 'textDocument/codeAction'
   local resp = vim.lsp.buf_request_sync(0, method, params)
   if resp and resp[1] then
     local result = resp[1].result
@@ -191,6 +191,20 @@ function GoImports()
     end
   end
   vim.lsp.buf.formatting()
+end
+
+function GoToDefinitionTab()
+  local params = vim.lsp.util.make_position_params()
+  local method = 'textDocument/definition'
+  vim.lsp.buf_request(0, method, params, GoToDefinitionTabHandler)
+end
+
+function GoToDefinitionTabHandler(_, _, result)
+  -- apparently it's possible for 'textDocument/definition' to return more than
+  -- one result. This implementation only handles the first one
+  local expr = string.sub(result[1]['uri'], string.len('file://')+1)
+  vim.api.nvim_command('tab drop ' .. expr)
+  vim.lsp.util.jump_to_location(result[1])
 end
 
 -- completion
