@@ -127,6 +127,7 @@ lspconfig.gopls.setup{
   capabilities = lsp_status.capabilities,
 }
 lspconfig.sumneko_lua.setup{
+  cmd = {os.getenv('LUALS') .. '/bin/Linux/lua-language-server', '-E', os.getenv('LUALS') .. '/main.lua'},
   settings = {
     Lua = {
       runtime = {
