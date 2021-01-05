@@ -175,7 +175,7 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 
 vim.lsp.set_log_level("debug")
 vim.api.nvim_set_keymap('n', '<Leader>ll', ':tabe ' .. vim.lsp.get_log_path() .. '<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gl', ':tabe ' .. os.getenv('HOME') .. '/.gopls.log' .. '<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>lg', ':tabe ' .. os.getenv('HOME') .. '/.gopls.log' .. '<CR>', { noremap = true })
 
 function GoImports()
   local context = { source = { organizeImports = true } }
