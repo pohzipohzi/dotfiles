@@ -212,6 +212,10 @@ function GoToDefinitionTab()
 end
 
 function GoToDefinitionTabHandler(_, _, result)
+  if not result or not result[1] then
+    print('no definition to jump to')
+    return
+  end
   -- apparently it's possible for 'textDocument/definition' to return more than
   -- one result. This implementation only handles the first one
   local expr = string.sub(result[1]['uri'], string.len('file://')+1)
