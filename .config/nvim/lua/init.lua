@@ -126,8 +126,20 @@ lspconfig.gopls.setup{
   on_attach = OnAttach,
   capabilities = lsp_status.capabilities,
 }
+
+local function SystemName()
+  if vim.fn.has("mac") == 1 then
+    return "macOS"
+  end
+  if vim.fn.has("unix") == 1 then
+    return "Linux"
+  end
+  assert(false)
+end
+local sumneko_root_path = vim.fn.stdpath("cache").."/lspconfig/sumneko_lua/lua-language-server"
+local sumneko_binary = sumneko_root_path.."/bin/"..SystemName().."/lua-language-server"
 lspconfig.sumneko_lua.setup{
-  cmd = {os.getenv('LUALS') .. '/bin/Linux/lua-language-server', '-E', os.getenv('LUALS') .. '/main.lua'},
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
       runtime = {
