@@ -205,6 +205,14 @@ function GoImports()
   vim.lsp.buf.formatting()
 end
 
+function GoFillStruct()
+  local params = vim.lsp.util.make_range_params()
+  vim.lsp.buf.execute_command({
+	command = 'gopls.fill_struct',
+	arguments = {params['textDocument']['uri'], params['range']},
+  })
+end
+
 function GoToDefinitionTab()
   local params = vim.lsp.util.make_position_params()
   local method = 'textDocument/definition'
@@ -253,6 +261,7 @@ vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zi :tabe ter
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoFillStruct()<CR>')
 vim.api.nvim_command('autocmd FileType go set tabstop=4')
 vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
 vim.api.nvim_command('autocmd FileType go set noet')
