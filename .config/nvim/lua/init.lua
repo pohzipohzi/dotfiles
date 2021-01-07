@@ -30,51 +30,6 @@ vim.api.nvim_set_keymap('n', '<Leader>s', ':so $MYVIMRC<CR>', { noremap = true }
 vim.api.nvim_set_keymap('n', '<Leader>yy', ':let @+=expand("%")<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>yl', ':let @+=expand("%").":".line(".")<CR>', { noremap = true })
 
--- status
-vim.api.nvim_set_var('lightline', {
-  colorscheme = 'nord',
-  active = {
-    left = {
-      { 'mode', 'paste' },
-      { 'fugitive' },
-      { 'lspstatus' },
-    },
-    right = {
-      { 'readonly', 'filename', 'modified', 'filetype' },
-    },
-  },
-  component_function = {
-    filename = 'LightlineFilename',
-    fugitive = 'FugitiveHead',
-    lspstatus = 'LspStatus',
-  },
-})
-local messaging = require('lsp-status/messaging')
-function LspStatus()
-  if vim.lsp.buf_get_clients() == 0 then
-    return ''
-  end
-  local buf_messages = messaging.messages()
-  local msgs = {}
-  local function build_message(msg)
-    if msg.progress then
-      local contents = msg.title
-      if msg.message then
-	contents = contents .. ': ' .. msg.message
-      end
-      if msg.percentage then
-	contents = contents .. ' (' .. msg.percentage .. ')'
-      end
-      return contents
-    end
-    return msg.content
-  end
-  for _, msg in ipairs(buf_messages) do
-    table.insert(msgs, '[' .. msg.name .. '] ' .. build_message(msg))
-  end
-  return table.concat(msgs, ' ')
-end
-
 -- navigation
 vim.api.nvim_set_var('netrw_bufsettings', 'nu rnu')
 vim.api.nvim_set_var('netrw_fastbrowse', 0)
@@ -113,17 +68,27 @@ vim.api.nvim_set_keymap('n', '<Leader>hs', ':GitGutterStageHunk<CR>', { noremap 
 -- lsp
 local lspconfig = require 'lspconfig'
 local completion = require 'completion'
-local lsp_status = require 'lsp-status'
-lsp_status.register_progress()
-local function OnAttach(client)
-  completion.on_attach(client)
-  lsp_status.on_attach(client)
+local function progress_callback(_, _, params, client_id)
+  local client = vim.lsp.get_client_by_id(client_id)
+  local client_name = client and client.name or string.format("%d", client_id)
+  if not client then
+    print(string.format('[%s] client has shut down after sending the message', client_name))
+	return
+  end
+  local val = params.value
+  if val.kind then
+	if val.title then
+	  print(string.format('[%s:%s] %s: %s', client_name, val.kind, val.title, val.message))
+	  return
+	end
+	print(string.format('[%s:%s] %s', client_name, val.kind, val.message))
+  end
 end
+vim.lsp.handlers["$/progress"] = progress_callback
 
 lspconfig.gopls.setup{
   cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
-  on_attach = OnAttach,
-  capabilities = lsp_status.capabilities,
+  on_attach = completion.on_attach,
 }
 
 local function SystemName()
@@ -156,8 +121,7 @@ lspconfig.sumneko_lua.setup{
       },
     }
   },
-  on_attach = OnAttach,
-  capabilities = lsp_status.capabilities,
+  on_attach = completion.on_attach,
 }
 lspconfig.ccls.setup{}
 lspconfig.pyls.setup{}
