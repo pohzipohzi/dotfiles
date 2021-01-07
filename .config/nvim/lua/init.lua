@@ -262,6 +262,7 @@ vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImp
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoFillStruct()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gr :call RunBuf("grabbyright")<CR>')
 vim.api.nvim_command('autocmd FileType go set tabstop=4')
 vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
 vim.api.nvim_command('autocmd FileType go set noet')
