@@ -15,16 +15,3 @@ Plug 'hrsh7th/vim-vsnip-integ'
 call plug#end()
 
 lua require'init'
-
-function! RunBuf(cmd) abort
-  let buffer_content = getline(1, '$')
-  let lines = systemlist(a:cmd, join(buffer_content, "\n"))
-  if v:shell_error
-    echo join(lines, "\n")
-    return
-  endif
-  silent keepjumps call setline(1, lines)
-  if line('$') > len(lines)
-    silent keepjumps execute string(len(lines)+1).',$ delete'
-  endif
-endfunction

@@ -227,7 +227,7 @@ vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImp
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoFillStruct()<CR>')
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gr :call RunBuf("grabbyright")<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gr :lua RunBuf("grabbyright")<CR>')
 vim.api.nvim_command('autocmd FileType go set tabstop=4')
 vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
 vim.api.nvim_command('autocmd FileType go set noet')
@@ -239,8 +239,8 @@ vim.api.nvim_command('autocmd FileType html set shiftwidth=2')
 vim.api.nvim_command('autocmd FileType css,scss set shiftwidth=2')
 vim.api.nvim_command('autocmd FileType yaml set shiftwidth=2')
 vim.api.nvim_command('autocmd FileType json set shiftwidth=2')
-vim.api.nvim_command('autocmd FileType json nnoremap <buffer> <Leader>f :call RunBuf("jq -e .")<CR>')
-vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>f :call RunBuf("terraform fmt -")<CR>')
+vim.api.nvim_command('autocmd FileType json nnoremap <buffer> <Leader>f :lua RunBuf("jq -e .")<CR>')
+vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>f :lua RunBuf("terraform fmt -")<CR>')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>tu :!(cd %:h && terraenv terraform use)<CR>')
@@ -273,4 +273,17 @@ end
 
 function RunTerm(cmd)
   vim.api.nvim_command('tabe term://' .. cmd)
+end
+
+function RunBuf(cmd)
+  local buffer_content = table.concat(vim.fn.getline(1, '$'), '\n')
+  local lines = vim.fn.systemlist(cmd, buffer_content)
+  if vim.v['shell_error'] ~= 0 then
+    print(table.concat(lines, '\n'))
+    return
+  end
+  vim.fn.setline(1, lines)
+  if vim.fn.line('$') > #lines then
+    vim.api.nvim_command(string.format('%d,$ delete'), #lines + 1)
+  end
 end
