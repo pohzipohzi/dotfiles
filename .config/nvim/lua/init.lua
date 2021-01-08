@@ -20,8 +20,16 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 vim.api.nvim_set_option('updatetime', 100)
 vim.api.nvim_set_option('termguicolors', true)
-vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P')
+vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()} %{luaeval("DiagnosticStatus()")} %=%-14.(%l,%c%V%) %P')
 vim.api.nvim_command('colorscheme nord')
+function DiagnosticStatus()
+  if vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+    return ''
+  end
+  local count_e = vim.lsp.diagnostic.get_count(0, 'Error')
+  local count_w = vim.lsp.diagnostic.get_count(0, 'Warning')
+  return string.format('[E:%d,W:%d]', count_e, count_w)
+end
 
 -- leader mappings
 vim.api.nvim_set_var('mapleader', ' ')
@@ -74,15 +82,15 @@ local function progress_callback(_, _, params, client_id)
   local client_name = client and client.name or string.format("%d", client_id)
   if not client then
     print(string.format('[%s] client has shut down after sending the message', client_name))
-	return
+    return
   end
   local val = params.value
   if val.kind then
-	if val.title then
-	  print(string.format('[%s:%s] %s: %s', client_name, val.kind, val.title, val.message))
-	  return
-	end
-	print(string.format('[%s:%s] %s', client_name, val.kind, val.message))
+    if val.title then
+      print(string.format('[%s:%s] %s: %s', client_name, val.kind, val.title, val.message))
+      return
+    end
+    print(string.format('[%s:%s] %s', client_name, val.kind, val.message))
   end
 end
 vim.lsp.handlers["$/progress"] = progress_callback
@@ -108,17 +116,17 @@ lspconfig.sumneko_lua.setup{
   settings = {
     Lua = {
       runtime = {
-	version = 'LuaJIT',
-	path = vim.split(package.path, ';'),
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
       },
       diagnostics = {
-	globals = { 'vim' }
+        globals = { 'vim' }
       },
       workspace = {
-	library = {
-	  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-	  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-	},
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
       },
     }
   },
@@ -140,14 +148,6 @@ vim.api.nvim_set_keymap('n', '<Leader>r', ':lua vim.lsp.buf.rename()<CR>', { nor
 vim.api.nvim_set_keymap('n', '<Leader>i', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = false,
-  signs = true,
-  update_in_insert = false,
-}
-)
 
 vim.lsp.set_log_level("debug")
 vim.api.nvim_set_keymap('n', '<Leader>ll', ':tabe ' .. vim.lsp.get_log_path() .. '<CR>', { noremap = true })
@@ -173,8 +173,8 @@ end
 function GoFillStruct()
   local params = vim.lsp.util.make_range_params()
   vim.lsp.buf.execute_command({
-	command = 'gopls.fill_struct',
-	arguments = {params['textDocument']['uri'], params['range']},
+    command = 'gopls.fill_struct',
+    arguments = {params['textDocument']['uri'], params['range']},
   })
 end
 
