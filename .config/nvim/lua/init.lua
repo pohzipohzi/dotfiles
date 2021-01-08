@@ -20,6 +20,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 vim.api.nvim_set_option('updatetime', 100)
 vim.api.nvim_set_option('termguicolors', true)
+vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P')
 vim.api.nvim_command('colorscheme nord')
 
 -- leader mappings
