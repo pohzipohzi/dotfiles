@@ -39,14 +39,6 @@ vim.api.nvim_set_option('updatetime', 100)
 vim.api.nvim_set_option('termguicolors', true)
 vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()} %{luaeval("DiagnosticStatus()")} %=%-14.(%l,%c%V%) %P')
 vim.api.nvim_command('colorscheme nord')
-function DiagnosticStatus()
-  if vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
-    return ''
-  end
-  local count_e = vim.lsp.diagnostic.get_count(0, 'Error')
-  local count_w = vim.lsp.diagnostic.get_count(0, 'Warning')
-  return string.format('[E:%d,W:%d]', count_e, count_w)
-end
 
 -- leader mappings
 vim.api.nvim_set_var('mapleader', ' ')
@@ -168,6 +160,15 @@ vim.api.nvim_set_keymap('n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>',
 vim.lsp.set_log_level("debug")
 vim.api.nvim_set_keymap('n', '<Leader>ll', ':tabe ' .. vim.lsp.get_log_path() .. '<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>lg', ':tabe ' .. os.getenv('HOME') .. '/.gopls.log' .. '<CR>', { noremap = true })
+
+function DiagnosticStatus()
+  if vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
+    return ''
+  end
+  local count_e = vim.lsp.diagnostic.get_count(0, 'Error')
+  local count_w = vim.lsp.diagnostic.get_count(0, 'Warning')
+  return string.format('[E:%d,W:%d]', count_e, count_w)
+end
 
 function GoImports()
   local context = { source = { organizeImports = true } }
