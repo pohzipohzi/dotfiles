@@ -245,7 +245,6 @@ vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoF
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gr :lua RunBuf("grabbyright")<CR>')
 vim.api.nvim_command('autocmd FileType go set tabstop=4')
 vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
-vim.api.nvim_command('autocmd FileType go set noet')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact set shiftwidth=2')
