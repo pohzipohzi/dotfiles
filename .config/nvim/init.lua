@@ -237,9 +237,7 @@ ts.setup {
 }
 
 -- filetype specific
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zz :tabe term://go run % < %:h/in<CR> i')
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zc :tabe term://go build -o %:r % && piper -c %:p:r < %:h/in<CR> i')
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zi :tabe term://go build -o %:r % && piper -c %:p:r<CR> i')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zz :lua RunTerm("go run % < %:h/in")<CR> i')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
