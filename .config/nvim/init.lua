@@ -294,7 +294,7 @@ function RunTerm(cmd)
   local row = (rows - height) / 2
   local outerbuf = vim.api.nvim_create_buf(false, true)
   local innerbuf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_open_win(outerbuf, false, {relative='win', style='minimal', col=col, row=row, width=width, height=height})
+  vim.api.nvim_open_win(outerbuf, false, {relative='win', style='minimal', col=col, row=row, width=width, height=height, focusable=false})
   vim.api.nvim_open_win(innerbuf, true, {relative='win', style='minimal', col=col+1, row=row, width=width-2, height=height})
   vim.api.nvim_command(string.format('au BufWipeout <buffer=%d> exe "bw %d"', innerbuf, outerbuf))
   vim.fn.termopen(cmd)
