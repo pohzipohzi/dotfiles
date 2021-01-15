@@ -286,7 +286,19 @@ function GoTestFunc()
 end
 
 function RunTerm(cmd)
-  vim.api.nvim_command('tabe term://' .. cmd)
+  local cols = vim.fn.winwidth(0) - vim.wo.numberwidth
+  local rows = vim.fn.winheight(0)
+  local width = math.ceil(0.9 * cols)
+  local height = math.ceil(0.9 * rows)
+  local col = (cols - width) / 2 + vim.wo.numberwidth
+  local row = (rows - height) / 2
+  local outerbuf = vim.api.nvim_create_buf(false, true)
+  local innerbuf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_open_win(outerbuf, false, {relative='win', style='minimal', col=col, row=row, width=width, height=height})
+  vim.api.nvim_open_win(innerbuf, true, {relative='win', style='minimal', col=col+1, row=row, width=width-2, height=height})
+  vim.api.nvim_command(string.format('au BufWipeout <buffer=%d> exe "bw %d"', innerbuf, outerbuf))
+  vim.fn.termopen(cmd)
+  vim.api.nvim_command('startinsert')
 end
 
 function RunBuf(cmd)
