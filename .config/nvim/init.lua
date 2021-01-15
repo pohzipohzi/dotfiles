@@ -292,8 +292,8 @@ end
 function RunTerm(cmd)
   local cols = vim.fn.winwidth(0) - vim.wo.numberwidth
   local rows = vim.fn.winheight(0)
-  local width = math.ceil(0.9 * cols)
-  local height = math.ceil(0.9 * rows)
+  local width = math.floor(0.9 * cols)
+  local height = math.floor(0.9 * rows)
   local col = (cols - width) / 2 + vim.wo.numberwidth
   local row = (rows - height) / 2
   local outerbuf = vim.api.nvim_create_buf(false, true)
