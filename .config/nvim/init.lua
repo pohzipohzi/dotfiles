@@ -237,7 +237,9 @@ ts.setup {
 }
 
 -- filetype specific
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>z :lua RunCase()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zz :lua RunCase()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zc :lua RunCases()<CR>')
+vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zi :lua RunCaseInteractive()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
@@ -267,7 +269,20 @@ vim.api.nvim_command('autocmd BufNewFile,BufRead Jenkinsfile setf groovy')
 function RunCase()
   local prog = vim.fn.expand('%')
   local input = vim.fn.expand('%:h') .. '/in'
-  RunTerm('go run ' .. prog .. ' < ' .. input)
+  RunTerm(string.format('go run %s < %s', prog, input))
+end
+
+function RunCases()
+  local prog = vim.fn.expand('%')
+  local build = vim.fn.expand('%:p:r')
+  local input = vim.fn.expand('%:h') .. '/in'
+  RunTerm(string.format('go build -o %s %s && piper -o -c %s < %s', build, prog, build, input))
+end
+
+function RunCaseInteractive()
+  local prog = vim.fn.expand('%')
+  local build = vim.fn.expand('%:p:r')
+  RunTerm(string.format('go build -o %s %s && piper -o -c %s', build, prog, build))
 end
 
 function GoTestPkg()
