@@ -1,2 +1,6 @@
 #!/bin/bash
-$VISUAL $(dirname "$0")/
+if [ "$#" -eq 0 ]; then    
+    $VISUAL $(dirname "$0")/
+else
+    $VISUAL $(dirname "$0")/$1
+fi
