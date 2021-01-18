@@ -26,4 +26,4 @@ end
 vim.api.nvim_command('e sol.go')
 vim.api.nvim_command('vsplit out')
 vim.api.nvim_command('split in')
-vim.api.nvim_command('vert 3resize 88')
+vim.api.nvim_command('vert 3resize ' .. (vim.wo.colorcolumn + vim.wo.numberwidth + 4))
