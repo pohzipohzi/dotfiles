@@ -1,7 +1,8 @@
--- run shortcuts
+-- shortcuts
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zx :lua RunCase()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zc :lua RunCases()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>zi :lua RunCaseInteractive()<CR>')
+vim.api.nvim_set_keymap('n', '<Leader>zo', ':tabe $HOME/dotfiles/.scripts/cp/<CR>', { noremap = true })
 
 function RunCase()
   local prog = vim.fn.expand('%')
