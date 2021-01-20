@@ -1,0 +1,3 @@
+[submodule ".scripts/cp"]
+	path = .scripts/cp
+	url = git@github.com:pohzipohzi/cp.git

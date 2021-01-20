@@ -5,7 +5,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 mkdir -p $1
-cp -n $( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/assets/sol.go $1/
+cp -n $( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/cp/sol.go $1/
 touch $1/in $1/out
 cd $1
 nvim +"lua require'cp'"
