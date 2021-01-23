@@ -38,37 +38,5 @@
       "\t$1",
       "}"
     ]
-  },
-  "heap": {
-    "prefix": [
-      "heap"
-    ],
-    "body": [
-      "type Heap []${1:int64}",
-      "",
-      "func (h Heap) Len() int {",
-      "\treturn len(h)",
-      "}",
-      "",
-      "func (h Heap) Less(il, ir int) bool {",
-      "\treturn h[il] < h[ir]",
-      "}",
-      "",
-      "func (h Heap) Swap(il, ir int) {",
-      "\th[il], h[ir] = h[ir], h[il]",
-      "}",
-      "",
-      "func (h *Heap) Push(x interface{}) {",
-      "\t*h = append(*h, x.($1))",
-      "}",
-      "",
-      "func (h *Heap) Pop() interface{} {",
-      "\told := *h",
-      "\tn := len(old)",
-      "\tx := old[n-1]",
-      "\t*h = old[0 : n-1]",
-      "\treturn x",
-      "}"
-    ]
   }
 }
