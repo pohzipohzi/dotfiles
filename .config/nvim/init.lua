@@ -270,13 +270,13 @@ end
 function GoTestFunc()
   local linenum = vim.fn.search('func \\(Test\\|Example\\)', 'bcnW')
   if linenum == 0 then
-    vim.api.nvim_command('echo "no test found"')
+	vim.api.nvim_echo({{'no test found', 'WarningMsg'}}, false, {})
     return
   end
   local line = vim.fn.getline(linenum)
   local testname = string.sub(line, string.len('func ')+1, string.find(line, '%(')-1)
   if testname == '' then
-    vim.api.nvim_command('echo "no test found"')
+	vim.api.nvim_echo({{'no test found', 'WarningMsg'}}, false, {})
     return
   end
   RunTerm(string.format('(cd %s && go test -v -count=1 -run ^%s$)', vim.fn.expand('%:p:h'), testname))
