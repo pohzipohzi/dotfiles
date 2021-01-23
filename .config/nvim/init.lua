@@ -264,7 +264,7 @@ vim.api.nvim_command('autocmd BufNewFile,BufRead Jenkinsfile setf groovy')
 
 -- helper functions
 function GoTestPkg()
-  RunTerm('go test -v -count=1 ' .. vim.fn.expand('%:p:h'))
+  RunTerm(string.format('(cd %s && go test -v -count=1)', vim.fn.expand('%:p:h')))
 end
 
 function GoTestFunc()
@@ -279,7 +279,7 @@ function GoTestFunc()
     vim.api.nvim_command('echo "no test found"')
     return
   end
-  RunTerm('go test -v -count=1 ' .. vim.fn.expand('%:p:h') .. ' -run ^' .. testname .. '$')
+  RunTerm(string.format('(cd %s && go test -v -count=1 -run ^%s$)', vim.fn.expand('%:p:h'), testname))
 end
 
 function RunTerm(cmd)
