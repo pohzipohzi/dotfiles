@@ -4,7 +4,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "unmapAll\nmap ? showHelp\nmap j scrollDown\nmap k scrollUp\nmap gg scrollToTop\nmap G scrollToBottom\nmap d scrollPageDown\nmap u scrollPageUp\nmap h scrollLeft\nmap l scrollRight\nmap f LinkHints.activateMode\nmap F LinkHints.activateModeToOpenInNewTab\nmap b Vomnibar.activateBookmarks\nmap B Vomnibar.activateBookmarksInNewTab\nmap H goBack\nmap L goForward\nmap J previousTab\nmap K nextTab\nmap <c-y> duplicateTab\nmap <c-m> toggleMuteTab\n",
+  "keyMappings": "unmapAll\nmap ? showHelp\nmap j scrollDown\nmap k scrollUp\nmap gg scrollToTop\nmap G scrollToBottom\nmap d scrollPageDown\nmap u scrollPageUp\nmap h scrollLeft\nmap l scrollRight\nmap f LinkHints.activateMode\nmap F LinkHints.activateModeToOpenInNewTab\nmap b Vomnibar.activateBookmarks\nmap B Vomnibar.activateBookmarksInNewTab\nmap H goBack\nmap L goForward\nmap <c-y> duplicateTab\nmap <c-m> toggleMuteTab\n",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
