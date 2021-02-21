@@ -9,8 +9,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 call plug#end()
@@ -86,7 +86,6 @@ vim.api.nvim_set_keymap('n', '<Leader>hs', ':GitGutterStageHunk<CR>', { noremap 
 
 -- lsp
 local lspconfig = require 'lspconfig'
-local completion = require 'completion'
 local function progress_callback(_, _, params, client_id)
   local client = vim.lsp.get_client_by_id(client_id)
   local client_name = client and client.name or string.format("%d", client_id)
@@ -104,10 +103,12 @@ local function progress_callback(_, _, params, client_id)
   end
 end
 vim.lsp.handlers["$/progress"] = progress_callback
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.gopls.setup{
   cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
-  on_attach = completion.on_attach,
+  capabilities = capabilities,
 }
 
 local function SystemName()
@@ -140,7 +141,6 @@ lspconfig.sumneko_lua.setup{
       },
     }
   },
-  on_attach = completion.on_attach,
 }
 lspconfig.ccls.setup{}
 lspconfig.pyls.setup{}
@@ -216,18 +216,31 @@ function GoToDefinitionTabHandler(_, _, result)
 end
 
 -- completion
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    vsnip = true;
+    nvim_lsp = true;
+    treesitter = true;
+  };
+}
 vim.api.nvim_set_option('completeopt', 'menuone,noinsert,noselect')
 vim.api.nvim_set_option('shortmess', 'filnxtToOFc')
-vim.api.nvim_set_var('completion_enable_snippet', 'vim-vsnip')
-vim.api.nvim_set_var('completion_chain_complete_list', {
-  go = {
-    default = {
-      { complete_items = {'snippet', 'lsp'}},
-    },
-  },
-})
-vim.api.nvim_command('inoremap <expr><Tab>   pumvisible() ? "\\<C-n>" : "\\<Tab>"')
-vim.api.nvim_command('inoremap <expr><S-Tab> pumvisible() ? "\\<C-p>" : "\\<S-Tab>"')
+vim.api.nvim_set_keymap('i', '<CR>', 'compe#confirm("\\<CR>")', { noremap = true, silent = true, expr = true })
+vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', { expr = true })
 
 -- treesitter
 local ts = require 'nvim-treesitter.configs'
