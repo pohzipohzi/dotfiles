@@ -19,8 +19,7 @@ end
 
 function RunCaseInteractive()
   local prog = vim.fn.expand('%')
-  local build = vim.fn.expand('%:p:r')
-  RunTerm(string.format('go build -o %s %s && piper -o -c %s', build, prog, build))
+  RunTerm(string.format('go run %s', prog))
 end
 
 -- layout
