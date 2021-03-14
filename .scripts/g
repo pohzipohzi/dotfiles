@@ -1,11 +1,11 @@
 #!/bin/bash
-if [ "$#" -ne 1 ]; then    
+if [ "$#" -ne 2 ]; then
     echo "invalid parameters"
     exit 1
 fi
 
 mkdir -p $1
-cp -n $( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/cp/sol.go $1/
+cp -n $( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/cp/sol.$2 $1/
 touch $1/in $1/out
 cd $1
-nvim +"lua require'cp'"
+nvim +"lua require'cp'" sol.$2
