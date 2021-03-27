@@ -1,2 +1,6 @@
+[user]
+	name = "z"
+	email = "z@pzpz.dev"
+
 [pull]
-    rebase = false
+	rebase = false
