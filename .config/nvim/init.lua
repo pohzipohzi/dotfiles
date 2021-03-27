@@ -112,6 +112,8 @@ lspconfig.gopls.setup{
   capabilities = capabilities,
 }
 
+lspconfig.clangd.setup{}
+
 local function SystemName()
   if vim.fn.has("mac") == 1 then
     return "macOS"
@@ -259,6 +261,9 @@ vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTe
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoFillStruct()<CR>')
 vim.api.nvim_command('autocmd FileType go set tabstop=4')
 vim.api.nvim_command('autocmd FileType go set shiftwidth=4')
+vim.api.nvim_command('autocmd FileType c nnoremap <buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>')
+vim.api.nvim_command('autocmd FileType c set tabstop=4')
+vim.api.nvim_command('autocmd FileType c set shiftwidth=4')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact set shiftwidth=2')
