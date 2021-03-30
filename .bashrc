@@ -17,6 +17,9 @@ export PATH=$PATH:$GOBIN
 # python
 export PATH=$PATH:$(python -m site --user-base)/bin
 
+# node
+source /usr/share/nvm/init-nvm.sh
+
 # postgres
 export PSQL_PAGER='less -S'
 
