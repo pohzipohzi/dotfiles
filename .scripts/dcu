@@ -1,7 +1,10 @@
 #!/bin/bash
-if [ "$#" -ne 1 ]; then    
-    echo "invalid parameters"
-    exit 1
+if [ "$#" -eq 0 ]; then
+    docker-compose up
+    exit 0
 fi
 
-docker-compose up --build -d $1
+for arg in "$@"
+do
+    docker-compose up --build -d $arg
+done
