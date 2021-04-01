@@ -4,6 +4,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -53,8 +54,7 @@ vim.api.nvim_set_keymap('n', '<Leader>yy', ':let @+=expand("%")<CR>', { noremap 
 vim.api.nvim_set_keymap('n', '<Leader>yl', ':let @+=expand("%").":".line(".")<CR>', { noremap = true })
 
 -- navigation
-vim.api.nvim_set_var('netrw_bufsettings', 'nu rnu')
-vim.api.nvim_set_var('netrw_fastbrowse', 0)
+vim.api.nvim_set_var('loaded_netrwPlugin', 1)
 vim.api.nvim_set_var('fzf_colors', {
   gutter = { 'bg', 'Normal' },
 })
