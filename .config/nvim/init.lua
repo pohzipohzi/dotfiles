@@ -126,7 +126,7 @@ local on_attach = function(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true })
   elseif client.resolved_capabilities.document_range_formatting then
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.range_formatting()<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})<CR>', { noremap = true })
   end
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
@@ -172,12 +172,15 @@ lspconfig.sumneko_lua.setup{
   on_attach = on_attach,
 }
 
-lspconfig.pyls.setup{}
-lspconfig.solargraph.setup{}
-lspconfig.tsserver.setup{}
-lspconfig.yamlls.setup{}
-lspconfig.jsonls.setup{}
-lspconfig.vimls.setup{}
+lspconfig.yamlls.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+lspconfig.jsonls.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 vim.lsp.set_log_level("debug")
 vim.api.nvim_set_keymap('n', '<Leader>ll', ':tabe ' .. vim.lsp.get_log_path() .. '<CR>', { noremap = true })
@@ -266,7 +269,6 @@ vim.api.nvim_command('autocmd FileType html set tabstop=2')
 vim.api.nvim_command('autocmd FileType css,scss set tabstop=2')
 vim.api.nvim_command('autocmd FileType yaml set tabstop=2')
 vim.api.nvim_command('autocmd FileType json set tabstop=2')
-vim.api.nvim_command('autocmd FileType json nnoremap <buffer> <Leader>f :lua RunBuf("jq -e .")<CR>')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>f :lua RunBuf("terraform fmt -")<CR>')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>ti :tabe term://cd %:h && terraform init<CR>i')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>tp :tabe term://cd %:h && terraform plan<CR>i')
