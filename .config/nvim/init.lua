@@ -145,38 +145,33 @@ lspconfig.clangd.setup{
   on_attach = on_attach,
 }
 
-local function SystemName()
-  if vim.fn.has("mac") == 1 then
-    return "macOS"
-  end
-  if vim.fn.has("unix") == 1 then
-    return "Linux"
-  end
-  assert(false)
-end
-local sumneko_root_path = vim.fn.stdpath("cache").."/lspconfig/sumneko_lua/lua-language-server"
-local sumneko_binary = sumneko_root_path.."/bin/"..SystemName().."/lua-language-server"
 lspconfig.sumneko_lua.setup{
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  cmd = {
+    os.getenv('HOME') .. '/oss/lua-language-server/bin/' .. (vim.fn.has('unix') and 'Linux' or 'macOS') .. '/lua-language-server',
+    "-E",
+    os.getenv('HOME') .. '/oss/lua-language-server/main.lua',
+  };
   settings = {
     Lua = {
       runtime = {
-	version = 'LuaJIT',
-	path = vim.split(package.path, ';'),
+        version = 'LuaJIT',
+        path = vim.split(package.path, ';'),
       },
       diagnostics = {
-	globals = { 'vim' }
+        globals = { 'vim' }
       },
       workspace = {
-	library = {
-	  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-	  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-	},
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
       },
     }
   },
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
-lspconfig.ccls.setup{}
+
 lspconfig.pyls.setup{}
 lspconfig.solargraph.setup{}
 lspconfig.tsserver.setup{}
