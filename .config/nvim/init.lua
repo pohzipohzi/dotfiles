@@ -108,15 +108,42 @@ local function progress_callback(_, _, params, client_id)
   end
 end
 vim.lsp.handlers["$/progress"] = progress_callback
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = false,
+  }
+)
+
+local on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>e', ':lua GoToDefinitionTab()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>q', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>u', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>r', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>i', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true })
+  elseif client.resolved_capabilities.document_range_formatting then
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.range_formatting()<CR>', { noremap = true })
+  end
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
+end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.gopls.setup{
   cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
   capabilities = capabilities,
+  on_attach = on_attach,
 }
 
-lspconfig.clangd.setup{}
+lspconfig.clangd.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 
 local function SystemName()
   if vim.fn.has("mac") == 1 then
@@ -157,15 +184,6 @@ lspconfig.yamlls.setup{}
 lspconfig.jsonls.setup{}
 lspconfig.vimls.setup{}
 
-vim.api.nvim_set_keymap('n', '<Leader>e', ':lua GoToDefinitionTab()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>q', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>u', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>r', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>i', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
-
 vim.lsp.set_log_level("debug")
 vim.api.nvim_set_keymap('n', '<Leader>ll', ':tabe ' .. vim.lsp.get_log_path() .. '<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>lg', ':tabe ' .. os.getenv('HOME') .. '/.gopls.log' .. '<CR>', { noremap = true })
@@ -177,23 +195,6 @@ function DiagnosticStatus()
   local count_e = vim.lsp.diagnostic.get_count(0, 'Error')
   local count_w = vim.lsp.diagnostic.get_count(0, 'Warning')
   return string.format('[E:%d,W:%d]', count_e, count_w)
-end
-
-function GoImports()
-  local context = { source = { organizeImports = true } }
-  vim.validate { context = { context, 't', true } }
-  local params = vim.lsp.util.make_range_params()
-  params.context = context
-  local method = 'textDocument/codeAction'
-  local resp = vim.lsp.buf_request_sync(0, method, params)
-  if resp and resp[1] then
-    local result = resp[1].result
-    if result and result[1] then
-      local edit = result[1].edit
-      vim.lsp.util.apply_workspace_edit(edit)
-    end
-  end
-  vim.lsp.buf.formatting()
 end
 
 function GoFillStruct()
@@ -259,11 +260,9 @@ ts.setup {
 }
 
 -- filetype specific
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>f :lua GoImports()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoFillStruct()<CR>')
-vim.api.nvim_command('autocmd FileType c nnoremap <buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact set tabstop=2')
