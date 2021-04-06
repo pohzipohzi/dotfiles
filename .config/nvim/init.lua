@@ -89,9 +89,8 @@ vim.api.nvim_set_keymap('n', '<Leader>hu', ':GitGutterUndoHunk<CR>', { noremap =
 vim.api.nvim_set_keymap('n', '<Leader>hh', ':GitGutterPreviewHunk<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>hs', ':GitGutterStageHunk<CR>', { noremap = true })
 
--- lsp
-local lspconfig = require 'lspconfig'
-local function progress_callback(_, _, params, client_id)
+-- lsp handlers
+vim.lsp.handlers["$/progress"] = function(_, _, params, client_id)
   local client = vim.lsp.get_client_by_id(client_id)
   local client_name = client and client.name or string.format("%d", client_id)
   if not client then
@@ -107,15 +106,17 @@ local function progress_callback(_, _, params, client_id)
     print(string.format('[%s:%s] %s', client_name, val.kind, val.message))
   end
 end
-vim.lsp.handlers["$/progress"] = progress_callback
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
     underline = true,
     virtual_text = false,
   }
 )
 
+-- lsp configs
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>e', ':lua GoToDefinitionTab()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
@@ -131,8 +132,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
 end
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local lspconfig = require 'lspconfig'
 
 lspconfig.gopls.setup{
   cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
