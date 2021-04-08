@@ -324,6 +324,6 @@ function RunBuf(cmd)
   end
   vim.fn.setline(1, lines)
   if vim.fn.line('$') > #lines then
-    vim.api.nvim_command(string.format('%d,$ delete'), #lines + 1)
+    vim.api.nvim_command(string.format('%d,$ delete', #lines + 1))
   end
 end
