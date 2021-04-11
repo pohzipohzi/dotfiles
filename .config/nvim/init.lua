@@ -148,7 +148,7 @@ lspconfig.clangd.setup{
 
 lspconfig.sumneko_lua.setup{
   cmd = {
-    os.getenv('HOME') .. '/oss/lua-language-server/bin/' .. (vim.fn.has('mac') and 'macOS' or 'Linux') .. '/lua-language-server',
+    os.getenv('HOME') .. '/oss/lua-language-server/bin/' .. (vim.fn.has('mac') == 1 and 'macOS' or 'Linux') .. '/lua-language-server',
     "-E",
     os.getenv('HOME') .. '/oss/lua-language-server/main.lua',
   };
