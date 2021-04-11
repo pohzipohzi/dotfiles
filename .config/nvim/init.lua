@@ -125,11 +125,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>u', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>r', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>i', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true })
-  elseif client.resolved_capabilities.document_range_formatting then
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', ':lua vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})<CR>', { noremap = true })
-  end
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f',
+  client.name == 'gopls' and ':lua GoImports()<CR>' or
+  client.resolved_capabilities.document_formatting and ':lua vim.lsp.buf.formatting()<CR>' or
+  client.resolved_capabilities.document_range_formatting and ':lua vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})<CR>' or
+  string.format(':lua vim.api.nvim_echo({{"no formatting command configured for language server `%s`", "WarningMsg"}}, false, {})<CR>', client.name), { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
 end
@@ -202,6 +202,30 @@ function GoFillStruct()
     command = 'gopls.fill_struct',
     arguments = {params['textDocument']['uri'], params['range']},
   })
+end
+
+-- this is mostly copied from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports
+function GoImports()
+  vim.lsp.buf.formatting_sync()
+
+  local params = vim.lsp.util.make_range_params()
+  params.context = { source = { organizeImports = true } }
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+  if not result or next(result) == nil then return end
+  local actions = result[1].result
+  if not actions then return end
+  local action = actions[1]
+
+  if action.edit or type(action.command) == "table" then
+    if action.edit then
+      vim.lsp.util.apply_workspace_edit(action.edit)
+    end
+    if type(action.command) == "table" then
+      vim.lsp.buf.execute_command(action.command)
+    end
+  else
+    vim.lsp.buf.execute_command(action)
+  end
 end
 
 function GoToDefinitionTab()
