@@ -100,11 +100,19 @@ vim.lsp.handlers["$/progress"] = function(_, _, params, client_id)
   end
   local val = params.value
   if val.kind then
-    if val.title then
+    if val.title and val.message then
       print(string.format('[%s:%s] %s: %s', client_name, val.kind, val.title, val.message))
       return
     end
-    print(string.format('[%s:%s] %s', client_name, val.kind, val.message))
+    if val.title then
+      print(string.format('[%s:%s] %s', client_name, val.kind, val.title))
+      return
+    end
+    if val.message then
+      print(string.format('[%s:%s] %s', client_name, val.kind, val.message))
+      return
+    end
+    print(string.format('[%s:%s]', client_name, val.kind))
   end
 end
 
