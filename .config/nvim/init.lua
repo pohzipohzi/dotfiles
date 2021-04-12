@@ -125,7 +125,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 -- lsp configs
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>e', ':lua GoToDefinitionTab()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>d', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
@@ -141,20 +140,17 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
 end
-local lspconfig = require 'lspconfig'
 
-lspconfig.gopls.setup{
+require'lspconfig'.gopls.setup{
   cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
-  capabilities = capabilities,
   on_attach = on_attach,
 }
 
-lspconfig.clangd.setup{
-  capabilities = capabilities,
+require'lspconfig'.clangd.setup{
   on_attach = on_attach,
 }
 
-lspconfig.sumneko_lua.setup{
+require'lspconfig'.sumneko_lua.setup{
   cmd = {
     os.getenv('HOME') .. '/oss/lua-language-server/bin/' .. (vim.fn.has('mac') == 1 and 'macOS' or 'Linux') .. '/lua-language-server',
     "-E",
@@ -177,17 +173,14 @@ lspconfig.sumneko_lua.setup{
       },
     }
   },
-  capabilities = capabilities,
   on_attach = on_attach,
 }
 
-lspconfig.yamlls.setup{
-  capabilities = capabilities,
+require'lspconfig'.yamlls.setup{
   on_attach = on_attach,
 }
 
-lspconfig.jsonls.setup{
-  capabilities = capabilities,
+require'lspconfig'.jsonls.setup{
   on_attach = on_attach,
 }
 
