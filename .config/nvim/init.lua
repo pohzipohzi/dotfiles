@@ -31,7 +31,7 @@ for _, lhs in ipairs({
 vim.api.nvim_set_keymap('', lhs, '<NOP>', { noremap = true })
 end
 
--- set options
+-- options
 vim.api.nvim_win_set_option(0, 'nu', true)
 vim.api.nvim_win_set_option(0, 'rnu', true)
 vim.api.nvim_win_set_option(0, 'colorcolumn', '80')
@@ -44,7 +44,12 @@ vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()} %{luae
 vim.api.nvim_command('set tabstop=2')
 vim.api.nvim_command('set shiftwidth=0')
 vim.api.nvim_command('set expandtab')
+
+-- colors
 vim.api.nvim_command('colorscheme nord')
+vim.api.nvim_command('highlight LspDiagnosticsDefaultError guifg=#BF616A')
+vim.api.nvim_command('highlight LspDiagnosticsDefaultWarning guifg=#EBCB8B')
+vim.api.nvim_command('highlight CleverFChar gui=bold,underline guifg=#BF616A')
 
 -- leader mappings
 vim.api.nvim_set_var('mapleader', ' ')
@@ -66,7 +71,6 @@ vim.api.nvim_set_var('fzf_layout', {
   },
 })
 vim.api.nvim_set_var('clever_f_across_no_line', 1)
-vim.api.nvim_command('highlight CleverFChar gui=bold,underline guifg=#BF616A')
 vim.api.nvim_set_keymap('n', '<C-h>', ':tabp<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':tabn<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-j>', ':cnext<CR>', { noremap = true })
