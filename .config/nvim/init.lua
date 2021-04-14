@@ -65,6 +65,8 @@ vim.api.nvim_set_var('fzf_layout', {
     height = 0.8,
   },
 })
+vim.api.nvim_set_var('clever_f_across_no_line', 1)
+vim.api.nvim_command('highlight CleverFChar gui=bold,underline guifg=#BF616A')
 vim.api.nvim_set_keymap('n', '<C-h>', ':tabp<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':tabn<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-j>', ':cnext<CR>', { noremap = true })
