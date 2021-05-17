@@ -17,7 +17,7 @@ local switch = {
     return cases_cmd, interactive_cmd
   end,
 }
-cases_cmd, interactive_cmd = switch[vim.bo.filetype]()
+local cases_cmd, interactive_cmd = switch[vim.bo.filetype]()
 vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>zc', string.format(':lua RunTerm("%s")<CR>', cases_cmd), { noremap=true })
 vim.api.nvim_buf_set_keymap(0, 'n', '<Leader>zi', string.format(':lua RunTerm("%s")<CR>', interactive_cmd), { noremap=true })
 vim.api.nvim_set_keymap('n', '<Leader>zo', ':tabe $HOME/dotfiles/.scripts/cp/<CR>', { noremap = true })
