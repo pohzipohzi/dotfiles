@@ -1,1 +1,12 @@
-maim -s $HOME/maim-$(date +%s).png
+T=$HOME/Pictures/$(date +%s).png
+maim -s $T
+if [ $? -eq 0 ]; then
+  A=$(dunstify -i dialog-information-symbolic "Screenshot saved to $T" --action="default,View Image")
+  case "$A" in
+  "default")
+    google-chrome-stable $T
+    ;;
+  esac
+else
+  dunstify -i dialog-error-symbolic "Failed to take screenshot"
+fi
