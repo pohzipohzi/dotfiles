@@ -152,6 +152,10 @@ require'lspconfig'.gopls.setup{
   on_attach = on_attach,
 }
 
+require'lspconfig'.pyls.setup{
+  on_attach = on_attach,
+}
+
 require'lspconfig'.clangd.setup{
   on_attach = on_attach,
 }
