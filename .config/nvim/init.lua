@@ -156,6 +156,10 @@ require'lspconfig'.pyls.setup{
   on_attach = on_attach,
 }
 
+require'lspconfig'.solargraph.setup{
+  on_attach = on_attach,
+}
+
 require'lspconfig'.clangd.setup{
   on_attach = on_attach,
 }
