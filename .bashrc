@@ -20,6 +20,9 @@ export PATH=$PATH:$(python -m site --user-base)/bin
 # node
 source /usr/share/nvm/init-nvm.sh
 
+# ruby
+eval "$(rbenv init -)"
+
 # postgres
 export PSQL_PAGER='less -S'
 
