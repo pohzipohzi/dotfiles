@@ -359,3 +359,5 @@ function RunBuf(cmd)
     vim.api.nvim_command(string.format('%d,$ delete', #lines + 1))
   end
 end
+
+require'init2'
