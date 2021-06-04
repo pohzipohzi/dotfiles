@@ -6,6 +6,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   ln -s $(pwd)/.xinitrc $HOME/.xinitrc
   ln -sT $(pwd)/.vsnip $HOME/.vsnip
   ln -sT $(pwd)/.digrc $HOME/.digrc
+  ln -sT $(pwd)/.pryrc $HOME/.pryrc
   ln -sT $(pwd)/.config/nvim $HOME/.config/nvim
   ln -sT $(pwd)/.config/alacritty $HOME/.config/alacritty
   ln -sT $(pwd)/.config/git $HOME/.config/git
@@ -18,6 +19,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   ln -s $(pwd)/.ideavimrc $HOME/.ideavimrc
   ln -sh $(pwd)/.vsnip $HOME/.vsnip
   ln -sh $(pwd)/.digrc $HOME/.digrc
+  ln -sh $(pwd)/.pryrc $HOME/.pryrc
   ln -sh $(pwd)/.config/nvim $HOME/.config/nvim
   ln -sh $(pwd)/.config/alacritty $HOME/.config/alacritty
   ln -sh $(pwd)/.config/git $HOME/.config/git
