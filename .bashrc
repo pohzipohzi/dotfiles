@@ -21,6 +21,8 @@ export PATH=$PATH:$(python -m site --user-base)/bin
 source /usr/share/nvm/init-nvm.sh
 
 # ruby
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 eval "$(rbenv init -)"
 
 # postgres
