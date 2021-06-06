@@ -1,7 +1,7 @@
 vim.api.nvim_command([[
 call plug#begin()
 Plug 'arcticicestudio/nord-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-dirvish'
