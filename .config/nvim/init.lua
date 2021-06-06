@@ -211,14 +211,6 @@ function DiagnosticStatus()
   return string.format('[E:%d,W:%d]', count_e, count_w)
 end
 
-function GoFillStruct()
-  local params = vim.lsp.util.make_range_params()
-  vim.lsp.buf.execute_command({
-    command = 'gopls.fill_struct',
-    arguments = {params['textDocument']['uri'], params['range']},
-  })
-end
-
 -- this is mostly copied from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports
 function GoImports()
   vim.lsp.buf.formatting_sync()
@@ -300,7 +292,6 @@ ts.setup {
 -- filetype specific
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tp :lua GoTestPkg()<CR>')
 vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>tf :lua GoTestFunc()<CR>')
-vim.api.nvim_command('autocmd FileType go nnoremap <buffer> <Leader>gfs :lua GoFillStruct()<CR>')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>t :tabe term://npx react-scripts test %<CR> i')
 vim.api.nvim_command('autocmd FileType typescript,typescriptreact nnoremap <buffer> <Leader>f :!npx eslint --fix %<CR>')
 vim.api.nvim_command('autocmd FileType tf nnoremap <buffer> <Leader>f :lua RunBuf("terraform fmt -")<CR>')
