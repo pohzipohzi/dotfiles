@@ -44,6 +44,8 @@ vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()} %{luae
 vim.api.nvim_command('set tabstop=2')
 vim.api.nvim_command('set shiftwidth=0')
 vim.api.nvim_command('set expandtab')
+vim.api.nvim_command('set notagstack')
+vim.api.nvim_set_keymap('', '<C-t>', '<NOP>', { noremap = true })
 
 -- colors
 vim.api.nvim_command('colorscheme nord')
