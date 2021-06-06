@@ -5,6 +5,10 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias tmux="tmux -2"
 
+# bat
+export BAT_THEME="Nord"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # aws
 alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli:2.1.4'
 
