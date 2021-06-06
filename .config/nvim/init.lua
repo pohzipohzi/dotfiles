@@ -26,26 +26,26 @@ for _, lhs in ipairs({
   '<Right>',
   '<C-f>',
   '<C-b>',
+  '<C-t>',
   '<Space>',
 }) do
 vim.api.nvim_set_keymap('', lhs, '<NOP>', { noremap = true })
 end
 
 -- options
-vim.api.nvim_win_set_option(0, 'nu', true)
-vim.api.nvim_win_set_option(0, 'rnu', true)
-vim.api.nvim_win_set_option(0, 'colorcolumn', '80')
-vim.api.nvim_win_set_option(0, 'cursorline', true)
-vim.api.nvim_win_set_option(0, 'list', true)
-vim.api.nvim_set_option('clipboard', 'unnamedplus')
-vim.api.nvim_set_option('updatetime', 100)
-vim.api.nvim_set_option('termguicolors', true)
-vim.api.nvim_set_option('statusline', '%<%f %h%m%r%{FugitiveStatusline()} %{luaeval("DiagnosticStatus()")} %=%-14.(%l,%c%V%) %P')
-vim.api.nvim_command('set tabstop=2')
-vim.api.nvim_command('set shiftwidth=0')
-vim.api.nvim_command('set expandtab')
-vim.api.nvim_command('set notagstack')
-vim.api.nvim_set_keymap('', '<C-t>', '<NOP>', { noremap = true })
+vim.opt.nu = true
+vim.opt.rnu = true
+vim.opt.colorcolumn = '80'
+vim.opt.cursorline = true
+vim.opt.list = true
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.updatetime = 100
+vim.opt.termguicolors = true
+vim.opt.statusline = '%<%f %h%m%r%{FugitiveStatusline()} %{luaeval("DiagnosticStatus()")} %=%-14.(%l,%c%V%) %P'
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 0
+vim.opt.expandtab = true
+vim.opt.tagstack = false
 
 -- colors
 vim.api.nvim_command('colorscheme nord')
@@ -276,8 +276,8 @@ require'compe'.setup {
     treesitter = true;
   };
 }
-vim.api.nvim_set_option('completeopt', 'menuone,noinsert,noselect')
-vim.api.nvim_set_option('shortmess', 'filnxtToOFc')
+vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+vim.opt.shortmess = 'filnxtToOFc'
 vim.api.nvim_set_keymap('i', '<CR>', 'compe#confirm("\\<CR>")', { noremap = true, silent = true, expr = true })
 vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', { expr = true })
