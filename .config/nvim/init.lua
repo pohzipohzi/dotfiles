@@ -72,6 +72,10 @@ vim.api.nvim_set_var('fzf_layout', {
     height = 0.8,
   },
 })
+vim.api.nvim_set_var('fzf_preview_window', {
+  'up:40%',
+  'ctrl-/',
+})
 vim.api.nvim_set_var('clever_f_across_no_line', 1)
 vim.api.nvim_set_keymap('n', '<C-h>', ':tabp<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-l>', ':tabn<CR>', { noremap = true })
@@ -83,7 +87,7 @@ vim.api.nvim_set_keymap('n', '<C-f>', ':GFiles<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<C-g>', ':GGrep<CR>', { noremap = true })
 vim.api.nvim_set_var('loaded_fzf_vim', '1')
 vim.api.nvim_command('autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler')
-vim.api.nvim_command('command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(<q-args> == "?" ? { "placeholder": "" } : {}), <bang>0)')
+vim.api.nvim_command('command! -bang -nargs=? GFiles call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)')
 vim.api.nvim_command('command! -bang -nargs=* GGrep call fzf#vim#grep("git grep -n -- ".shellescape(<q-args>), 0, fzf#vim#with_preview({"dir": input("git grep dir: ", expand("%:p:h"), "file")}), <bang>0)')
 
 -- git
