@@ -1,0 +1,6 @@
+#!/bin/bash
+killall -q spotifyd
+set -euxo pipefail
+spotifyd -u $(bw get username spotify) -p $(bw get password spotify)
+spt
+killall spotifyd
