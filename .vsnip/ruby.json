@@ -1,0 +1,10 @@
+{
+  "frozen string literal": {
+    "prefix": [
+      "froz"
+    ],
+    "body": [
+      "# frozen_string_literal: true"
+    ]
+  }
+}
