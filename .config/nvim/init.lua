@@ -149,8 +149,8 @@ local on_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting and ':lua vim.lsp.buf.formatting()<CR>' or
   client.resolved_capabilities.document_range_formatting and ':lua vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})<CR>' or
   string.format(':lua vim.api.nvim_echo({{"no formatting command configured for language server `%s`", "WarningMsg"}}, false, {})<CR>', client.name), { noremap = true })
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true })
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', ':lua vim.lsp.diagnostic.goto_next({wrap=false})<CR>', { noremap = true })
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', ':lua vim.lsp.diagnostic.goto_prev({wrap=false})<CR>', { noremap = true })
 end
 
 require'lspconfig'.gopls.setup{
