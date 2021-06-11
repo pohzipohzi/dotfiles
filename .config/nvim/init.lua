@@ -163,6 +163,8 @@ require'lspconfig'.pyls.setup{
 }
 
 require'lspconfig'.solargraph.setup{
+  cmd = { 'bundle', 'exec', 'solargraph', 'stdio' },
+  root_dir = require'lspconfig/util'.root_pattern("Gemfile", ".git", ".rbenv");
   on_attach = on_attach,
 }
 
