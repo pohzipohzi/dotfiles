@@ -154,7 +154,6 @@ local on_attach = function(client, bufnr)
 end
 
 require'lspconfig'.gopls.setup{
-  cmd = {'gopls', '-vv', '-rpc.trace', '-logfile', os.getenv('HOME') .. '/.gopls.log'},
   on_attach = on_attach,
 }
 
@@ -208,7 +207,6 @@ require'lspconfig'.jsonls.setup{
 
 vim.lsp.set_log_level("debug")
 vim.api.nvim_set_keymap('n', '<Leader>ll', ':tabe ' .. vim.lsp.get_log_path() .. '<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>lg', ':tabe ' .. os.getenv('HOME') .. '/.gopls.log' .. '<CR>', { noremap = true })
 
 function DiagnosticStatus()
   if vim.tbl_isempty(vim.lsp.buf_get_clients(0)) then
