@@ -244,19 +244,32 @@ end
 function GoToDefinitionTab()
   local params = vim.lsp.util.make_position_params()
   local method = 'textDocument/definition'
-  vim.lsp.buf_request(0, method, params, GoToDefinitionTabHandler)
-end
-
-function GoToDefinitionTabHandler(_, _, result)
-  if not result or not result[1] then
-    print('no definition to jump to')
-    return
+  local function handler(_, _, result)
+    if not result or not result[1] then
+      print('No location found')
+      return
+    end
+    local set = {}
+    local uri_count = 0
+    for _, r in pairs(result) do
+      local uri = r.uri or r.targetUri
+      if not set[uri] then
+        uri_count = uri_count + 1
+        set[uri] = true
+      end
+    end
+    if uri_count == 1 then
+      local uri = result[1].uri or result[1].targetUri
+      local expr = string.sub(uri, string.len('file://')+1)
+      vim.api.nvim_command('tab drop ' .. expr)
+      vim.lsp.util.jump_to_location(result[1])
+      return
+    end
+    vim.lsp.util.set_qflist(vim.lsp.util.locations_to_items(result))
+    vim.api.nvim_command('tab copen')
+    vim.api.nvim_command('.cc')
   end
-  -- apparently it's possible for 'textDocument/definition' to return more than
-  -- one result. This implementation only handles the first one
-  local expr = string.sub(result[1]['uri'], string.len('file://')+1)
-  vim.api.nvim_command('tab drop ' .. expr)
-  vim.lsp.util.jump_to_location(result[1])
+  vim.lsp.buf_request(0, method, params, handler)
 end
 
 -- completion
